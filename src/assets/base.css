@@ -1,0 +1,22 @@
+/* color palette from <https://github.com/vuejs/theme> */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+html{
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+  /* background-color: black; */
+  z-index: -2000;
+}
