@@ -116,9 +116,9 @@ export const useNoteStore = defineStore('noteStore', {
                 ivFront: ivBase64,
             }
 
-            try {
+            try { // http://localhost:8080/system/api/v1/add-note
 
-                const response = await axios.post('http://localhost:8080/system/api/v1/add-note', 
+                const response = await axios.post('/api/v1/add-note', 
                 noteEntityDTO,
                 {headers: {Authorization: `Bearer ${token}`}}
                 )
@@ -157,8 +157,8 @@ export const useNoteStore = defineStore('noteStore', {
             }
 
 
-            try {
-                const response = await axios.post('http://localhost:8080/system/api/v1/notes-user', 
+            try { //  http://localhost:8080/system/api/v1/notes-user
+                const response = await axios.post('/api/v1/notes-user', 
                     body,
                     {headers: {Authorization: `Bearer ${token}`}}
                 );
@@ -182,8 +182,8 @@ export const useNoteStore = defineStore('noteStore', {
             const authenticationStore = useAuthenticationStore();
             const token = authenticationStore.getToken();
 
-            try {
-                const response = await axios.delete('http://localhost:8080/system/api/v1/delete-note', 
+            try { // http://localhost:8080/system/api/v1/delete-note
+                const response = await axios.delete('/api/v1/delete-note', 
                     {
                         headers: {Authorization: `Bearer ${token}`},
                         data: { noteId: id}
@@ -228,8 +228,8 @@ export const useNoteStore = defineStore('noteStore', {
                 this.newNoteDTO.content = encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteContent);
             }
 
-            try {
-                const response = await axios.patch('http://localhost:8080/system/api/v1/update-note', 
+            try { // http://localhost:8080/system/api/v1/update-note
+                const response = await axios.patch('/api/v1/update-note', 
                     this.newNoteDTO,
                     {headers: {Authorization: `Bearer ${token}`}}
                 )

@@ -130,8 +130,8 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
             this.PasswordEntityDTO.aesKey = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAesKey);
             this.PasswordEntityDTO.ivFront = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront());
 
-            try {
-                const response = await axios.patch('http://localhost:8080/system/api/v1/update-password',
+            try { // http://localhost:8080/system/api/v1/update-password
+                const response = await axios.patch('/api/v1/update-password',
                     passwordDTO,
                     {headers: {Authorization: `Bearer ${token}`}}
                 );
@@ -167,8 +167,8 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
             const authenticationStore = useAuthenticationStore();
             const token = authenticationStore.getToken();
 
-            try {
-                const response = await axios.delete('http://localhost:8080/system/api/v1/delete-password',
+            try { // http://localhost:8080/system/api/v1/delete-password
+                const response = await axios.delete('/api/v1/delete-password',
                     {
                         headers: {Authorization: `Bearer ${token}`},
                         data: { idPassword: this.id },

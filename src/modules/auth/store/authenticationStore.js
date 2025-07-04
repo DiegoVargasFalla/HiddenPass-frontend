@@ -109,8 +109,8 @@ export const useAuthenticationStore = defineStore('authentication', {
                     ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront())
                 }
 
-                try {
-                    const response = await axios.post('http://localhost:8080/system/api/v1/passwords-user',
+                try {  // http://localhost:8080/system/api/v1/passwords-user
+                    const response = await axios.post('/api/v1/passwords-user',
                         masterKeyDTO,
                         { headers: { Authorization: `Bearer ${this.token}` } }
                     );
@@ -134,8 +134,8 @@ export const useAuthenticationStore = defineStore('authentication', {
         },
         async login(credentials) {
 
-            try {
-                const response = await axios.post('http://localhost:8080/system/api/login', { 
+            try { // http://localhost:8080/system/api/login
+                const response = await axios.post('/api/login', { 
                     username: credentials.email,
                     password: credentials.password
                 })
@@ -159,8 +159,8 @@ export const useAuthenticationStore = defineStore('authentication', {
         },
 
         async checkMail(value) {
-            try {
-                const response = await axios.post('http://localhost:8080/system/api/v1/checkmail', 
+            try { // http://localhost:8080/system/api/v1/checkmail
+                const response = await axios.post('/api/v1/checkmail', 
                     value
                 )
                 const data = response.data;
@@ -184,8 +184,8 @@ export const useAuthenticationStore = defineStore('authentication', {
                 this.isAuthenticate = true;
                 this.token = tokenUser;
 
-                try {
-                    const response = await axios.get('http://localhost:8080/system/api/v1/checktoken', {
+                try { // http://localhost:8080/system/api/v1/checktoken
+                    const response = await axios.get('/api/v1/checktoken', {
                         headers: {
                             'Authorization': `Bearer ${this.token}`
                         }
