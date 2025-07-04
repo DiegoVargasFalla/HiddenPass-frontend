@@ -8,3 +8,5 @@ RUN npm install  && npm run build
 # solo servir el  contenido
 FROM nginx:alpine
 COPY --from=build-stable /app/dist /usr/share/nginx/html
+
+EXPOSE 80
