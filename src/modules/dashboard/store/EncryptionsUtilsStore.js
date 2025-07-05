@@ -61,7 +61,7 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
             try {
                 const token = sessionStorage.getItem('tokenAuthentication')
 
-                const response = await axios.get('http://localhost:8080/system/api/v1/pk',
+                const response = await axios.get('/api/v1/pk',
                         { headers: { Authorization: `Bearer ${token}` } }
                     );
 
