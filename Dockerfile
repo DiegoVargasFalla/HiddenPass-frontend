@@ -3,7 +3,7 @@ FROM node:20-alpine AS build-stage
 
 WORKDIR /app
 COPY . .
-RUN npm install  && npm run build
+RUN npm install && npm run build
 
 # solo servir el  contenido
 FROM nginx:alpine
