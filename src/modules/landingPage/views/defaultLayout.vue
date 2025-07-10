@@ -291,9 +291,8 @@ onMounted(() => {
 .content-img-computer {
     background-image: url('@/assets/img/Macbook.svg');
     position: relative;
-    height: 355px;
+    height: 350px;
     width: 700px;
-    object-fit: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -319,7 +318,8 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     width: 50%;
-    height: 100%;
+    padding: 20px 0;
+    /* height: 100%; */
 }
 
 .content-text-info {
