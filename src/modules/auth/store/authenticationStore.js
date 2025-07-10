@@ -110,7 +110,7 @@ export const useAuthenticationStore = defineStore('authentication', {
                 }
 
                 try {  // http://localhost:8080/system/api/v1/passwords-user
-                    const response = await axios.post('http://192.168.0.177/api/v1/passwords-user',
+                    const response = await axios.post('/api/v1/passwords-user',
                         masterKeyDTO,
                         { headers: { Authorization: `Bearer ${this.token}` } }
                     );
@@ -135,7 +135,7 @@ export const useAuthenticationStore = defineStore('authentication', {
         async login(credentials) {
 
             try { // http://localhost:8080/system/api/login
-                const response = await axios.post('http://192.168.0.177/api/login', { 
+                const response = await axios.post('/api/login', { 
                     username: credentials.email,
                     password: credentials.password
                 })
@@ -160,7 +160,7 @@ export const useAuthenticationStore = defineStore('authentication', {
 
         async checkMail(value) {
             try { // http://localhost:8080/system/api/v1/checkmail
-                const response = await axios.post('http://192.168.0.177/api/v1/checkmail', 
+                const response = await axios.post('/api/v1/checkmail', 
                     value
                 )
                 const data = response.data;
@@ -185,7 +185,7 @@ export const useAuthenticationStore = defineStore('authentication', {
                 this.token = tokenUser;
 
                 try { // http://localhost:8080/system/api/v1/checktoken
-                    const response = await axios.get('http://192.168.0.177/api/v1/checktoken', {
+                    const response = await axios.get('/api/v1/checktoken', {
                         headers: {
                             'Authorization': `Bearer ${this.token}`
                         }

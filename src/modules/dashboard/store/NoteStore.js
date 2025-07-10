@@ -118,7 +118,7 @@ export const useNoteStore = defineStore('noteStore', {
 
             try { // http://localhost:8080/system/api/v1/add-note
 
-                const response = await axios.post('http://192.168.0.177/api/v1/add-note', 
+                const response = await axios.post('/api/v1/add-note', 
                 noteEntityDTO,
                 {headers: {Authorization: `Bearer ${token}`}}
                 )
@@ -158,7 +158,7 @@ export const useNoteStore = defineStore('noteStore', {
 
 
             try { //  http://localhost:8080/system/api/v1/notes-user
-                const response = await axios.post('http://192.168.0.177/api/v1/notes-user', 
+                const response = await axios.post('/api/v1/notes-user', 
                     body,
                     {headers: {Authorization: `Bearer ${token}`}}
                 );
@@ -183,7 +183,7 @@ export const useNoteStore = defineStore('noteStore', {
             const token = authenticationStore.getToken();
 
             try { // http://localhost:8080/system/api/v1/delete-note
-                const response = await axios.delete('http://192.168.0.177/api/v1/delete-note', 
+                const response = await axios.delete('/api/v1/delete-note', 
                     {
                         headers: {Authorization: `Bearer ${token}`},
                         data: { noteId: id}
@@ -229,7 +229,7 @@ export const useNoteStore = defineStore('noteStore', {
             }
 
             try { // http://localhost:8080/system/api/v1/update-note
-                const response = await axios.patch('http://192.168.0.177/api/v1/update-note', 
+                const response = await axios.patch('/api/v1/update-note', 
                     this.newNoteDTO,
                     {headers: {Authorization: `Bearer ${token}`}}
                 )

@@ -324,7 +324,7 @@ onMounted(() => {
 }
 
 .container-img-mac {
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     position: relative;
     display: flex;
     align-items: center;
