@@ -27,7 +27,8 @@
                 </div>
             </div>
             <div class="container-img-mac">
-                <div class="content-img-computer"></div>
+                <!-- <div class="content-img-computer"></div> -->
+                 <img src="/src/assets/img/Macbook.svg" alt="img computer">
             </div>
         </section>
         <div class="scroll-about" id="scroll-about"></div>
@@ -288,15 +289,26 @@ onMounted(() => {
     }
 }
 
-.content-img-computer {
+/* .content-img-computer {
     background-image: url('@/assets/img/Macbook.svg');
     position: relative;
-    height: 350px;
-    width: 700px;
+    height: 100%;
+    width: 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-}
+} */
+/* 
+.container-img {
+    position: absolute;
+    background-image: url('@/assets/img/padlocks.webp');
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+} */
 
 .container-text-inf {
     /* background-color: orange; */
@@ -312,14 +324,20 @@ onMounted(() => {
 }
 
 .container-img-mac {
-    /* background-color: blueviolet; */
+    background-color: blueviolet;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
-    padding: 20px 0;
-    /* height: 100%; */
+    /* padding: 20px 0; */
+    height: 100%;
+}
+
+.container-img-mac img {
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
 
 .content-text-info {
@@ -566,7 +584,7 @@ contatc section
 .container-img {
     position: absolute;
     background-image: url('@/assets/img/padlocks.webp');
-    object-fit: cover;
+    /* object-fit: cover; */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
