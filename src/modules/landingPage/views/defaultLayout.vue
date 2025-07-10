@@ -289,27 +289,6 @@ onMounted(() => {
     }
 }
 
-/* .content-img-computer {
-    background-image: url('@/assets/img/Macbook.svg');
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-} */
-/* 
-.container-img {
-    position: absolute;
-    background-image: url('@/assets/img/padlocks.webp');
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-} */
-
 .container-text-inf {
     /* background-color: orange; */
     position: relative;
@@ -472,7 +451,7 @@ use guide section
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(163, 188, 143);
+    background-color: #16DB65;
     height: 87.5vh;
     width: 85%;
 }
