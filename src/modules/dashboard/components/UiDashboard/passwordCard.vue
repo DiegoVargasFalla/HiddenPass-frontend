@@ -51,8 +51,9 @@ function showCardPasword() {
     /* background: linear-gradient(green, rgb(88, 197, 88)); */
     display: flex;
     align-items: center;
-    padding-left: 15px;
-    min-height: 40px;
+    /* justify-content: space-around; */
+    /* padding-left: 15px; */
+    height: 40px;
     width: 90%;
     border-radius: 15px;
     cursor: pointer;
@@ -94,7 +95,7 @@ function showCardPasword() {
     display: flex;
     align-items: center;
     height: 100%;
-    width: 90%;
+    width: 85%;
     font-family: 'Inter';
     /* font-size: 16px; */
     /* font-weight: 400; */

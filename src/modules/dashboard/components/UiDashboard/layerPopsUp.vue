@@ -4,6 +4,7 @@
         <ConfirmDeletePassword v-if="showConfirmDeletePassword"></ConfirmDeletePassword>
         <ConfirmDeleteNote v-if="showConfirmDeleteNote"></ConfirmDeleteNote>
         <EditNote v-if="showEditNote"></EditNote>
+        <ConfirmLogOut v-if="showLayerLogout"></ConfirmLogOut>
     </div>
 </template>
 
@@ -16,14 +17,18 @@ import ConfirmDeletePassword from '../viewsPasswords/ConfirmDeletePassword.vue';
 import ConfirmDeleteNote from '../viewsPasswords/ConfirmDeleteNote.vue';
 import { useNoteStore } from '../../store/NoteStore';
 import EditNote from './EditNote.vue';
+import ConfirmLogOut from '../viewsPasswords/ConfirmLogOut.vue';
+import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 
 const newPasswordStore = useNewPasswordStore();
 const noteStore = useNoteStore();
+const authenticationStore = useAuthenticationStore();
 
 const showConfirmDeletePassword = computed(() => newPasswordStore.getShowConfirmDeletePassword())
 const showFormNewPassword = computed(() => newPasswordStore.getShow());
 const showConfirmDeleteNote = computed(() => noteStore.showConfirmDeleteNote);
 const showEditNote = computed(() => noteStore.showEditNote);
+const showLayerLogout = computed(() => authenticationStore.showLayerLogout);
 
 </script>
 

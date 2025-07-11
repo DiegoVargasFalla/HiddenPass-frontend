@@ -11,7 +11,9 @@
 
 <script setup>
 import { useNavStore } from '@/modules/dashboard/store/navStore';
+import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 import { computed } from 'vue';
+import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 
 
 
@@ -28,6 +30,8 @@ const props = defineProps({
 })
 
 const navStore = useNavStore();
+const authenticationStore = useAuthenticationStore();
+const showLayerPopsUp = useShowLayerPopsUp();
 
 // Computed para verificar si el elemento actual está seleccionado
 const isSelected = computed(() => navStore.selectedElement === props.idElement);
@@ -41,7 +45,8 @@ const handleClick = () => {
         navStore.setElement(props.idElement);
         navStore.setSection(props.componet);
     } else {
-        console.log();
+        showLayerPopsUp.setShowLayerPopsUp(true);
+        authenticationStore.setShowLayerLogout(true);
     }
 };
 

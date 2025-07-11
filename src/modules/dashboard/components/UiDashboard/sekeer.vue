@@ -20,6 +20,8 @@
     width: 60%;
     padding-left: 15px;
     gap: 5px;
+    overflow: hidden;
+    padding-right: 5px;
 }
 
 .container-search input {

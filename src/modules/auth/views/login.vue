@@ -171,7 +171,6 @@ const onSubmit = async () => {
 
                 if (token) {
                     router.push('/dashboard');
-                    // alert('you has been start session')
                 }
             }
         }

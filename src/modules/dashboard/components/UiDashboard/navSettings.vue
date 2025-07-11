@@ -19,7 +19,7 @@ import itemMenu from './itemMenu.vue';
 
 const itemSetting =[
     // {text: "Configuraciones", icon: "fa-solid fa-gear", size: 15, name: "Settings", id: 'settingsId', component: "Settings"},
-    {text: "Cerrar sesion", icon: "fa-solid fa-right-from-bracket", size: 15, name: "logout", id: 'logout',},
+    {text: "Cerrar sesión", icon: "fa-solid fa-right-from-bracket", size: 15, name: "logout", id: 'logout',},
 ]
 </script>
 

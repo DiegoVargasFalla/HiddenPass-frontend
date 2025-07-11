@@ -223,4 +223,24 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
 }
 
 
+
+.container-list-notes::-webkit-scrollbar {
+    width: 4.5px;
+}
+
+.container-list-notes::-webkit-scrollbar-thumb {
+    background-color: #16DB65; /* Color de la parte que puedes mover (thumb) */
+    border-radius: 4px;
+}
+
+.container-list-notes::-webkit-scrollbar-thumb:hover {
+    background-color: #16DB65; /* Color al hacer hover sobre la parte desplazable */
+}
+
+.container-list-notes::-webkit-scrollbar-track {
+    background-color: #0000007a; /* Color de la parte de fondo de la barra de scroll */
+    border-radius: 6px; /* Bordes redondeados */
+}
+
+
 </style>

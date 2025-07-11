@@ -19,7 +19,6 @@ import HeaderDasboard from '@/modules/dashboard/components/HeaderDasboard.vue';
 import showDashboard from '@/modules/dashboard/views/showDashboard.vue';
 import { useEncryptionsUtilsStore } from '../store/EncryptionsUtilsStore';
 import { useLoaderPasswordsStore } from '@/modules/loading/store/loadingPasswordsStore';
-import NotesUser from '../components/viewsPasswords/NotesUser.vue';
 import { useNoteStore } from '../store/NoteStore';
 
 
@@ -84,7 +83,7 @@ onMounted(() => {
     onUnmounted(() => {
         document.removeEventListener('mousemove', handleMouseMove);
         clearTimeout(timer); // Limpiar el temporizador al desmontar
-        window.removeEventListener('beforeunload')
+        window.removeEventListener('beforeunload', handleMouseMove)
     });
 });
 

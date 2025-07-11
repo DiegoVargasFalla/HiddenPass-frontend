@@ -18,7 +18,8 @@ export const useAuthenticationStore = defineStore('authentication', {
         reload: false,
         listOldPassword: Array,
         listRecentPasssword: Array,
-        listAlphabeticPassword: Array
+        listAlphabeticPassword: Array,
+        showLayerLogout: false,
     }),
     actions: {
 
@@ -66,6 +67,9 @@ export const useAuthenticationStore = defineStore('authentication', {
         },
         setNumPasswords(value) {
             this.numPasswords = value
+        },
+        setShowLayerLogout(value) {
+            this.showLayerLogout = value;
         },
         setListPassword(List) {
             this.listPassword = List;
