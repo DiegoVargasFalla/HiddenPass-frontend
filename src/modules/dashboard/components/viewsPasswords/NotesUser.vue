@@ -407,10 +407,10 @@ const saveNote = async () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 86%;
+    height: 82%;
     width: 22%;
     border-radius: 50%;
-    padding: 2.5px;
+    padding: 0.19em;
     overflow: hidden;
 }
 
