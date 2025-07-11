@@ -101,6 +101,10 @@ const onClick = async () => {
     }
 }
 
+const urlFavicon = () => {
+    "aasad";
+}
+
 function deleteTextField() {
     newPasswordStore.setUsername("");
     newPasswordStore.setPassword("");

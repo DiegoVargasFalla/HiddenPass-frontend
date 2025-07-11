@@ -1,7 +1,7 @@
 <template>
     <div class="conten-card" @click="showCardPasword">
         <div class="logo-site">
-            <i :class="props.logo"></i>
+            <img :src="`https://icons.duckduckgo.com/ip3/${props.namesite}.ico`" alt="">
         </div>
         <div class="text-card">
             <h3 class="text-tittel">{{ props.namesite }}</h3>
@@ -76,7 +76,16 @@ function showCardPasword() {
     justify-content: center;
     height: 100%;
     width: 10%;
-    font-size: 18px;
+    /* background-color: red; */
+}
+
+.logo-site img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    object-fit: fill;
 }
 
 .text-card {
@@ -89,16 +98,6 @@ function showCardPasword() {
     font-family: 'Inter';
     /* font-size: 16px; */
     /* font-weight: 400; */
-}
-
-.logo-more {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 10%;
-    color: #000000;
 }
 
 .text-tittel {

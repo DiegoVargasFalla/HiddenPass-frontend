@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="container-input" :class="{'isFocused': focusedUrl}">
-                    <Field v-model="url" name="url" id="field-url" type="text" placeholder="Url/Link" class="styles-none" :class="{'is-invalid': errors.url}"  @focus="focusedUrl = true" @blur="focusedUrl = fasle"></Field>
+                    <Field v-model="url" name="url" id="field-url" type="text" placeholder="ejemplo.com" class="styles-none" :class="{'is-invalid': errors.url}"  @focus="focusedUrl = true" @blur="focusedUrl = fasle"></Field>
                 </div>
                 <div class="container-error">
                     <div class="invalid-feedback">{{ errors.url }}</div>
