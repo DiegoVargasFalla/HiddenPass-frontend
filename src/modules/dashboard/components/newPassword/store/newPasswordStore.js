@@ -62,7 +62,7 @@ export const useNewPasswordStore = defineStore('newPassword', {
         },
         async savePassword(values, token) {
             try {
-                const response = await axios.post("http://localhost:8080/system/api/v1/add-password", 
+                const response = await axios.post("/api/v1/add-password", 
                     values,
                     {headers: {Authorization: `Bearer ${token}`}}
                 )
