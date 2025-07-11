@@ -12,7 +12,7 @@ export const useNoteStore = defineStore('noteStore', {
         title: ref(''),
         date: 0,
         listNotes: [],
-        loadCirlce: false,
+        loadCirlce: true,
         error: false,
         showListNotes: false,
         confirmDeleteNote: false,
