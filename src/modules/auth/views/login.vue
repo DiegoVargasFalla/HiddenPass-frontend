@@ -205,7 +205,7 @@ const onSubmit = async () => {
 
 .bgImg {
     position: absolute;
-    background-image: url('@/assets/img/bgBinary.jpg');
+    background-image: url('@/assets/img/bgBinary.webp');
     height: 100%;
     width: 100%;
     object-fit: cover;
