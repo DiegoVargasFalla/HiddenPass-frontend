@@ -353,6 +353,7 @@ onMounted(() => {
     font-family: "Inter"; 
     font-size: 24px;
     line-height: 1.2;
+    font-weight: 500;
 }
 
 .container-button-go {
