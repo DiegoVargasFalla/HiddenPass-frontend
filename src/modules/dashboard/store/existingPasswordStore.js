@@ -2,8 +2,6 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { useAuthenticationStore } from "@/modules/auth/store/authenticationStore";
 import { useEncryptionsUtilsStore } from "./EncryptionsUtilsStore";
-import Passwords from "../components/passwords.vue";
-import { date } from "yup";
 
 
 export const useExistingPasswordStore = defineStore('existingPassword', {
