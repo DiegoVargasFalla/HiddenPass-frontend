@@ -33,7 +33,7 @@
 }
 
 .imgLogo {
-    background-image: url('/public/logo.svg');
+    background-image: url('@/assets/img/logo.svg');
     height: 52px;
     width: 52px;
     object-fit: cover;
