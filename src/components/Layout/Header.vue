@@ -32,6 +32,9 @@
                     boxShadowColor="rgba(157, 154, 154, 0.27)"
                     ></buttons>
                 </div>
+                <div class="container-icon-more-options">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -246,7 +249,7 @@ document.addEventListener("scroll", () => {
     justify-content: center;
     align-items: center;
     top: 15px;
-    height: 65px;
+    height: 3.9rem;
     width: 90%;
     border-radius: 28px;
     transition: all 0.4s ease;
@@ -257,18 +260,10 @@ document.addEventListener("scroll", () => {
     animation-direction: alternate;
     /* background-color: green; */
     z-index: 1000;
+
 }
 
 @keyframes header-efect {
-    /* 0%{
-        transform: scale(0.95);
-    }
-    50%{
-        transform: scale(1.03);
-    }
-    100%{
-        transform: scale(1);
-    } */
 
     0% {
         transform: translateY(20px) scale(0.95);
@@ -284,7 +279,7 @@ document.addEventListener("scroll", () => {
 .scrolled {
     backdrop-filter: blur(6px);
     box-shadow: 0 4px 10px 0 rgba(111, 111, 111, 0.36);
-    background: rgba(200, 198, 198, 0.6);
+    background: rgba(200, 198, 198, 0.522);
 }
 
 .scrolled2 {
@@ -313,6 +308,8 @@ document.addEventListener("scroll", () => {
     /* background-color: red; */
 }
 
+
+
 .containerButtons {
     position: relative;
     display: flex;
@@ -324,4 +321,35 @@ document.addEventListener("scroll", () => {
     position: relative;
     margin-right: 20px;
 }
+
+.container-icon-more-options {
+    position: relative;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .containerNavigator {
+        display: none;
+    }
+    .containerWidgets {
+        justify-content: end;
+    }
+    .container-icon-more-options {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .contentButtons {
+        display: none;
+    }
+    .containerHeader {
+        width: 95%;
+        height: 4.1rem;
+    }
+}
+
 </style>

@@ -2,7 +2,7 @@
     <div class="feature-item">
         <i :class="['icons', icon]"></i>
         <h3 class="title-items-funtions">{{ textTittle }}</h3>
-        <p>{{ textP }}</p>
+        <p class="text-item">{{ textP }}</p>
     </div>
 </template>
 
@@ -19,23 +19,47 @@ defineProps({
 <style scoped>
 
 .feature-item {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0 10px;
+    gap: 0.5rem;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 400px) {
+    .feature-item {
+        max-width: 100%;
+    }
+    .text-item {
+        text-align: center;
+        font-size: 0.95rem;
+        max-width: 90%;
+    }
+    .title-items-funtions {
+        text-align: center;
+    }
 }
 
 .title-items-funtions {
-    font-size: 20px;
+    font-size: 1.2rem;
     font-family: "Archivo Black", serif;
     /* font-weight: 600; */
 }
 
 .icons {
     color: #16DB65;
-    font-size: 30px;
+    font-size: 1.2rem;
 }
 
-p {
+.text-item {
     font-family: "inter";
-    font-size: 17px;
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+    text-align: center;
+    margin: 0 auto;
+    max-width: 250px;
 }
 
 </style>

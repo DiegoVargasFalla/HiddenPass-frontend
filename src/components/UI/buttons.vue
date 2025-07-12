@@ -1,7 +1,7 @@
 <template>
-    <div class="buttonLog" :style="{backgroundColor: bgColor, height: height +'px', width: width +'px', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
-        <a v-if="typeLink" :style="{ color: textColor, fontSize: fontSize + 'px', fontWeight: fontWeight}" :href="link">{{ label }}</a>
-        <RouterLink @click="" v-else :to="link" :style="{ color: textColor, fontSize: fontSize + 'px', fontWeight: fontWeight}" >{{ label }}</RouterLink>
+    <div class="buttonLog" :style="{backgroundColor: bgColor, height: height +'rem', width: width +'%', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
+        <a v-if="typeLink" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" :href="link">{{ label }}</a>
+        <RouterLink @click="" v-else :to="link" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" >{{ label }}</RouterLink>
     </div>
 </template>
     
@@ -23,10 +23,6 @@ const props = defineProps({
 })
 const typeLink = computed(() => props.link.startsWith('#'));
 
-function loginUser() {
-    
-}
-
 
 </script>
 <style scoped>
@@ -34,16 +30,17 @@ function loginUser() {
 
 .buttonLog {
     position: relative;
-    height: 35px;
-    width: 160px;
+    height: 2rem;
+    width: 10rem;
     border-radius: 7px;
     transition: 0.3s all ease-in-out;
     /* border: 1px solid rgba(0, 128, 0, 0.593); */
     /* box-shadow: 0px 2px 5px 0 rgb(157, 154, 154); */
     display: flex;
     align-items: center;
+    text-align: center;
     font-family: "Inter", serif;
-    font-size: 16px;
+    font-size: 1rem;
     overflow: hidden;
 }
 

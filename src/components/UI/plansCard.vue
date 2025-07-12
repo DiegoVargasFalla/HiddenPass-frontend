@@ -49,7 +49,8 @@ const showRecomended = computed(() => (props.popular == true))
 <style scoped>
 
 .container-card {
-    background-color: #16db6510;
+    /* background-color: #16db6510; */
+    /* background-color: orange; */
     position: relative;
     display: flex;
     align-items: center;
@@ -57,15 +58,22 @@ const showRecomended = computed(() => (props.popular == true))
     flex-direction: column;
     border-radius: 35px;
     height: auto;
-    width: 20rem;
+    width: 50%;
     padding: 20px;
     border: 2px solid #16db658f;
     border-top: inset 7px #00ff66;
     box-shadow: 0 0 8px #16db655d;
 }
 
+@media screen and (max-width: 870px) {
+    .container-card {
+        width: 100%;
+    }
+}
+
 
 .container-tittle-price {
+    /* background-color: red; */
     position: relative;
     display: flex;
     align-items: center;
@@ -80,12 +88,13 @@ const showRecomended = computed(() => (props.popular == true))
     align-items: center;
     font-family: "Archivo Black";
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.9rem;
     width: 100%;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .p-recomended {

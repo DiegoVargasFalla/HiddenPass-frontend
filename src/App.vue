@@ -1,6 +1,5 @@
 <template>
   <MainView></MainView>
-  <!-- <HomeView></HomeView> -->
 </template>
 
 <script setup>
