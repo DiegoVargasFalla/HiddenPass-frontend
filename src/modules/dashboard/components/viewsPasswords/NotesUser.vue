@@ -324,7 +324,7 @@ const saveNote = async () => {
     /* background-color: red; */
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 85%;
     width: 52%;
 }
@@ -412,18 +412,11 @@ const saveNote = async () => {
     display: flex;
     align-items: center;
     justify-content: center;
-<<<<<<< HEAD
-    height: 82%;
-    width: 22%;
-    border-radius: 50%;
-    padding: 0.19em;
-=======
 
     height: 85%;
     width: 24%;
     border-radius: 50%;
     padding: 3px;
->>>>>>> dev
     overflow: hidden;
 }
 
