@@ -2,7 +2,7 @@
     <div class="container-logo">
         <a href="/dashboard" class="link">
             <div class="imgLogoDashboard">
-                <img src="@/assets/logo.svg" alt="" class="img-logo">
+                <img src="@/assets/img/logo.svg" alt="" class="img-logo">
             </div>
         </a>
         <div class="container-logo">
