@@ -24,7 +24,7 @@ export function useNewPasswordSchema() {
         .required('!La url es obligatorio¡')
         .matches(
             /^(?!:\/\/)([a-zA-Z0-9-_]+\.)+[a-zA-Z]{2,}$/,
-            'Debe ser un dominio o subdominio válido (ejemplo.com)'
+            'Debe ser una (Url/Link) o subdominio válido (ejemplo.com)'
         ),
         
         password: yup

@@ -37,7 +37,7 @@
 <style scoped>
 
 .line-top {
-    position: absolute;
+    position: relative;
     background-color: #16DB65;
     height: 1px;
     width: 100%;
@@ -50,13 +50,14 @@
 }
 
 .container-footer {
-    position: relative;
+    /* position: relative; */
     background: #111;
     color: white;
-    padding: 40px 0;
+    /* padding: 40px 0; */
     text-align: center;
-    height: 35vh;
+    /* height: 35vh; */
     width: 100%;
+    /* bottom: 0; */
 }
 .footer-content {
     display: flex;

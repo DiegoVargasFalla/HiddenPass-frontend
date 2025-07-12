@@ -1,11 +1,13 @@
 <template>
     <div class="main-container">
-        <bubble 
-            :top1="500" :left1="480" 
-            :top2="550" :left2="400"
-            :top3="480" :left3="450"
-            :top4="500" :left4="310"
-        ></bubble>
+        <div class="container-bubble">
+            <bubble 
+            :top1="25" :left1="5" 
+            :top2="24" :left2="8"
+            :top3="17" :left3="8"
+            :top4="20" :left4="3"
+            ></bubble>
+        </div>
         <section class="main-section width-sections" id="sec-start">
             <div class="container-text-inf">
                 <div class="content-text-info">
@@ -15,15 +17,17 @@
                         de olvidarlas.
                     </p>
                 </div>
-                <div class="container-text-small" id="animation-sec-start" >
+                <div class="container-text-and-button-start">
+                    <div class="container-text-small" id="animation-sec-start" >
                     <p class="text-info-small">
                         ¿Te olvidas de tus contraseñas muy seguido?<br>
                         ¿Sientes que es una contraseña muy básica o<br> insegura?
                         HiddenPass las recuerda por ti de<br> una forma segura.
                     </p>
-                </div>
-                <div class="container-button-go">
-                    <buttons link="/register" label="Ir ahora" bgColor="black" textColor="white"></buttons>
+                    </div>
+                    <div class="container-button-go">
+                        <buttons link="/register" label="Ir ahora" bgColor="black" textColor="white"></buttons>
+                    </div>
                 </div>
             </div>
             <div class="container-img-mac">
@@ -37,18 +41,16 @@
                 <h3>Acerca de</h3>
             </div>
             <div class="container-itmes-abotut">
-                <div class="container-explain">
-                    <div class="container-text-explain">
-                        <h3 class="title-text-explain">
-                            Seguridad y Simplicidad en la Gestión de Contraseñas
-                        </h3>
-                        <p class="second-text-about type-inter">
-                            <span class="word-specials">HiddenPass</span> te ofrece
-                            una solucion excelente para proteger tus contraseñas sin complicaciones.
-                            Con una sola <span class="word-specials">clave maestra</span>, tendrás acceso seguro a todas tus credenciales,
-                            sin necesidad de recordarlas individualmente.
-                        </p>
-                    </div>
+                <div class="container-text-explain">
+                    <h3 class="title-text-explain">
+                        Seguridad y Simplicidad en la Gestión de Contraseñas
+                    </h3>
+                    <p class="second-text-about type-inter">
+                        <span class="word-specials">HiddenPass</span> te ofrece
+                        una solucion excelente para proteger tus contraseñas sin complicaciones.
+                        Con una sola <span class="word-specials">clave maestra</span>, tendrás acceso seguro a todas tus credenciales,
+                        sin necesidad de recordarlas individualmente.
+                    </p>
                 </div>
                 <div class="container-items-table">
                     <itemsAbout 
@@ -132,7 +134,7 @@
         <section class="contact-section" id="contact-section">
             <div class="container-img"></div>
             <div class="container-contact">
-                <div class="container-title-contact">
+                <!-- <div class="container-title-contact">
                     <h2 class="tittle-sections">Contacto</h2>
                 </div>
                 <div class="content-contact">
@@ -146,7 +148,7 @@
                         <textarea class="inputs input-menssage" name="Mensage" placeholder="Mensaje" id=""></textarea>
                     </div>
                     <buttons label="Enviar" link="#" bgColor="black" textColor="white" boxShadowColor="#058C42"></buttons>
-                </div>
+                </div> -->
             </div>
         </section>
         <section class="sec-end" id="sec-end">
@@ -164,9 +166,9 @@
                         bgColor="#16DB65" 
                         textColor="black" 
                         boxShadowColor="#16DB65" 
-                        :height="60" 
-                        :width="400"
-                        :fontSize="18"
+                        :height="3.7" 
+                        :width="100"
+                        :fontSize="1.1"
                         :fontWeight="900"
                         colorBorder="#058C42"
                         :bordeRadius="40"
@@ -254,13 +256,22 @@ onMounted(() => {
 .main-container {
     position: relative;
     width: 100%;
-    z-index: -100;
+    /* z-index: -100; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-color: whitesmoke;
+    /* background-color: red; */
     backdrop-filter: blur(1.5rem);
+    /* overflow-y: hidden; */
+}
+
+.container-bubble {
+    position: absolute;
+    inset: 0;
+    /* z-index: -10; */
+    pointer-events: none;
 }
 
 .main-section {
@@ -268,13 +279,120 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    flex-direction: row;
+    padding: 11rem 0;
     width: 85%;
-    z-index: -100;
-    /* background-color: red; */
-    margin-left: 80px;
+    margin-left: 4rem;
+    gap: 4rem;
 }
 
+.container-text-inf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    gap: 2.5rem;
+}
+
+.container-text-and-button-start {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.content-text-info {
+    max-width: 100%;
+}
+
+.text-info-big {
+    font-family: "Archivo Black", serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    text-align: left;
+}
+
+.text-info-small {
+    font-family: "Inter";
+    font-size: clamp(1rem, 2.2vw, 1.4rem);
+    line-height: 1.5;
+    font-weight: 500;
+    text-align: left;
+}
+
+.container-button-go {
+    display: flex;
+    align-items: start;
+}
+
+.container-img-mac {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.container-img-mac img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 1030px) {
+    .text-info-big {
+        text-align: center;
+    }
+    .text-info-small {
+        text-align: center;
+    }
+    .container-button-go {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .main-section {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        padding: 7rem 1rem;
+        gap: 3rem;
+    }
+
+    .container-text-inf {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container-img-mac {
+        width: 100%;
+    }
+
+    .container-img-mac img {
+        max-width: 90%;
+    }
+
+    .container-button-go {
+        justify-content: center;
+    }
+}
+
+.text-hidden {
+    color: #16DB65;
+    font-family: "Archivo Black", serif;
+    font-size: clamp(2.5rem, 5vw, 3.2rem);
+}
+
+.text-pass {
+    font-family: "Roboto Condensed", serif;
+    font-weight: 500;
+    font-size: clamp(2.3rem, 4.8vw, 3rem);
+    color: #16DB65;
+}
+
+/* Animación suave opcional */
 .animation-sec-start {
     animation: anim-bottom-to-top 0.8s alternate ease-in-out;
 }
@@ -288,102 +406,32 @@ onMounted(() => {
         transform: translateY(0) scale(1);
     }
 }
-
-.container-text-inf {
-    /* background-color: orange; */
-    position: relative;
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    flex-direction: column;
-    /* padding-left: 55px; */
-    width: 50%;
-    gap: 30px;
-    /* height: 100%; */
-}
-
-.container-img-mac {
-    /* background-color: blueviolet; */
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    /* padding: 20px 0; */
-    height: 100%;
-}
-
-.container-img-mac img {
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-
-.content-text-info {
-    position: relative;
-    /* background-color: red; */
-    margin-top: 20px;
-}
-
-.text-info-big {
-    position: relative;
-    font-family: "Archivo Black", serif;
-    font-size: 42px;
-    letter-spacing: 0px;
-    word-spacing: 1px;
-    line-height: 1.1;
-}
-
-.text-hidden {
-    color: #16DB65;
-    font-family: "Archivo Black", serif;
-    font-size: 50px;
-}
-
-.text-pass {
-    font-family: "Roboto Condensed", serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 46px;
-    color: #16DB65;
-}
-
-.text-info-small {
-    font-family: "Inter"; 
-    font-size: 24px;
-    line-height: 1.2;
-    font-weight: 500;
-}
-
-.container-button-go {
-    position: relative;
-    /* margin-top: -80px; */
-}
-
-/*
-    section about
-    container general of section about 
-*/
-
 .scroll-about {
     position: relative;
 }
 
 .section-about {
+    /* background-color: green; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: auto;
-    width: 85%;
+    /* height: auto; */
+    width: 90%;
     border-radius: 45px;
     gap: 45px;
-    padding: 30px;
+    /* padding: 30px; */
+}
+
+@media screen and (max-width: 1400px) {
+    .section-about {
+        width: 100%;
+    }
 }
 
 .container-itmes-abotut {
+    /* background-color: orange; */
     position: relative;
     display: flex;
     align-items: center;
@@ -396,28 +444,15 @@ onMounted(() => {
 .container-text-explain {
     /* background: linear-gradient(153deg, rgba(200,255,200,1) 10%, rgba(150,220,150,1) 60%, rgba(120,180,120,1) 90%); */
     position: relative;
-    /* padding: 30px; */
+    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
-    border-radius: 45px;
+    gap: 2.5rem;
+    border-radius: 1.5rem;
     transition: all 0.3s ease;
-    width: 100%;
-}
-
-.container-text-explain ul {
-    list-style: none;
-    padding-left: 25px;
-    margin-top: 15px;
-}
-
-.container-text-explain li {
-    position: relative;
-    display: flex;
-    margin-top: 10px;
-    gap: 10px;
+    width: 90%;
 }
 
 .icon-check {
@@ -428,12 +463,13 @@ onMounted(() => {
 .title-text-explain {
     font-family: "Archivo Black", serif;
     font-weight: 1000;
-    font-size: 32px;
+    font-size: clamp(1.7rem, 2.5vw, 2rem);;
+    text-align: center;
 }
 
 .type-inter {
     font-family: "inter";
-    font-size: 17px;
+    font-size: 1rem;
 }
 
 .hiddenpass-green-text-explain {
@@ -475,9 +511,16 @@ plans section
     justify-content: center;
     flex-direction: column;
     /* background-color: gray; */
-    height: 100vh;
-    width: 85%;
+    /* height: 100vh; */
+    width: 100%;
     row-gap: 70px;
+    padding: 4rem 0;
+}
+
+@media screen and (max-width: 870px) {
+    .plans-sections {
+        gap: 2rem;
+    }
 }
 
 .container-plans {
@@ -486,9 +529,41 @@ plans section
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
-    column-gap: 30px;
+    width: 70%;
+    column-gap: 2.5rem;
+    gap: 3.7rem;
 }
+
+@media screen and (max-width: 870px) {
+    .container-plans {
+        flex-direction: column;
+        width: 40%;
+    }
+}
+
+@media screen and  (min-width: 870px) and (max-width: 1250px) {
+    .container-plans {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container-plans {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .container-plans {
+        width: 80%;
+    }
+}
+
+/* @media screen and (max-width: 700px) {
+    .container-plans {
+        width: 70%;
+    }
+} */
 
 /* title section about */
 
@@ -498,7 +573,7 @@ plans section
     /* background-color: orange; */
     font-family: "Archivo Black", serif;
     font-weight: 800;
-    font-size: 35px;
+    font-size: clamp(2rem, 2.5vw, 2rem);
     width: 100%;
     text-align: center;
 }
@@ -507,7 +582,7 @@ plans section
     position: relative;
     font-size: 20px;
     /* font-weight: 500; */
-    width: 80%;
+    width: 60%;
     text-align: center;
 }
 
@@ -531,6 +606,38 @@ plans section
     /* width: 50%; */
     /* height: 100%; */
     padding: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    .container-items-table {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 2rem;
+        padding: 1rem;
+    }
+    .container-text-explain {
+        width: 100%;
+    }
+    .title-text-explain {
+        width: 100%;
+    }
+    .second-text-about {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .second-text-about {
+        width: 85%;
+    }
+}
+
+
+@media screen and (max-width: 340px) {
+    .container-items-table {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .feature-item {
@@ -573,6 +680,7 @@ contatc section
 }
 
 .container-contact {
+    /* background-color: orange; */
     position: relative;
     display: flex;
     align-items: center;
@@ -665,8 +773,9 @@ section end
     align-items: center;
     justify-items: center;
     flex-direction: column;
-    height: 60vh;
-    width: 85%;
+    /* height: 60vh; */
+    width: 100%;
+    padding: 6rem 0;
 }
 
 .container-sec-end {
@@ -677,7 +786,7 @@ section end
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    width: 85%;
+    width: 90%;
     row-gap: 20px;
 }
 
@@ -687,7 +796,7 @@ section end
     align-items: center;
     justify-content: center;
     /* background-color: #16DB65; */
-    width: 80%;
+    width: 100%;
     font-family: 'Inter';
     font-size: 3rem;
     font-weight: 1000;
@@ -700,10 +809,32 @@ section end
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 80%;
+    width: 70%;
     font-family: 'Inter';
-    font-size: 17px;
-    font-weight: 400;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.container-button-sec-end {
+    /* background-color: red; */
+    position: relative;
+    width: 35rem;
+}
+
+@media screen and (max-width: 900px) {
+    .container-p-end {
+        width: 80%;
+    }
+    .container-button-sec-end {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container-p-end {
+        width: 100%;
+        font-size: 1.2rem;
+    }
 }
 
 </style>

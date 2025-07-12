@@ -58,12 +58,14 @@ const showPopUpNewPassword = computed(() => showLayerPopsUp.getShowLayerPopsUp()
 
 .container-all-content {
     position: relative;
+    /* background-color: red; */
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     width: 100%;
-    z-index: -50;
+    height: 100%;
+    flex-grow: 1;
+    align-items: center;
 }
 
 </style>

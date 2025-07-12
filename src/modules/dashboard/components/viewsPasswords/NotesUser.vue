@@ -360,6 +360,7 @@ const saveNote = async () => {
   background-color: #ffffff;
   color: #000000;
   border: 2px solid #000000;
+  height: 100%;
 }
 
 .button-clean:hover {
@@ -375,7 +376,7 @@ const saveNote = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: 95%; */
+  height: 100%;
 }
 
 .button-save:hover {
@@ -403,21 +404,34 @@ const saveNote = async () => {
 
 .ContainerLoadCircle {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* centra en pantalla */
+    
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     height: 82%;
     width: 22%;
     border-radius: 50%;
     padding: 0.19em;
+=======
+
+    height: 85%;
+    width: 24%;
+    border-radius: 50%;
+    padding: 3px;
+>>>>>>> dev
     overflow: hidden;
 }
 
 .ContainerLoadCircle::before {
     content: "";
     position: absolute;
-    top: 50%;
+    left: 50%;
+    top: 100%;
     height: 100%;
     width: 100%;
     transform-origin: top center;
@@ -427,10 +441,10 @@ const saveNote = async () => {
 
 @keyframes spinLoad {
     0% {
-        transform: rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
     } 
     100% {
-        transform: rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
 
@@ -440,6 +454,7 @@ const saveNote = async () => {
     display: flex;
     align-items: center;
     justify-content: center;
+
     height: 100%;
     width: 100%;
     border-radius: 50%;

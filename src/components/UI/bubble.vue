@@ -1,8 +1,8 @@
 <template>
-    <div :style="{top:`${top1}px`, left:`${left1}px`}" class="ball-background ball1"></div>
-    <div :style="{top:`${top2}px`, left:`${left2}px`}" class="ball-background ball2"></div>
-    <div :style="{top:`${top3}px`, left:`${left3}px`}" class="ball-background ball3"></div>
-    <div :style="{top:`${top4}px`, left:`${left4}px`}" class="ball-background ball4"></div>
+    <div :style="{top:`${top1}rem`, left:`${left1}rem`}" class="ball-background ball1"></div>
+    <div :style="{top:`${top2}rem`, left:`${left2}rem`}" class="ball-background ball2"></div>
+    <div :style="{top:`${top3}rem`, left:`${left3}rem`}" class="ball-background ball3"></div>
+    <div :style="{top:`${top4}rem`, left:`${left4}rem`}" class="ball-background ball4"></div>
 </template>
 
 <script setup>
@@ -30,7 +30,6 @@ defineProps({
     background-color: #16DB65;
     width: 200px;
     height: 200px;
-    z-index: -100;
     animation: ball 3s infinite alternate ease-in-out;
 }
 
@@ -38,8 +37,7 @@ defineProps({
     background-color: #29fe65;
     width: 120px;
     height: 140px;
-    z-index: -200;
-    animation: ball 4s infinite alternate ease-in-out;
+    animation: ball 3s infinite alternate ease-in-out;
 }
 
 .ball3 {
@@ -48,7 +46,6 @@ defineProps({
     left: 450px;
     width: 150px;
     height: 150px;
-    z-index: -140;
     animation: ball 4s infinite alternate ease-in-out;
 }
 
@@ -58,8 +55,7 @@ defineProps({
     left: 310px;
     width: 190px;
     height: 190px;
-    z-index: -150;
-    animation: ball 3s infinite alternate ease-in-out;
+    animation: ball 2s infinite alternate ease-in-out;
 }
 
 @keyframes ball {
@@ -67,10 +63,10 @@ defineProps({
         transform: translate(0, 0) scale(1);
     }
     50% {
-        transform: translate(20px, -30px) scale(1.2);
+        transform: translate(30px, -40px) scale(1.2);
     }
     100% {
-        transform: translate(-20px, 25px) scale(1);
+        transform: translate(-30px, 35px) scale(1);
     }
 }
 </style>
