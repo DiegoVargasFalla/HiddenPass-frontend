@@ -1,5 +1,5 @@
 <template>
-    <div class="buttonLog" :style="{backgroundColor: bgColor, height: height +'rem', width: width +'%', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
+    <div class="buttonLog" @click="handleSlideBar" :style="{backgroundColor: bgColor, height: height +'rem', width: width +'%', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
         <a v-if="typeLink" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" :href="link">{{ label }}</a>
         <RouterLink @click="" v-else :to="link" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" >{{ label }}</RouterLink>
     </div>
@@ -7,6 +7,21 @@
     
 <script setup>
 import { computed } from 'vue';
+
+import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
+import { useShowLayerPopsUp } from '@/modules/dashboard/store/layerPopsUpStore';
+
+const authenticationStore = useAuthenticationStore();
+const layerPopsUpStore = useShowLayerPopsUp();
+
+
+const handleSlideBar = () => {
+  if (authenticationStore.showSlideBar === true) {
+    authenticationStore.setSlideBar(false);
+    layerPopsUpStore.setShowLayerPopsUp(false);
+  }
+}
+
 
 const props = defineProps({
     label: String,

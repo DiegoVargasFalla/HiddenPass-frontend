@@ -1,5 +1,5 @@
 <template>
-    <div class="layerPopsUp" id="layerPopsUp">
+    <div class="layerPopsUp" id="layerPopsUp" @click="closeSlideBar">
         <formNewPassword v-if="showFormNewPassword"></formNewPassword>
         <ConfirmDeletePassword v-if="showConfirmDeletePassword"></ConfirmDeletePassword>
         <ConfirmDeleteNote v-if="showConfirmDeleteNote"></ConfirmDeleteNote>
@@ -19,16 +19,26 @@ import { useNoteStore } from '../../store/NoteStore';
 import EditNote from './EditNote.vue';
 import ConfirmLogOut from '../viewsPasswords/ConfirmLogOut.vue';
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
+import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
+
 
 const newPasswordStore = useNewPasswordStore();
 const noteStore = useNoteStore();
 const authenticationStore = useAuthenticationStore();
+const showLayerPopsUpStore = useShowLayerPopsUp();
 
 const showConfirmDeletePassword = computed(() => newPasswordStore.getShowConfirmDeletePassword())
 const showFormNewPassword = computed(() => newPasswordStore.getShow());
 const showConfirmDeleteNote = computed(() => noteStore.showConfirmDeleteNote);
 const showEditNote = computed(() => noteStore.showEditNote);
 const showLayerLogout = computed(() => authenticationStore.showLayerLogout);
+
+const closeSlideBar = computed( () => {
+    if(authenticationStore.showSlideBar === true){
+        authenticationStore.setSlideBar(false);
+        showLayerPopsUpStore.setShowLayerPopsUp(false);
+    }
+})
 
 </script>
 
@@ -40,9 +50,9 @@ const showLayerLogout = computed(() => authenticationStore.showLayerLogout);
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    z-index: 200;
+    z-index: 1500;
 }
 
 

@@ -58,9 +58,9 @@
                             bgColor="#16DB65" 
                             textColor="white" 
                             boxShadowColor="rgba(51, 203, 132, 0.226)"
-                            :height="50" 
-                            :width="350"
-                            :fontSize="18"
+                            :height="3.2" 
+                            :width="90"
+                            :fontSize="1.1"
                             :fontWeight="900"
                             colorBorder="#058C42"
                             :bordeRadius="40"
@@ -160,7 +160,7 @@ const showConfirmPassword = () => {
     justify-content: center;
     height: auto;
     width: 100%;
-    margin-top: 60px;
+    margin-top: 3.1rem;
 }
 
 .form-login {
@@ -172,9 +172,9 @@ const showConfirmPassword = () => {
     justify-content: space-around;
     flex-direction: column;
     height: auto;
-    padding: 30px;
+    padding: 2rem;
     border-radius:20px;
-    width: 410px;
+    width: 26rem;
     border: 1px solidrgb(23, 157, 76);
     box-shadow: 0 0 4px#058C42;
 }
@@ -256,6 +256,17 @@ const showConfirmPassword = () => {
     text-decoration: none;
 }
 
+.container-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+    text-align: center;
+    height: auto;
+    width: 100%;
+}
+
 .container-redirect-register {
     position: relative;
     display: flex;
@@ -285,6 +296,21 @@ const showConfirmPassword = () => {
 .links-tyc {
     color: rgb(43, 215, 30);
     text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+    .section-login {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1050px) {
+    .section-login {
+        width: 95%;
+    }
+    .form-login {
+        width: 70%;
+    }
 }
 
 </style>

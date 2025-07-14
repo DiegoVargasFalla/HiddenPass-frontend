@@ -29,20 +29,6 @@ defineProps({
     max-width: 100%;
 }
 
-@media screen and (max-width: 400px) {
-    .feature-item {
-        max-width: 100%;
-    }
-    .text-item {
-        text-align: center;
-        font-size: 0.95rem;
-        max-width: 90%;
-    }
-    .title-items-funtions {
-        text-align: center;
-    }
-}
-
 .title-items-funtions {
     font-size: 1.2rem;
     font-family: "Archivo Black", serif;
@@ -60,6 +46,20 @@ defineProps({
     text-align: center;
     margin: 0 auto;
     max-width: 15.6rem;
+}
+
+@media screen and (max-width: 400px) {
+    .feature-item {
+        max-width: 100%;
+    }
+    .text-item {
+        text-align: center;
+        font-size:0.95rem;
+        max-width: 90%;
+    }
+    .title-items-funtions {
+        text-align: center;
+    }
 }
 
 </style>

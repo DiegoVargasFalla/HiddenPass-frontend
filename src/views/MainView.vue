@@ -8,7 +8,7 @@
             linkPlans="#sec-plans"
             linkContact="#contact-section"
         ></Header>
-        <floatingSidebar>
+        <floatingSidebar v-if="showSlideBar">
             <template #logo>
                 <logoDashboard></logoDashboard>
             </template>
@@ -43,7 +43,7 @@
             </template>
         </floatingSidebar>
         <defaultLayout v-if="!hiddeSection"></defaultLayout>
-        <RouterView v-if="hiddeSection"></RouterView>
+        <RouterView v-if="hiddeSection" class="router-link"></RouterView>
         <Footer v-if="hiddenFooter"></Footer>
         <layerPopsUp v-if="showPopUpNewPassword"></layerPopsUp>
     </div>
@@ -59,15 +59,20 @@ import { useLoaderStore } from '@/modules/loading/store/loadingStore';
 import Footer from '@/components/Layout/footer.vue';
 import layerPopsUp from '@/modules/dashboard/components/UiDashboard/layerPopsUp.vue';
 import { useShowLayerPopsUp } from '@/modules/dashboard/store/layerPopsUpStore';
-import floatingSidebar from '@/modules/dashboard/components/UiDashboard/floatingSidebar.vue';
+import floatingSidebar from '@/modules/dashboard/components/UiDashboard/SlideBar.vue';
 import linksNav from '@/components/UI/linksNav.vue';
 import buttons from '@/components/UI/buttons.vue';
 import logoDashboard from '@/modules/dashboard/components/UiDashboard/logoDashboard.vue';
-
+import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 
 
 const router = useRouter();
 const route = useRoute();
+const authenticationStore = useAuthenticationStore();
+
+
+const showSlideBar = computed(() => authenticationStore.showSlideBar);
+
 const hiddeSection = computed(() => 
     route.path === '/login'
     || route.path === '/register' 
@@ -106,6 +111,11 @@ const showPopUpNewPassword = computed(() => showLayerPopsUp.getShowLayerPopsUp()
     height: 100%;
     flex-grow: 1;
     align-items: center;
+}
+
+.router-link {
+    height: 100%;
+    width: 100%;
 }
 
 </style>

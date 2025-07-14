@@ -40,9 +40,9 @@
                         </div>
 
                     </div>
-                    <div class="password-recover">
+                    <!-- <div class="password-recover">
                         <a href="#" class="text-password-recover">¿Olvidaste contraseña?</a>
-                    </div>
+                    </div> -->
                     <div class="container-button" id="cont-button">
                         <button id="button-submit" class="button-star" type="submit">
                             Iniciar
@@ -232,6 +232,7 @@ const onSubmit = async () => {
     flex-direction: column;
     height: 100vh;
     width: 100%;
+    /* padding: 10% 0; */
 }
 
 .container-logo {
@@ -248,13 +249,13 @@ const onSubmit = async () => {
 
 .section-login {
     position: relative;
-    /* background-color: rgba(91, 178, 110, 0.86); */
+    /* background-color: rgba(91, 178, 110, 0.668); */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
-    width: 85%;
+    /* height: 100vh; */
+    width: 100%;
 }
 
 .content-form-login {
@@ -265,20 +266,20 @@ const onSubmit = async () => {
     justify-content: center;
     height: auto;
     width: 100%;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 }
 
 .form-login {
     position: relative;
-    background-color:rgba(135, 136, 135, 0.1); /* rgba(135, 136, 135, 0.1)  rgba(51, 203, 132, 0.226)*/
+    /* background-color:rgb(135, 136, 135); */
     backdrop-filter: blur(9px);
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
     height: auto;
-    width: 410px;
-    padding: 30px;
+    width: 26rem;
+    padding:1.6rem;
     border-radius:20px;  
     border: 1px solid rgb(23, 157, 76);
     box-shadow: 0 0 4px #058C42;
@@ -384,8 +385,8 @@ const onSubmit = async () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
-    width: 350px;
+    height: 3.2rem;
+    width: 20rem;
     border-radius: 40px;
     border: 1px solid rgba(0, 128, 0, 0.593);
     box-shadow: 0px 2px 5px 0 rgba(51, 203, 132, 0.226);
@@ -422,6 +423,32 @@ const onSubmit = async () => {
 
 .fa-eye {
     cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+    .content-form-login {
+        width: 95%;
+    }
+    .form-login {
+        width: 100%;
+    }
+    .container-button-2 {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 1050px) and (max-width: 750px) {
+    .content-form-login {
+        width: 60%;
+
+   }
+   .form-login {
+        width: 100%;
+        padding: 4rem 2rem;
+   }
+   .container-button-2 {
+    width: 90%;
+   }
 }
 
 </style>

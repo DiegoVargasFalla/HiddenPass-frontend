@@ -256,7 +256,6 @@ onMounted(() => {
 .main-container {
     position: relative;
     width: 100%;
-    /* z-index: -100; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -264,7 +263,6 @@ onMounted(() => {
     background-color: whitesmoke;
     /* background-color: red; */
     backdrop-filter: blur(1.5rem);
-    /* overflow-y: hidden; */
 }
 
 .container-bubble {
@@ -313,7 +311,7 @@ onMounted(() => {
 
 .text-info-small {
     font-family: "Inter";
-    font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+    font-size: clamp(1.3rem, 2.3vw, 1.5rem);
     line-height: 1.3;
     font-weight: 500;
     text-align: left;
@@ -580,8 +578,8 @@ plans section
 
 .second-text-about {
     position: relative;
-    font-size: 1.2rem;
-    /* font-weight: 500; */
+    font-size: 1.3rem;
+    font-weight: 500;
     width: 60%;
     text-align: center;
 }

@@ -57,8 +57,8 @@
     text-align: center;
     /* height: 35vh; */
     width: 100%;
-    /* bottom: 0; */
 }
+
 .footer-content {
     display: flex;
     align-items: start;

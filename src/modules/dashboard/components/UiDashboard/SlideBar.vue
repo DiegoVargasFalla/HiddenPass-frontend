@@ -7,28 +7,43 @@
 
     <!-- Items de navegación con separadores -->
     <div class="menu-items">
-      <div class="menu-item"><slot name="item-1" /></div>
+      <div class="menu-item" @click="clickItem"><slot name="item-1" /></div>
       <div class="separator"></div>
-      <div class="menu-item"><slot name="item-2" /></div>
+      <div class="menu-item" @click="clickItem"><slot name="item-2" /></div>
       <div class="separator"></div>
-      <div class="menu-item"><slot name="item-3" /></div>
+      <div class="menu-item" @click="clickItem"><slot name="item-3" /></div>
       <div class="separator"></div>
-      <div class="menu-item"><slot name="item-4" /></div>
+      <div class="menu-item" @click="clickItem"><slot name="item-4" /></div>
     </div>
 
     <!-- Botones abajo -->
     <div class="actions">
-      <slot name="button-1" />
+      <slot name="button-1"/>
       <slot name="button-2" />
     </div>
   </aside>
 </template>
 
 <script setup>
-// No se requiere lógica por ahora
+import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
+import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
+
+const authenticationStore = useAuthenticationStore();
+const layerPopsUpStore = useShowLayerPopsUp();
+
+
+
+const clickItem = () => {
+  if (authenticationStore.showSlideBar === true) {
+    authenticationStore.setSlideBar(false);
+    layerPopsUpStore.setShowLayerPopsUp(false);
+  }
+}
+
 </script>
 
 <style scoped>
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -47,8 +62,8 @@
   height: 100vh;
   width: 18%;
   background-color: #ffffff;
-  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.06); /* sombra mínima derecha */
-  animation: slideDown 0.4s ease-out;
+  box-shadow: 7px 0 6px rgba(0, 0, 0, 0.248); /* sombra mínima derecha */
+  animation: slideDown 0.1s ease-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,7 +81,7 @@
 .menu-items {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0.6rem;
   flex-grow: 1;
   justify-content: center;
 }
@@ -79,7 +94,7 @@
 .separator {
   height: 1px;
   background-color: #e5e5e5;
-  margin: 0 10px;
+  /* margin: 0 10px; */
 }
 
 /* Botones al pie */

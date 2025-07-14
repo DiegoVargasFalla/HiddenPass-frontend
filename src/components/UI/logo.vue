@@ -47,7 +47,7 @@
     font-family: "Archivo Black", serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 38px;
+    font-size: clamp(2.2rem, 2.5vw, 3rem);
     color: #16DB65;
     margin-left: 10px;
     cursor: pointer;
@@ -59,7 +59,7 @@
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    font-size: 38px;
+    font-size: clamp(2.2rem, 2.5vw, 3rem);;
     color: #16DB65;
     cursor: pointer;
     text-decoration: none;

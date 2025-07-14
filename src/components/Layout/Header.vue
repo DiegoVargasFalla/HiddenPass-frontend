@@ -32,7 +32,7 @@
                     boxShadowColor="rgba(157, 154, 154, 0.27)"
                     ></buttons>
                 </div>
-                <div class="container-icon-more-options">
+                <div @click="slidebarHandle" class="container-icon-more-options">
                     <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
@@ -46,8 +46,13 @@ import buttons from '../UI/buttons.vue';
 import logo from '../UI/logo.vue';
 import linksNav from '../UI/linksNav.vue';
 import { useRoute } from 'vue-router';
+import { useShowLayerPopsUp } from '@/modules/dashboard/store/layerPopsUpStore';
+import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
+
 
 const routeActually = useRoute()
+const showLayerPopsUp = useShowLayerPopsUp();
+const authenticationStore = useAuthenticationStore();
 
 const props = defineProps({
     linkAbout: String,
@@ -90,6 +95,11 @@ document.addEventListener("scroll", () => {
     }
 
 });
+
+const slidebarHandle = () => {
+    showLayerPopsUp.setShowLayerPopsUp(true); 
+    authenticationStore.setSlideBar(true);
+}
 
 
 </script>

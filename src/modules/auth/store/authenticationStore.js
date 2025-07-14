@@ -3,6 +3,7 @@ import axios from "axios";
 import router from "@/router";
 import { boolean, number } from "yup";
 import { useEncryptionsUtilsStore } from "@/modules/dashboard/store/EncryptionsUtilsStore";
+import SlideBar from "@/modules/dashboard/components/UiDashboard/SlideBar.vue";
 
 export const useAuthenticationStore = defineStore('authentication', {
     state: () => ({
@@ -20,6 +21,7 @@ export const useAuthenticationStore = defineStore('authentication', {
         listRecentPasssword: Array,
         listAlphabeticPassword: Array,
         showLayerLogout: false,
+        showSlideBar: false,
     }),
     actions: {
 
@@ -70,6 +72,9 @@ export const useAuthenticationStore = defineStore('authentication', {
         },
         setShowLayerLogout(value) {
             this.showLayerLogout = value;
+        },
+        setSlideBar(value) {
+            this.showSlideBar = value;
         },
         setListPassword(List) {
             this.listPassword = List;
