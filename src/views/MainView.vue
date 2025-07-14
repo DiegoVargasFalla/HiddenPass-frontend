@@ -8,6 +8,40 @@
             linkPlans="#sec-plans"
             linkContact="#contact-section"
         ></Header>
+        <floatingSidebar>
+            <template #logo>
+                <logoDashboard></logoDashboard>
+            </template>
+            <template #item-1>
+                <linksNav lable="Acerca de" link="#sec-about" :colorText=ColorText></linksNav>
+            </template>
+            <template #item-2>
+                <linksNav lable="Guia de uso" link="#sec-use-guide" :colorText=ColorText></linksNav>
+            </template>
+            <template #item-3>
+                <linksNav lable="Planes" link="#sec-plans"  :colorText=ColorText></linksNav>
+            </template>
+            <template #item-4>
+                <linksNav lable="Contacto" link="#contact-section" :colorText=ColorText></linksNav>
+            </template>
+            <template #button-1>
+                <buttons 
+                label="Iniciar sesion" 
+                link="/login"
+                :textColor=ColorText
+                colorBorder="black" 
+                boxShadowColor="rgba(157, 154, 154, 0.27)"
+                ></buttons>
+            </template>
+            <template #button-2>
+                <buttons label="Registrarse" 
+                link="/register"
+                bgColor="black"
+                textColor="white"
+                boxShadowColor="rgba(157, 154, 154, 0.27)"
+                ></buttons>
+            </template>
+        </floatingSidebar>
         <defaultLayout v-if="!hiddeSection"></defaultLayout>
         <RouterView v-if="hiddeSection"></RouterView>
         <Footer v-if="hiddenFooter"></Footer>
@@ -25,6 +59,12 @@ import { useLoaderStore } from '@/modules/loading/store/loadingStore';
 import Footer from '@/components/Layout/footer.vue';
 import layerPopsUp from '@/modules/dashboard/components/UiDashboard/layerPopsUp.vue';
 import { useShowLayerPopsUp } from '@/modules/dashboard/store/layerPopsUpStore';
+import floatingSidebar from '@/modules/dashboard/components/UiDashboard/floatingSidebar.vue';
+import linksNav from '@/components/UI/linksNav.vue';
+import buttons from '@/components/UI/buttons.vue';
+import logoDashboard from '@/modules/dashboard/components/UiDashboard/logoDashboard.vue';
+
+
 
 const router = useRouter();
 const route = useRoute();

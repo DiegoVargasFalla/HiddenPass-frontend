@@ -313,8 +313,8 @@ onMounted(() => {
 
 .text-info-small {
     font-family: "Inter";
-    font-size: clamp(1rem, 2.2vw, 1.4rem);
-    line-height: 1.5;
+    font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+    line-height: 1.3;
     font-weight: 500;
     text-align: left;
 }
@@ -580,7 +580,7 @@ plans section
 
 .second-text-about {
     position: relative;
-    font-size: 20px;
+    font-size: 1.2rem;
     /* font-weight: 500; */
     width: 60%;
     text-align: center;

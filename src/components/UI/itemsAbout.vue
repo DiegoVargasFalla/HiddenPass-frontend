@@ -51,7 +51,7 @@ defineProps({
 
 .icons {
     color: #16DB65;
-    font-size: 1.2rem;
+    font-size: 2rem;
 }
 
 .text-item {
@@ -59,7 +59,7 @@ defineProps({
     font-size: clamp(0.9rem, 2.2vw, 1rem);
     text-align: center;
     margin: 0 auto;
-    max-width: 250px;
+    max-width: 15.6rem;
 }
 
 </style>
