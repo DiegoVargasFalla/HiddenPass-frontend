@@ -186,7 +186,7 @@ const existingPasswordStore = useExistingPasswordStore();
     justify-content: space-around;
     min-height: 12%;
     width: 100%;
-    padding: 0 20px;
+    /* padding: 0 20px; */
 }
 
 .container-buttons::before {
@@ -214,6 +214,12 @@ const existingPasswordStore = useExistingPasswordStore();
     font-family: 'Inter';
     font-weight: 600;
     color: rgb(255, 68, 68);
+}
+
+@media screen and (max-width: 500px) {
+    .container-form {
+        width: 97%;
+    }
 }
 
 </style>

@@ -11,17 +11,18 @@
 
 .container-search { 
     position: relative;
-    background-color: #cdc9c9;
+    background-color: whitesmoke;
+    /* background-color: red; */
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    height: 35px;
-    width: 60%;
+    height: 2rem;
+    width: 50%;
     padding-left: 15px;
     gap: 5px;
     overflow: hidden;
-    padding-right: 5px;
+    padding-right: 0.3rem;
 }
 
 .container-search input {
@@ -31,7 +32,14 @@
     width: 100%;
     outline: none;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 0.95rem;
+}
+
+@media screen and (max-width: 600px) {
+    .container-search {
+        width: 100%;
+        min-height: 2rem;
+    }
 }
 
 </style>

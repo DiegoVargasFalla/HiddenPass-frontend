@@ -124,7 +124,6 @@ function deleteTextField() {
     justify-content: center;
     height: 100%;
     width: 4.8rem;
-    /* width: 120px; */
     border-radius: 9px;
     padding: 0 10px;
     gap: 8px;

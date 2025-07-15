@@ -90,14 +90,13 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
 
 .cont-filters-main {
     position: relative;
-    /* background-color: orange; */
+    background-color: #12100D;
     height: 10%;
     width: 100%;
-    margin-top: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
+    padding: 0 1rem;
 }
 
 .cont-passwords {
@@ -111,7 +110,7 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
     width: 100%;
     gap: 10px;
     overflow: hidden;
-    /* margin-top: 10px; */
+    padding: 0.7rem 0;
 }
 
 .cont-title-list-pass {
@@ -143,7 +142,7 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 35px;
+    height: auto;
     width: 90%;
     /* margin-top: 15px; */
     padding-left: 15px;
@@ -160,7 +159,7 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
 .text-num-passwords,
 .text-no-passwords {
     font-family: 'Inter';
-    font-size: 14px;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
     font-weight: 500;
 }
 
@@ -177,10 +176,10 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
     flex-direction: column;
     height: 100%;
     width: 100%;
-    gap: 8px;
+    gap: 0.8rem;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     overflow-y: scroll;
     animation: slidePasswords 0.2s ease;
 }
@@ -242,5 +241,25 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
     border-radius: 6px; /* Bordes redondeados */
 }
 
-
+@media screen and (max-width: 600px) {
+    .cont-filters-main {
+        /* background-color: red; */
+        height: 17%;
+        align-items: start;
+        flex-direction: column;
+        padding: 0.6rem 1rem;
+        gap: 0.28rem;
+    }
+    .cont-passwords {
+        height: 83%;
+    }
+    .container-create-password {
+        flex-direction: column;
+        align-items: start;
+        gap: 0.5rem;
+    }
+    .container-num-passwords {
+        order: 2;
+    }
+}
 </style>

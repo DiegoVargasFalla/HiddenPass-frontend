@@ -165,7 +165,7 @@ async function onClick() {
 }
 
 .text-button {
-    font-size: 13px;
+    font-size: clamp(0.75rem, 2.5vw, 0.8rem);
     font-weight: 500;
     color: white;
 }
@@ -182,6 +182,12 @@ async function onClick() {
 
 .disabledButton {
     background: #14cb5d;;
+}
+
+@media screen and (max-width: 500px) {
+    .container-button {
+        gap: 3px;
+    }
 }
 
 </style>

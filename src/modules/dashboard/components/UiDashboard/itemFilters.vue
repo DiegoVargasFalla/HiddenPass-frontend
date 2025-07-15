@@ -46,7 +46,6 @@ const onClickFilter = () => {
     }
     else {
         filterStore.clearSelected();
-        console.log('')
     }
     
 }
@@ -80,7 +79,7 @@ const onClickFilter = () => {
 
 .filter-text {
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: clamp(0.85rem, 1.4vw, 0.9rem);
     font-weight: 400;
     color: black;
 }

@@ -17,7 +17,7 @@ import itemFilters from './itemFilters.vue';
 
 const listFilters = [
     {name: 'Recientes', bgColor: '#16DB65', id:'recentId', num: 1},
-    {name: 'Orden alfabético', bgColor: '#16DB65', id:'alphabeticalId', num: 2},
+    {name: 'Alfabético', bgColor: '#16DB65', id:'alphabeticalId', num: 2},
     {name: 'Antiguas', bgColor: '#16DB65', id:'oldId', num: 3},
 ]
 </script>
@@ -31,8 +31,6 @@ const listFilters = [
     align-items: center;
     justify-content: left;
     height: 100%;
-    width: 100%;
-    /* padding-left: 35px; */
     gap: 10px;
 }
 

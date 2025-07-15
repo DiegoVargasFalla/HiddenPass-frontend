@@ -118,6 +118,7 @@ onMounted(() => {
     background-size: cover;
     background-position: center; */
     /* background-color: rgba(224, 222, 222, 0.815); */
+    /* background-color: rebeccapurple; */
     position: relative;
     display: flex;
     align-items: center;
@@ -125,8 +126,43 @@ onMounted(() => {
     flex-direction: column;
     height: 100%;
     width: 85%;
-    padding: 1rem;
+    padding: 1rem 0.2rem 0 0.2rem|;
     gap: 10px;
 }
 
+/* @media screen and (min-width: 950px) and (max-width: 1200px) {
+    .container-header-majordashboard {
+        width: 100%;
+    }
+    .container-sidebar-main {
+        display: none;
+    }
+} */
+
+@media screen and (min-width: 1000px) and (max-width: 1300px)  {
+    .container-sidebar-main  {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container-sidebar-main {
+        display: none;
+    }
+    .container-major {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container-header-majordashboard {
+        width: 100%;
+    }
+}
+
+/* @media screen and (max-width: 1000px) {
+    .container-header-majordashboard {
+        width: 100%;
+    }
+} */
 </style>

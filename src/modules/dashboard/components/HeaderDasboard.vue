@@ -4,6 +4,9 @@
             <h1>Panel</h1>
         </div>
         <div class="container-search-profile">
+            <div class="icon-notification">
+                <i class="fa-solid fa-bell"></i>
+            </div>
             <div class="container-profile">
                 <div class="container-avatar">
                     <i class="fa-solid fa-user"></i>
@@ -12,7 +15,11 @@
                     <i class="fa-solid fa-angle-down"></i>
                 </div>
             </div>
+            <div @click="slidebarHandle" class="container-icon-side-bar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
+        
     </div>
 </template>
 
@@ -26,14 +33,16 @@
     align-items: center;
     justify-content: center;
     height: 62px;
-    width: 100%;
+    width: 97%;
     border-radius: 20px;
     box-shadow: 0 1px 4px #00000062;
 
     backdrop-filter: blur(8px);
     box-shadow: 0 4px 10px rgba(9, 4, 4, 0.3);
+    /* background-color: red; */
     overflow: hidden;
-    /* margin-left: -15px; */
+    z-index: 1500;
+    margin-top: 0.7rem;
 }
 
 .container-header::before {
@@ -51,6 +60,7 @@
 }
 
 .text-panel {
+    /* background-color: #16DB65; */
     position: relative;
     display: flex;
     align-items: center;
@@ -64,16 +74,17 @@
 }
 
 .container-search-profile {
-    /* background-color: red; */
+    /* background-color: orange; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: end;
     height: 100%;
     width: 50%;
-    padding-left: 15px;
-    padding-right: 15px;
-    gap: 10PX;
+    padding: 0 1.1rem;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
+    /* gap: 0.2rem; */
 }
 
 .container-profile {
@@ -93,9 +104,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 40px;
+    height: 2.4rem;
+    width: 2.4rem;
     border-radius: 50%;
 }
+
+.container-icon-side-bar {
+    display: none;
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);;
+}
+
+.icon-notification {
+    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
+}
+
+@media screen and (max-width: 1000px) {
+    .container-icon-side-bar {
+        display: block;
+    }
+}
+
+/* @media screen and (max-width: 1000px) {
+    .container-header {
+        position: fixed;
+        top: 1rem;
+    }
+} */
 
 </style>

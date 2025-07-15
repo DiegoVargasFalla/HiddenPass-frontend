@@ -1,10 +1,12 @@
 <template>
     <div class="conten-card" @click="showCardPasword">
-        <div class="logo-site">
-            <img :src="`https://icons.duckduckgo.com/ip3/${props.namesite}.ico`" alt="">
-        </div>
-        <div class="text-card">
-            <h3 class="text-tittel">{{ props.namesite }}</h3>
+        <div class="container-icon-name">
+            <div class="logo-site">
+                <img :src="`https://icons.duckduckgo.com/ip3/${props.namesite}.ico`" alt="">
+            </div>
+            <div class="text-card">
+                <h3 class="text-tittel">{{ props.namesite }}</h3>
+            </div>
         </div>
         <div class="logo-more">
             <i class="fa-solid fa-circle-chevron-right"></i>
@@ -51,14 +53,22 @@ function showCardPasword() {
     /* background: linear-gradient(green, rgb(88, 197, 88)); */
     display: flex;
     align-items: center;
-    /* justify-content: space-around; */
-    /* padding-left: 15px; */
+    padding-left: 15px;
     height: 40px;
     width: 90%;
     border-radius: 15px;
     cursor: pointer;
-    margin-top: 5px;
-    
+}
+
+.container-icon-name {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+    width: 90%;
+    /* background-color: orange; */
+    gap: 0.4rem;
 }
 
 .conten-card:hover {
@@ -102,7 +112,7 @@ function showCardPasword() {
 }
 
 .text-tittel {
-    font-size: 17px;
+    font-size: 1rem;
     font-weight: 400;
 }
 

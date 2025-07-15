@@ -49,16 +49,16 @@ const loadshowPassword = computed(() => existingPasswordStore.getCancel());
     /* background-color: red; */
     display: flex;
     align-items: center;
-    height: 35px;
+    height: 2.2rem;
     width: 100%;
-    top: 15px;
-    padding-left: 15px;
+    top: 1rem;
+    padding-left: 1rem;
     z-index: 100;
 }
 
 .icon-previus {
     text-shadow: 0 0 5px #16DB65;
-    font-size: 35px;
+    font-size: 2.2rem;
     transition: all 0.15s ease-in-out;
     cursor: pointer;
 }
@@ -67,7 +67,7 @@ const loadshowPassword = computed(() => existingPasswordStore.getCancel());
     color: rgba(0, 0, 0, 0.726);
     transform: scale(1.05);
     text-shadow: 1px 5px 5px rgba(59, 58, 58, 0.611);
-    font-size: 35px;
+    font-size: 2.2rem;
 }
 
 .container-passwords {
@@ -79,7 +79,8 @@ const loadshowPassword = computed(() => existingPasswordStore.getCancel());
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20PX;
+    gap: 2.3rem;
+    /* padding: 2px; */
 }
 
 
@@ -103,21 +104,23 @@ const loadshowPassword = computed(() => existingPasswordStore.getCancel());
 
 .container-text-copy {
     position: absolute;
-    top: 17px;
+    top: 1rem;
     display: none;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: clamp(1rem, 2vw, 2rem);
     font-weight: 700;
     transition: all ease;
     animation: transitionCopyText 0.5s ease;
+    color: black;
+    z-index: 100;
 }
 
 .text-no-changes {
     position: absolute;
-    bottom: 10px;
+    bottom: 1.4rem;
     /* display: none; */
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: clamp(1rem, 2vw, 2rem);
     font-weight: 700;
     color: rgb(255, 12, 12);
     transition: all ease;
@@ -159,5 +162,35 @@ const loadshowPassword = computed(() => existingPasswordStore.getCancel());
     width: 40%;
     gap: 4%;
 }
+
+
+@media screen and (max-width: 1300px) {
+    .container-gen-analityc {
+        display: none;
+    }
+    .container-list-pasword-card-password {
+        width: 80%;
+    }
+    /* .container-passwords {
+        width: 75%;
+    } */
+}
+
+@media screen and (max-width: 1300px) {
+    .container-list-pasword-card-password {
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /* .container-list-pasword-card-password {
+        height: auto;
+    } */
+    .container-passwords {
+        align-items: start;
+    }
+}
+
+
 
 </style>

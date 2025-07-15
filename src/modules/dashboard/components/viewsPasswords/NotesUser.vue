@@ -413,10 +413,10 @@ const saveNote = async () => {
     align-items: center;
     justify-content: center;
 
-    height: 85%;
-    width: 24%;
+    height: 1.5rem;
+    width: 1.5rem;
     border-radius: 50%;
-    padding: 3px;
+    padding: 0.15rem;
     overflow: hidden;
 }
 
@@ -452,6 +452,10 @@ const saveNote = async () => {
     width: 100%;
     border-radius: 50%;
 }
+
+/* @media screen and (min-width: ) {
+    
+} */
 
 
 </style>

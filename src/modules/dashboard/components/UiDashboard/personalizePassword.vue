@@ -73,12 +73,12 @@ const changeNum = () => {
     align-items: center;
     height: 20px;
     width: 100%;
-    margin-top: -5px;
+    /* margin-top: -5px; */
 }
 
 .text-tittle-personalize-password {
     font-family: 'Inter';
-    font-size: 18px;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 
@@ -91,7 +91,7 @@ const changeNum = () => {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    gap: 10px;
+    gap: 0.4rem;
 }
 
 .length-bar {
@@ -101,12 +101,12 @@ const changeNum = () => {
     align-items: center;
     /* justify-content: center; */
     width: 100%;
-    gap: 10px;
+    gap: 0.7rem;
 }
 
 .text-longitud {
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -117,16 +117,15 @@ const changeNum = () => {
     justify-content: center;
     border: 1px solid rgb(190, 189, 189);
     border-radius: 7px;
-    width: 50px;
-    height: 30px;
-    margin-left: 20px;
+    width: 2.5rem;
+    height: 1.9rem;
     box-shadow: inset -1px 1px 2px rgba(128, 128, 128, 0.64);
 }
 
 .range-slider {
     width: 60%;
     appearance: none;
-    height: 10px;
+    height: 0.7rem;
     background: #cdc9c9;
     border-radius: 5px;
     outline: none;
@@ -141,13 +140,13 @@ const changeNum = () => {
     outline: none;
     background: none;
     width: 100%;
-    font-size: 17px;
+    font-size: 1.05rem;
 }
 
 .range-slider::-webkit-slider-thumb {
     appearance: none;
-    width: 19px;
-    height: 19px;
+    width:1.2rem;
+    height: 1.2rem;
     background: #16DB65;
     border-radius: 50%;
     cursor: pointer;
@@ -175,11 +174,12 @@ const changeNum = () => {
     display: flex;
     align-items: center;
     justify-content: start;
-    max-height: 100%;
-    /* width: 100%; */
+    height: 100%;
+    width: 100%;
     /* flex-direction: column; */
     flex-wrap: wrap;
-    gap: 13px;
+    row-gap: 0.3rem;
+    column-gap: 0.5rem;
 }
 
 </style>

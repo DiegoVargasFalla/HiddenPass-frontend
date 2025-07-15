@@ -41,5 +41,11 @@ const proofComponent = true;
     overflow: hidden;
 }
 
+/* @media screen and (max-width: 1000px) {
+    .container-show-dashboard {
+        padding: 0;
+    }
+} */
+
 
 </style>

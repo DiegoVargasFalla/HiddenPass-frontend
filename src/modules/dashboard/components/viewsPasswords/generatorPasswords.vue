@@ -2,7 +2,7 @@
     <section class="container-generator-pass">
         <article class="cont-tittle-generator">
             <i class="fa-solid fa-repeat"></i>
-            <h2 class="text-tittle-generator">Generador de contraseñas seguras</h2>
+            <h2 class="text-tittle-generator">Generador de contraseñas</h2>
         </article>
         <article class="container-funtionalities">
             <div class="container-password-button-generate">
@@ -64,15 +64,16 @@ const copyPassword = () => {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     height: 48%;
     width: 100%;
     border-radius: 20px;
-    padding-top: 10px;
+    gap: 0.4rem;
+    padding: 1rem;
 
 
-    background: rgba(255, 255, 255, 0.1); 
+    /* background: rgba(255, 255, 255, 0.1);  */
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
     box-shadow:  
@@ -99,25 +100,23 @@ const copyPassword = () => {
 
 .cont-tittle-generator {
     position: relative;
-    /* background-color: red; */
+    /* background-color: orange; */
     display: flex;
-    align-items: start;
+    /* align-items: start; */
     align-items: center;
-    height: 25px;
+    height: 1.4rem;
     width: 100%;
-    padding-left: 20px;
     gap: 10px;
-    padding-top: 20px;
 }
 
 .cont-tittle-generator i {
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 
 .text-tittle-generator {
     font-family: 'Inter';
-    font-size: 20px;
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
     font-weight: 700;
 }
 
@@ -125,13 +124,9 @@ const copyPassword = () => {
     position: relative;
     /* background-color: gray; */
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    height: 100%;
     width: 100%;
-    padding: 20px;
-    gap: 10px;
+    gap: 0.9rem;
 }
 
 .container-password-button-generate {
@@ -140,42 +135,43 @@ const copyPassword = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 35px;
+    /* height: 4rem; */
     width: 100%;
-    gap: 7px;
+    gap: 0.4rem;
 }
 
 .container-camp-password {
     position: relative;
-    height: 100%;
+    /* height: 100%; */
     width: 85%;
-    
+    /* background-color: red; */
     padding-left: 10px;
     background-color: #cdc9c9;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    gap: 5px;
+    gap: 0.3rem;
 }
 
 .container-camp-password i {
     background-color: #000000;
     border-radius: 50%;
-    padding: 1.6px 2.5px;
+    padding: 0.15rem 0.2rem;
     color: white;
 }
 
 .camp-password {
     position: relative;
-    height: 100%;
+    /* height: 100%; */
+    height: 2.5rem;
     width: 100%;
     background: none;
     border: none;
     resize: none;
     outline: none;
     font-family: 'Inter';
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
@@ -190,7 +186,7 @@ const copyPassword = () => {
     transition: 0.3s ease-in-out;
 
     height: 100%;
-    padding: 0 6px;
+    padding: 0 0.5rem;
 
     box-shadow:  
         inset 3px 3px 5px rgba(101, 101, 101, 0.474);
@@ -200,14 +196,14 @@ const copyPassword = () => {
 .container-icon-text-copy {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.4rem;
     transition: opacity 0.3s ease-in-out;
 }
 
 /* Ícono de check oculto por defecto */
 .icon-check-copy {
     position: absolute;
-    font-size: 20px;
+    font-size: clamp(1.2rem, 1.5vh, 1.4rem);
     color: black;
     opacity: 0;
     transform: scale(0.8);
@@ -227,7 +223,7 @@ const copyPassword = () => {
 
 .text-copy {
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -259,20 +255,18 @@ const copyPassword = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 35px;
+    height: 2.1rem;
     width: 100%;
+    /* margin-bottom: 0.7rem; */
 }
 
 .container-options-password {
-    /* background-color: gray; */
+    /* background-color: green; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     width: 100%;
-    /* margin-top: 10px; */
 }
-
 
 </style>

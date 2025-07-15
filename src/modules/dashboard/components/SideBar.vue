@@ -24,7 +24,7 @@ import navSettings from '@/modules/dashboard/components/UiDashboard/navSettings.
 <style scoped>
 
 .container-sidebar {
-    background-color: black; /* 04471be9*/
+    background-color: #0b0a08;
     position: relative;
     display: flex;
     align-items: center;

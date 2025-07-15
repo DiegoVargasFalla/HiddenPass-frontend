@@ -42,7 +42,7 @@ const onClick = () => {
     height: 100%;
     /* width: 120px; */
     border-radius: 15px;
-    padding: 0 10px;
+    padding: 0.4rem 0.6rem;
     gap: 8px;
     border: 1px solid rgba(5, 77, 3, 0.278);
     box-shadow:  
@@ -53,7 +53,7 @@ const onClick = () => {
 
 .text-button-create-password {
     font-family: 'Inter';
-    font-size: 17px;
+    font-size: clamp(0.75rem, 2vw, 1.05rem);
     font-weight: 500;
 }
 
@@ -63,6 +63,13 @@ const onClick = () => {
         0 3px 9px rgba(0, 0, 0, 0.503),
         inset 3px 3px 5px rgba(101, 101, 101, 0.474);
     /* background-color: #1DBb65; */
+}
+
+@media screen and (max-width: 600px) {
+    .container-button-create-password {
+        /* height: 1rem; */
+        padding: 0.5rem;
+    }
 }
 
 </style>

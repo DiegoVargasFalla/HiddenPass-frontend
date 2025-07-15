@@ -14,7 +14,6 @@
 import { Field } from 'vee-validate';
 import { useExistingPasswordStore } from '../../store/existingPasswordStore';
 import { computed, onMounted, ref } from 'vue';
-// import { useLoaderStore } from '@/modules/loading/store/loadingStore';
 
 const props = defineProps({
     text: String,
@@ -110,9 +109,8 @@ const copyPassword = () => {
     outline: none;
     font-family: 'Inter';
     font-weight: 300;
-    font-size: 15px;
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
     width: 88%;
     height: 100%;
 }
@@ -136,7 +134,7 @@ const copyPassword = () => {
 
 .font-text {
     font-family: 'Inter';
-    font-size: 16px;
+    font-size: clamp(1.1rem, 2vw, 2rem);
     font-weight: 600;
     color:  rgb(31, 30, 30);
 }
@@ -147,15 +145,14 @@ const copyPassword = () => {
     background: rgba(128, 125, 125, 0.303);
     display: flex;
     align-items: center;
-    /* justify-content: center; */
-    height: 35px;
+    height: 2.1rem;
     width: 85%;
     border-radius: 8px;
     transition: 0.3s ease-in-out;
 }
 
 .icon {
-    margin-left: 15px;
+    margin-left: 1rem;
 }
 
 .icon-password {
@@ -163,7 +160,7 @@ const copyPassword = () => {
 }
 
 .icon-copy {
-    padding-left: 10px;
+    padding-left: 0.7rem;
     border-right: solid 1px rgb(206, 206, 206);
     padding-right: 10px;
     cursor: pointer;
@@ -178,17 +175,12 @@ const copyPassword = () => {
 .link {
     color: white;
     font-family: 'Inter';
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 400;
 }
 
 .icon-view {
-    margin-right: 10px;
+    margin-right: 0.7rem;
 }
-
-/* .textTassk {
-    height: 40px;
-} */
-
 
 </style>
