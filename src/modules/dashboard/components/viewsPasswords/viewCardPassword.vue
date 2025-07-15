@@ -222,4 +222,10 @@ const existingPasswordStore = useExistingPasswordStore();
     }
 }
 
+@media screen and (min-height: 900px) {
+    .container-form {
+        height: 50%;
+    }
+}
+
 </style>

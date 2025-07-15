@@ -134,6 +134,7 @@ const showPassword = () => {
 }
 
 .content-inputs {
+    /* background-color: red; */
     position: relative;
     display: flex;
     align-items: center;
@@ -247,4 +248,34 @@ const showPassword = () => {
     }
 }
 
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+    .section-form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .section-form {
+        width: 90%;
+    }
+}
+
+@media screen and (min-height: 1000px) {
+    .section-form {
+        height: 30%;
+    }
+}
+
+@media screen and (min-height: 800px) {
+    .section-form {
+        height: 40%;
+    }
+}
+
+@media screen and (min-height: 1300px) {
+    .section-form {
+        height: 30%;
+        width: 70%;
+    }
+}
 </style>
