@@ -134,7 +134,7 @@ const copyPassword = () => {
 
 .font-text {
     font-family: 'Inter';
-    font-size: clamp(1.1rem, 2vw, 2rem);
+    font-size: clamp(1.1rem, 1vw, 2rem);
     font-weight: 600;
     color:  rgb(31, 30, 30);
 }
