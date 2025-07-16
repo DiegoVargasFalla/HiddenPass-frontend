@@ -98,7 +98,7 @@ const copyPassword = () => {
     flex-direction: column;
     height: 100%;
     width: 100%;
-    gap: 8px;
+    gap: 0.6rem;
     overflow: hidden;
 }
 
@@ -145,7 +145,7 @@ const copyPassword = () => {
     background: rgba(128, 125, 125, 0.303);
     display: flex;
     align-items: center;
-    height: 2.1rem;
+    height: 40%;
     width: 85%;
     border-radius: 8px;
     transition: 0.3s ease-in-out;
@@ -181,6 +181,12 @@ const copyPassword = () => {
 
 .icon-view {
     margin-right: 0.7rem;
+}
+
+@media screen and (max-width: 700px) {
+    .inputs {
+        width: 95%;
+    }
 }
 
 </style>

@@ -59,14 +59,15 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
         },
         async bringPublicKeyBack() {
             try {
-                const token = sessionStorage.getItem('tokenAuthentication')
+                // const token = sessionStorage.getItem('tokenAuthentication')
 
                 const response = await axios.get('/api/v1/pk',
-                        { headers: { Authorization: `Bearer ${token}` } }
+                        // { headers: { Authorization: `Bearer ${token}` } }
                     );
 
                     const data = response.data
                     if(data) {
+                        
                         this.setPublicKeyBack(data)
                         sessionStorage.setItem('publicKeyBackend', this.publicKeyBack)
                     }
@@ -186,6 +187,21 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
                 encodeData
             );
             return new Uint8Array(encryptedMk);
+        },
+        async encryptPlainTexWithRSA(plainText) {
+            const encoder = new TextEncoder();
+            const encodedText = encoder.encode(plainText);
+
+            const importedPublicKey = await this.importRSAPublicKey(this.publicKeyBack);
+
+            const encryptedText = await window.crypto.subtle.encrypt(
+                {
+                    name: "RSA-OAEP"
+                },
+                importedPublicKey,
+                encodedText
+            );
+            return new Uint8Array(encryptedText);
         }
     }
 })

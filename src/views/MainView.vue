@@ -13,16 +13,16 @@
                 <logoDashboard></logoDashboard>
             </template>
             <template #item-1>
-                <linksNav lable="Acerca de" link="#sec-about" :colorText=ColorText></linksNav>
+                <linksNav lable="Acerca de" link="/#sec-about" :colorText=ColorText></linksNav>
             </template>
             <template #item-2>
-                <linksNav lable="Guia de uso" link="#sec-use-guide" :colorText=ColorText></linksNav>
+                <linksNav lable="Guia de uso" link="/#sec-use-guide" :colorText=ColorText></linksNav>
             </template>
             <template #item-3>
-                <linksNav lable="Planes" link="#sec-plans"  :colorText=ColorText></linksNav>
+                <linksNav lable="Planes" link="/#sec-plans"  :colorText=ColorText></linksNav>
             </template>
             <template #item-4>
-                <linksNav lable="Contacto" link="#contact-section" :colorText=ColorText></linksNav>
+                <linksNav lable="Contacto" link="/#contact-section" :colorText=ColorText></linksNav>
             </template>
             <template #button-1>
                 <buttons 

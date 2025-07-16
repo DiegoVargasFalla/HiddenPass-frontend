@@ -1,6 +1,6 @@
 <template>
-    <div class="container-major">
-        <div class="container-sidebar-main">
+    <div class="container-major"  >
+        <div class="container-sidebar-main" :class="{'side-bar-2': showSideBarResponsive}">
             <SideBar></SideBar>
         </div>
         <div class="container-header-majordashboard">
@@ -20,12 +20,15 @@ import showDashboard from '@/modules/dashboard/views/showDashboard.vue';
 import { useEncryptionsUtilsStore } from '../store/EncryptionsUtilsStore';
 import { useLoaderPasswordsStore } from '@/modules/loading/store/loadingPasswordsStore';
 import { useNoteStore } from '../store/NoteStore';
-
+import { useNavStore } from '../store/navStore';
+import { computed } from 'vue';
+import { useShowLayerPopsUp } from '../store/layerPopsUpStore';
 
 const AuthenticationStore = useAuthenticationStore()
 const encryptionsUtilsStore = useEncryptionsUtilsStore();
 const loaderPasswordsStore = useLoaderPasswordsStore();
 const noteStore = useNoteStore();
+const layerPopsUpStore = useShowLayerPopsUp();
 
 function beforeUnload() {
     sessionStorage.setItem('mk', AuthenticationStore.getPassword());
@@ -87,6 +90,13 @@ onMounted(() => {
     });
 });
 
+const navStore = useNavStore();
+
+const showSideBarResponsive = computed(() =>{
+   
+    return navStore.showSideBar;
+});
+
 
 </script>
 
@@ -126,9 +136,11 @@ onMounted(() => {
     flex-direction: column;
     height: 100%;
     width: 85%;
-    padding: 1rem 0.2rem 0 0.2rem|;
+    padding: 1rem 0.2rem 0 0.2rem;
     gap: 10px;
 }
+
+
 
 /* @media screen and (min-width: 950px) and (max-width: 1200px) {
     .container-header-majordashboard {
@@ -158,6 +170,19 @@ onMounted(() => {
     .container-header-majordashboard {
         width: 100%;
     }
+}
+
+.side-bar-2 {
+    position: fixed;
+    display: flex;
+    width: clamp(15rem, 30vw, 17rem);
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    z-index: 1800;
+    box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.637);
 }
 
 /* @media screen and (max-width: 1000px) {

@@ -1,5 +1,5 @@
 <template>
-    <aside class="container-sidebar">
+    <aside class="container-sidebar" id="side-bar">
         <article class="cont-logo">
             <logoDashboard></logoDashboard>
         </article>
@@ -16,6 +16,8 @@
 import logoDashboard from '@/modules/dashboard/components/UiDashboard/logoDashboard.vue';
 import navDashboard from '@/modules/dashboard/components/UiDashboard/navDashboard.vue';
 import navSettings from '@/modules/dashboard/components/UiDashboard/navSettings.vue';
+
+
 
 
 

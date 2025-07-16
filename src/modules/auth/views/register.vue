@@ -18,19 +18,20 @@
                     </div>
                     <div class="content-inputs">
                         <div class="input-mail container-inputs">
-                            <Field name="name" class="inputs-none" type="email" autocomplete="off" placeholder="Nombre"/>
+                            <Field v-model="registerStore.name" name="name" class="inputs-none" type="email" autocomplete="off" placeholder="Nombre"/>
                         </div>
                         <div class="container-error">
                             <ErrorMessage name="name"></ErrorMessage>
                         </div>
                         <div class="input-mail container-inputs">
-                            <Field name="email" class="inputs-none" type="email" autocomplete="off" placeholder="Correo electronico"/>
+                            <Field v-model="registerStore.email" name="email" class="inputs-none" type="email" autocomplete="off" placeholder="Correo electronico" id="input-email"/>
                         </div>
                         <div class="container-error">
                             <ErrorMessage name="email"></ErrorMessage>
+                            <p class="text-exixt-mail" v-if="showVerifyMail">¡Este email ya existe!</p>
                         </div>
                         <div class="input-password container-inputs">
-                            <Field name="password" id="input-password" class="inputs-none" type="password" placeholder="Contraseña"/>
+                            <Field v-model="registerStore.password" name="password" id="input-password" class="inputs-none" type="password" placeholder="Contraseña"/>
                             <i @click="showPassword" class="fa-solid fa-eye"></i>
                         </div>
                         <div class="container-error">
@@ -64,6 +65,7 @@
                             :fontWeight="900"
                             colorBorder="#058C42"
                             :bordeRadius="40"
+                            :register="true"
                         ></buttons>
                     </div>
                     <div class="container-redirect-register">
@@ -81,7 +83,11 @@
 import buttons from '@/components/UI/buttons.vue';
 import Header from '@/components/Layout/Header.vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
-import { useRegisterSchema } from '@/modules/register/schema/validationSchema';
+import { useRegisterSchema } from '@/modules/register/schema/registerSchema';
+import { useRegisterStore } from '@/modules/register/store/registerStore';
+import { computed, onMounted } from 'vue';
+
+const registerStore = useRegisterStore();
 
 
 const showPassword = () => {
@@ -93,6 +99,20 @@ const showConfirmPassword = () => {
     const input = document.getElementById('input-confirm-password');
     input.type = input.type === 'password' ? 'text' : 'password';
 }
+
+const showVerifyMail = computed(() => {
+    return registerStore.verifyMailRegister
+})
+
+onMounted(() => {
+    const inputEmail = document.getElementById('input-email');
+
+    if(inputEmail) {
+        inputEmail.addEventListener('focus', () => {
+            registerStore.verifyMailRegister = false;
+        })
+    }
+})
 
 </script>
 

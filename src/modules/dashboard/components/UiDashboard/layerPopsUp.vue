@@ -20,7 +20,7 @@ import EditNote from './EditNote.vue';
 import ConfirmLogOut from '../viewsPasswords/ConfirmLogOut.vue';
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
-
+import { useNavStore } from '../../store/navStore';
 
 const newPasswordStore = useNewPasswordStore();
 const noteStore = useNoteStore();
@@ -32,10 +32,16 @@ const showFormNewPassword = computed(() => newPasswordStore.getShow());
 const showConfirmDeleteNote = computed(() => noteStore.showConfirmDeleteNote);
 const showEditNote = computed(() => noteStore.showEditNote);
 const showLayerLogout = computed(() => authenticationStore.showLayerLogout);
+const navStore = useNavStore();
+
 
 const closeSlideBar = computed( () => {
     if(authenticationStore.showSlideBar === true){
         authenticationStore.setSlideBar(false);
+        showLayerPopsUpStore.setShowLayerPopsUp(false);
+    }
+    if(navStore.showSideBar === true) {
+        navStore.showSideBar = false;
         showLayerPopsUpStore.setShowLayerPopsUp(false);
     }
 })

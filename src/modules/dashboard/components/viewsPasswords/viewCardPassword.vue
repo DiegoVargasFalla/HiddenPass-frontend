@@ -2,6 +2,7 @@
     <Form class="container-form">
         <section class="container-view-password">
             <div class="container-tittle-view-password">
+                <img class="icon-web-site" :src="`https://icons.duckduckgo.com/ip3/${existingPasswordStore.nameSite}.ico`" alt="">
                 <h1 class="text-titele-view-password">{{ existingPasswordStore.url }}</h1>
             </div>
             <article class="container-inpunts">
@@ -123,17 +124,20 @@ const existingPasswordStore = useExistingPasswordStore();
     background: linear-gradient(200deg, rgba(22, 219, 101, 0.9), rgba(8, 80, 37, 0.879));
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
     height: 100%;
     width: 100%;
     border-radius: 15px;
-    /* margin-top: 10%; */
-    padding-top: 2%;
-    /* padding-bottom: 2%; */
+    padding-top: 1rem;
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.441);
     border: 1px solid rgba(57, 168, 23, 0.684);
    
+}
+
+.icon-web-site {
+    position: relative;
+    height: 2.5rem;
+    width:2.5rem;
 }
 
 .container-tittle-view-password {
@@ -143,9 +147,7 @@ const existingPasswordStore = useExistingPasswordStore();
     align-items: center;
     /* height: 10; */
     width: 95%;
-    margin-top: 15px;
-    /* margin-bottom: 20px; */
-    margin-left: 20px;
+    gap: 1rem;
 }
 
 .text-titele-view-password {
@@ -164,7 +166,7 @@ const existingPasswordStore = useExistingPasswordStore();
     flex-direction: column;
     height: 100%;
     width: 95%;
-    margin-left: 8%;
+    padding: 0 0 0 2rem;
 }
 
 .second-container-inputs {
@@ -225,6 +227,12 @@ const existingPasswordStore = useExistingPasswordStore();
 @media screen and (min-height: 900px) {
     .container-form {
         height: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .container-inpunts {
+        padding: 0;
     }
 }
 

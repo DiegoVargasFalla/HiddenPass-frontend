@@ -1,11 +1,9 @@
 <template>
   <aside class="sidebar">
-    <!-- Logo del sitio -->
     <div class="logo">
       <slot name="logo" />
     </div>
 
-    <!-- Items de navegación con separadores -->
     <div class="menu-items">
       <div class="menu-item" @click="clickItem"><slot name="item-1" /></div>
       <div class="separator"></div>
@@ -16,7 +14,6 @@
       <div class="menu-item" @click="clickItem"><slot name="item-4" /></div>
     </div>
 
-    <!-- Botones abajo -->
     <div class="actions">
       <slot name="button-1"/>
       <slot name="button-2" />

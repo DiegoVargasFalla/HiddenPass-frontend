@@ -10,17 +10,11 @@ import { computed } from 'vue';
 
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 import { useShowLayerPopsUp } from '@/modules/dashboard/store/layerPopsUpStore';
+import { useRegisterStore } from '@/modules/register/store/registerStore';
 
 const authenticationStore = useAuthenticationStore();
 const layerPopsUpStore = useShowLayerPopsUp();
-
-
-const handleSlideBar = () => {
-  if (authenticationStore.showSlideBar === true) {
-    authenticationStore.setSlideBar(false);
-    layerPopsUpStore.setShowLayerPopsUp(false);
-  }
-}
+const registerStore = useRegisterStore();
 
 
 const props = defineProps({
@@ -34,9 +28,22 @@ const props = defineProps({
     width: Number,
     fontSize: Number,
     fontWeight: Number,
-    bordeRadius: Number
+    bordeRadius: Number,
+    register: Boolean
 })
 const typeLink = computed(() => props.link.startsWith('#'));
+
+
+
+const handleSlideBar = async () => {
+  if (authenticationStore.showSlideBar === true) {
+    authenticationStore.setSlideBar(false);
+    layerPopsUpStore.setShowLayerPopsUp(false);
+  } 
+  else if(props.register === true) {
+    await registerStore.registerUser();
+  }
+}
 
 
 </script>

@@ -122,7 +122,7 @@ const loadshowPassword = computed(() => existingPasswordStore.getCancel());
     font-family: 'Inter';
     font-size: clamp(1rem, 1vw, 2rem);
     font-weight: 700;
-    color: rgb(255, 12, 12);
+    color: black;
     transition: all ease;
     animation: transitionCopyText 0.5s ease;
 }

@@ -15,7 +15,7 @@
                     <i class="fa-solid fa-angle-down"></i>
                 </div>
             </div>
-            <div @click="slidebarHandle" class="container-icon-side-bar">
+            <div @click="slideSideBar" class="container-icon-side-bar">
                 <i class="fa-solid fa-bars"></i>
             </div>
         </div>
@@ -23,7 +23,24 @@
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useNavStore } from '../store/navStore';
+import { useShowLayerPopsUp } from '../store/layerPopsUpStore';
+
+const layerPopsUpStore = useShowLayerPopsUp();
+
+const navStore = useNavStore();
+
+const slideSideBar = () => {
+    if(navStore.showSideBar === false) {
+        layerPopsUpStore.setShowLayerPopsUp(true);
+        navStore.showSideBar = true;
+    } else {
+        navStore.showSideBar = false;
+    }
+}
+
+</script>
 
 <style scoped>
 
@@ -110,8 +127,18 @@
 }
 
 .container-icon-side-bar {
+    position: relative;
+    font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+    border-radius: 50%;
+    height: 2.4rem;
+    width: 2.4rem;
+    align-items: center;
+    justify-content: center;
     display: none;
-    font-size: clamp(1.3rem, 2.5vw, 1.5rem);;
+}
+
+.container-icon-side-bar:active {
+    background-color: #16db6532;
 }
 
 .icon-notification {
@@ -120,7 +147,7 @@
 
 @media screen and (max-width: 1000px) {
     .container-icon-side-bar {
-        display: block;
+        display: flex;
     }
 }
 

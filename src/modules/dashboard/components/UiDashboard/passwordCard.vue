@@ -40,6 +40,7 @@ function showCardPasword() {
             existingPasswordStore.setPassword(element.password);
             existingPasswordStore.setUrl(element.url);
             existingPasswordStore.setNote(element.note);
+            existingPasswordStore.setNameSite(props.namesite);
         }
     })
 }

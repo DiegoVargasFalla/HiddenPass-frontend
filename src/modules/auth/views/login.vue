@@ -368,8 +368,8 @@ const onSubmit = async () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
-    width: 350px;
+    height: 3.1rem;
+    width: 20rem;
     border-radius: 40px;
     border: 1px solid rgba(0, 128, 0, 0.593);
     box-shadow: 0px 2px 5px 0 rgba(51, 203, 132, 0.226);
@@ -386,7 +386,7 @@ const onSubmit = async () => {
     align-items: center;
     justify-content: center;
     height: 3.2rem;
-    width: 20rem;
+    width: 17rem;
     border-radius: 40px;
     border: 1px solid rgba(0, 128, 0, 0.593);
     box-shadow: 0px 2px 5px 0 rgba(51, 203, 132, 0.226);
@@ -396,7 +396,7 @@ const onSubmit = async () => {
 }
 
 .container-button:hover {
-    transform: scale(1.04);
+    transform: scale(1);
     opacity: 0.8;
 }
 

@@ -16,7 +16,6 @@ import { computed } from 'vue';
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 
 
-
 const props = defineProps({
     text: String,
     size: Number,
@@ -29,6 +28,7 @@ const props = defineProps({
     componet: String
 })
 
+
 const navStore = useNavStore();
 const authenticationStore = useAuthenticationStore();
 const showLayerPopsUp = useShowLayerPopsUp();
@@ -38,7 +38,6 @@ const isSelected = computed(() => navStore.selectedElement === props.idElement);
 const noSelected = computed(() => navStore.selectedElement != props.idElement);
 
 
-// Función para manejar el clic en el sidebar
 const handleClick = () => {
 
     if (props.idElement != 'logout'){
@@ -47,6 +46,7 @@ const handleClick = () => {
     } else {
         showLayerPopsUp.setShowLayerPopsUp(true);
         authenticationStore.setShowLayerLogout(true);
+        navStore.showSideBar = false;
     }
 };
 

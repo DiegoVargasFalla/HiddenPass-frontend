@@ -12,6 +12,7 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
         password: "",
         url: "",
         note: "",
+        nameSite: "",
         noEdit: true,
         successUpdate: false,
         passwordUpdate: null,
@@ -68,6 +69,12 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
         },
         setNote(value) {
             this.note = value;
+        },
+        getNameSite() {
+            return this.nameSite;
+        },
+        setNameSite(value) {
+            this.nameSite = value;
         },
         getNewPassword() {
             return this.PasswordEntityDTO;

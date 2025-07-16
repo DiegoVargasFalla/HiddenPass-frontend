@@ -4,6 +4,8 @@ import router from "@/router";
 import { boolean, number } from "yup";
 import { useEncryptionsUtilsStore } from "@/modules/dashboard/store/EncryptionsUtilsStore";
 import SlideBar from "@/modules/dashboard/components/UiDashboard/SlideBar.vue";
+import { useRegisterStore } from "@/modules/register/store/registerStore";
+
 
 export const useAuthenticationStore = defineStore('authentication', {
     state: () => ({
@@ -168,15 +170,20 @@ export const useAuthenticationStore = defineStore('authentication', {
         },
 
         async checkMail(value) {
+
+            const registerStore = useRegisterStore();
             try { // http://localhost:8080/system/api/v1/checkmail
                 const response = await axios.post('/api/v1/checkmail', 
                     value
                 )
                 const data = response.data;
-                this.verifyEmail = data;
+                if(data) {
+                    registerStore.setVerifyMailRegister(data);
+                    this.verifyEmail = data;
+
+                }
             } catch (Error) {
-               console.log(Error.status)
-               alert("Error whit server")
+                console.log(" ")
             }
         },
 
