@@ -23,7 +23,10 @@ import { useNoteStore } from '../store/NoteStore';
 import { useNavStore } from '../store/navStore';
 import { computed } from 'vue';
 import { useShowLayerPopsUp } from '../store/layerPopsUpStore';
+import { useRegisterStore } from '@/modules/register/store/registerStore';
 
+
+const registerStore = useRegisterStore();
 const AuthenticationStore = useAuthenticationStore()
 const encryptionsUtilsStore = useEncryptionsUtilsStore();
 const loaderPasswordsStore = useLoaderPasswordsStore();
@@ -31,24 +34,35 @@ const noteStore = useNoteStore();
 const layerPopsUpStore = useShowLayerPopsUp();
 
 function beforeUnload() {
-    sessionStorage.setItem('mk', AuthenticationStore.getPassword());
+    sessionStorage.setItem('dk', registerStore.getDerivedKey());
 }
 window.addEventListener('beforeunload', beforeUnload);
 
 async function init() {
 
-    const mk = sessionStorage.getItem('mk');
-    if (mk) {
-        AuthenticationStore.setPassword(mk);
-        sessionStorage.removeItem('mk');
-        await encryptionsUtilsStore.bringPublicKeyBack();
-    }
+    // const mk = sessionStorage.getItem('mk');
+    // if (mk) {
+    //     AuthenticationStore.setPassword(mk);
+    //     sessionStorage.removeItem('mk');
+    //     await encryptionsUtilsStore.bringPublicKeyBack();
+    // }
 
-    if (sessionStorage.getItem('tokenAuthentication')) {
-        
-        await encryptionsUtilsStore.generateKeyPair();
-        await encryptionsUtilsStore.generateAesKey();
     
+
+    if (AuthenticationStore.checkAuthentication()) {
+
+        if(registerStore.getIv().length === 0 || registerStore.getSalt().length === 0 ) {
+            await AuthenticationStore.bringIvAndSalt();
+        }
+
+        const derivedKey = sessionStorage.getItem('dk');
+        if(derivedKey != null) {
+            registerStore.setDerivedKey(derivedKey);
+            sessionStorage.removeItem('dk');
+        }
+        
+        // await encryptionsUtilsStore.generateKeyPair();
+        await encryptionsUtilsStore.generateAesKey();
 
         const token = sessionStorage.getItem("tokenAuthentication");
         AuthenticationStore.setToken(token);
@@ -56,7 +70,7 @@ async function init() {
         loaderPasswordsStore.startLoadPasswords();
         await AuthenticationStore.bringPasswords();
         loaderPasswordsStore.stopLoadPassword();
-        AuthenticationStore.checkAuthentication()
+        // AuthenticationStore.checkAuthentication()
         noteStore.bringNotes();
     } else {
         router.push("/login")
@@ -182,7 +196,7 @@ const showSideBarResponsive = computed(() =>{
     left: 0;
     background-color: black;
     z-index: 1800;
-    box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.637);
+    box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.333);
 }
 
 /* @media screen and (max-width: 1000px) {

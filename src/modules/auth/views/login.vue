@@ -68,6 +68,8 @@ import { useSchemaLogin } from '../schema/loginSchema';
 import { useAuthenticationStore } from '../store/authenticationStore';
 import { useLoaderStore } from '@/modules/loading/store/loadingStore';
 import { useEncryptionsUtilsStore } from '@/modules/dashboard/store/EncryptionsUtilsStore';
+import { useRegisterStore } from '@/modules/register/store/registerStore';
+
 
 const showPassword = () => {
     const input = document.getElementById('input-password-id');
@@ -80,6 +82,8 @@ const router = useRouter();
 
 const credentialsStore = useCredentialsStore();
 const credentials = credentialsStore.credentials;
+
+const registerStore = useRegisterStore();
 
 const encryptionsUtilsStore = useEncryptionsUtilsStore();
 const authenticationStore = useAuthenticationStore();
@@ -157,19 +161,24 @@ const onSubmit = async () => {
         if(authenticationStore.getVerifyEmail()) {
             await authenticationStore.login(credentials);
             if (!authenticationStore.getForbbiden()) {
-                await encryptionsUtilsStore.bringPublicKeyBack();
+                // await encryptionsUtilsStore.bringPublicKeyBack();
 
                 const token = authenticationStore.token;
-                const password = credentials.password;
-                authenticationStore.setPassword(password);
+
+                await authenticationStore.bringIvAndSalt();
+                const derivedKey = await encryptionsUtilsStore.deriveKey(credentials.password, encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getSalt()));
+                registerStore.setDerivedKey(encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.exportDerivedKey(derivedKey)));
+                // const password = credentials.password;
+                // authenticationStore.setPassword(password);
                 credentialsStore.setEmail('');
                 credentialsStore.setPassword('');
 
-                const encryptedMk = await encryptionsUtilsStore.encryptMk(authenticationStore.getPassword());
-                const base64Mk = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedMk);
-                authenticationStore.setPassword(base64Mk);
+                // const encryptedMk = await encryptionsUtilsStore.encryptMk(authenticationStore.getPassword());
+                // const base64Mk = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedMk);
+                // authenticationStore.setPassword(base64Mk);
 
                 if (token) {
+                    console.log("-> dentro de if token")
                     router.push('/dashboard');
                 }
             }

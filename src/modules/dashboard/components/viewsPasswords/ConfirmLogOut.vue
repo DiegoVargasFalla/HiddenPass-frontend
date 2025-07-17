@@ -20,9 +20,11 @@ import { useExistingPasswordStore } from '../../store/existingPasswordStore';
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 import { useNewPasswordStore } from '../newPassword/store/newPasswordStore';
 import { useNoteStore } from '../../store/NoteStore';
-import router from '@/router';
+import { useRouter } from 'vue-router';
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 
+
+const router = useRouter();
 const showLayerPopsUp = useShowLayerPopsUp();
 const newPasswordStore = useNewPasswordStore();
 const noteStore = useNoteStore();
@@ -32,7 +34,7 @@ const check = ref(false);
 const confirm = computed(() => noteStore.confirmDeleteNote);
 
 const confirmLogout = () => {
-    sessionStorage.removeItem('publicKeyBackend');
+    // sessionStorage.removeItem('publicKeyBackend');
     sessionStorage.removeItem('tokenAuthentication');
 
     showLayerPopsUp.setShowLayerPopsUp(false);

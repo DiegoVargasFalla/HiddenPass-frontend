@@ -1,5 +1,5 @@
 <template>
-    <div class="containerLogo">
+    <div class="containerLogo" >
         <a href="/">
             <div class="containerLogoText">
                 <div class="imgLogo"></div>

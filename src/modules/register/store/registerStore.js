@@ -12,6 +12,9 @@ export const useRegisterStore = defineStore('registerStore', {
         email: '',
         password: '',
         verifyMailRegister: false,
+        iv: '',
+        salt: '',
+        derivedKey: ''
     }),
     actions:{
         getName() {
@@ -29,6 +32,18 @@ export const useRegisterStore = defineStore('registerStore', {
         getPassword() {
             return this.password;
         },
+        setIv(value) {
+            this.iv = value;
+        },
+        getIv() {
+            return this.iv
+        },
+        setSalt(value) {
+            this.salt = value
+        },
+        getSalt() {
+            return this.salt;
+        },
         setPassword(value) {
             this.password = value;
         },
@@ -38,6 +53,12 @@ export const useRegisterStore = defineStore('registerStore', {
         setVerifyMailRegister(value) {
             this.verifyMailRegister = value;
         },
+        getDerivedKey() {
+            return this.derivedKey
+        },
+        setDerivedKey(value) {
+            this.derivedKey = value;
+        },
         async registerUser() {
 
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
@@ -46,36 +67,38 @@ export const useRegisterStore = defineStore('registerStore', {
             await authenticationStore.checkMail({email: this.email});
 
             if(this.verifyMailRegister === false) {
-                this.verifyMailRegister = false;
-                authenticationStore.setVerifyEmail(Boolean);
+                // this.verifyMailRegister = false;
+                // authenticationStore.setVerifyEmail(Boolean);
 
-                await encryptionsUtilsStore.bringPublicKeyBack();
+                // await encryptionsUtilsStore.bringPublicKeyBack();
                 // const importedPublicKeyback = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
 
-                console.log("-> name: " + this.name)
-                console.log("-> usename: " + this.email)
-                console.log("-> password: " + this.password)
+                // console.log("-> name: " + this.name)
+                // console.log("-> usename: " + this.email)
+                // console.log("-> password: " + this.password)
 
-                const encryptedName = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.name);
-                const encryptedEmail = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.email)
-                const encryptedPassword = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.password)
+                // const encryptedName = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.name);
+                // const encryptedEmail = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.email)
+                // const encryptedPassword = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.password)
 
                 try {
                     const request = await axios.post('/api/v1/create', {
-                        name: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedName),
-                        username: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedEmail),
-                        password: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
+                        name: this.name,
+                        username: this.email,
+                        password: this.password,
                         listPass: [],
                         roles: [],
                         accessCode: null,
-                        userSalt: "",
-                        userIv: ""
+                        userSalt: encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.generateIvAndSalt()),
+                        userIv: encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.generateIvAndSalt())
                     })
 
                     const data = request.data;
-                    console.log(request.error)
 
                     if(data) {
+                        this.name = "";
+                        this.email = "";
+                        this.password = "";
                         router.push("/login");
                     }
 

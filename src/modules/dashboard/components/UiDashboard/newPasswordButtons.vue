@@ -16,7 +16,7 @@ import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore
 import loaderPasswords from '@/modules/loading/views/loaderPasswords.vue';
 import { useLoaderPasswordsStore } from '@/modules/loading/store/loadingPasswordsStore';
 import { useEncryptionsUtilsStore } from '../../store/EncryptionsUtilsStore';
-
+import { useRegisterStore } from '@/modules/register/store/registerStore';
 
 const props = defineProps({
     text: String,
@@ -29,6 +29,8 @@ const showLayerPopsUp = useShowLayerPopsUp();
 const authenticationStore = useAuthenticationStore();
 const newPasswordStore = useNewPasswordStore();
 const encryptionsUtilsStore = useEncryptionsUtilsStore();
+const registerStore = useRegisterStore();
+
 
 let showText = true;
 
@@ -41,27 +43,32 @@ const onClick = async () => {
     } else if (props.action === 'save') {
         if(newPasswordStore.getPassword().length > 1 && newPasswordStore.getUsername().length > 1 && newPasswordStore.getUrl().length > 1) {
         
-            const encryptedPassword = await encryptionsUtilsStore.encryptWithAES(newPasswordStore.getPassword(), encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-            const encryptedUsername = await encryptionsUtilsStore.encryptWithAES(newPasswordStore.getUsername(), encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-            const encrypteUrl = await encryptionsUtilsStore.encryptWithAES(newPasswordStore.getUrl(), encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-            const encryptNote = await encryptionsUtilsStore.encryptWithAES(newPasswordStore.getNote(), encryptionsUtilsStore.getAesKeyFront(),encryptionsUtilsStore.getIvFront());
+            const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getPassword());
+            const encryptedUsername = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUsername());
+            const encrypteUrl = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUrl());
+            const encryptNote = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getNote());
 
-            const aesRAW = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront());
-            const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
+            // const aesRAW = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront());
+            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
 
-            const encryptedAes = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(aesRAW, importedPublicKey)
+            // const encryptedAes = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(aesRAW, importedPublicKey)
 
             const requestBody = {
 
-                passWord: {
-                    "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
-                    "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
-                    "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
-                    "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
-                },
-                masterKey: authenticationStore.getPassword(),
-                aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAes),
-                ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront()),
+                "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
+                "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
+                "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
+                "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
+
+                // passWord: {
+                //     "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
+                //     "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
+                //     "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
+                //     "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
+                // },
+                // masterKey: authenticationStore.getPassword(),
+                // aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAes),
+                // ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront()),
             };
             
             if (props.loader === true) {

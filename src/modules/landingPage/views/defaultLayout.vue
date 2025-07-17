@@ -25,7 +25,7 @@
                         HiddenPass las recuerda por ti de<br> una forma segura.
                     </p>
                     </div>
-                    <div class="container-button-go">
+                    <div class="container-button-go" id="sec-about">
                         <buttons link="/register" label="Ir ahora" bgColor="black" textColor="white"></buttons>
                     </div>
                 </div>
@@ -36,10 +36,10 @@
             </div>
         </section>
         <div class="scroll-about" id="scroll-about"></div>
-        <section class="section-about" id="sec-about">
-            <div class="tittle-sections">
+        <section class="section-about">
+            <!-- <div class="tittle-sections">
                 <h3>Acerca de</h3>
-            </div>
+            </div> -->
             <div class="container-itmes-abotut">
                 <div class="container-text-explain">
                     <h3 class="title-text-explain">
@@ -48,7 +48,7 @@
                     <p class="second-text-about type-inter">
                         <span class="word-specials">HiddenPass</span> te ofrece
                         una solucion excelente para proteger tus contraseñas sin complicaciones.
-                        Con una sola <span class="word-specials">clave maestra</span>, tendrás acceso seguro a todas tus credenciales,
+                        Con una sola <span class="word-specials">clave maestra</span>, tendrás acceso seguro a todas tus credenciales desde cualquier lugar,
                         sin necesidad de recordarlas individualmente.
                     </p>
                 </div>
@@ -56,7 +56,7 @@
                     <itemsAbout 
                         icon="fa-solid fa-lock"
                         textTittle="Seguridad avanzada" 
-                        textP="Encriptamos tus contraseñas con tecnología de alto nivel."
+                        textP="Encriptamos tus contraseñas con tecnología de alto nivel y cifrado de extremo a extremo."
                     ></itemsAbout>
                     <itemsAbout 
                         icon="fa-solid fa-cloud"
@@ -83,10 +83,20 @@
                         textTittle="Generador de contraseñas" 
                         textP="Genera contraseñas fuertes con un solo clic, garantizando que no uses combinaciones débiles ni repetidas."
                     ></itemsAbout>
+                    <itemsAbout id="sec-use-guide"
+                        icon="fa-solid fa-eye-slash"
+                        textTittle="Conocimiento cero." 
+                        textP="Tu información se cifra antes de enviarse. Ni nosotros ni el servidor pueden ver tu información, solo tu tienes acceso."
+                    ></itemsAbout>
+                    <itemsAbout 
+                        icon="fa-solid fa-note-sticky"
+                        textTittle="Notas privadas" 
+                        textP="Guardá tus ideas o datos privados con cifrado seguro de extremo a extremo. Solo tu tienes acceso."
+                    ></itemsAbout>
                 </div>
             </div>
         </section>
-        <section class="section-use-guide" id="sec-use-guide">
+        <section class="section-use-guide">
             <div class="tittle-sections">
                 <h3>Guia de uso</h3>
             </div>
@@ -131,7 +141,7 @@
                 </plansCard>
             </div>
         </section>
-        <section class="contact-section" id="contact-section">
+        <section class="contact-section" >
             <div class="container-img"></div>
             <div class="container-contact">
                 <!-- <div class="container-title-contact">
@@ -273,23 +283,25 @@ onMounted(() => {
 }
 
 .main-section {
+    /* background-color: red; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 11rem 0;
+    padding: 7rem 0;
     width: 85%;
     margin-left: 4rem;
     gap: 4rem;
 }
 
 .container-text-inf {
+    /* background-color: green; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    gap: 2.5rem;
+    gap: 1rem;
 }
 
 .container-text-and-button-start {

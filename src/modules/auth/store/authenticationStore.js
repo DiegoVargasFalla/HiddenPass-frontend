@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import router from "@/router";
-import { boolean, number } from "yup";
+// import { boolean, number } from "yup";
 import { useEncryptionsUtilsStore } from "@/modules/dashboard/store/EncryptionsUtilsStore";
-import SlideBar from "@/modules/dashboard/components/UiDashboard/SlideBar.vue";
+// import SlideBar from "@/modules/dashboard/components/UiDashboard/SlideBar.vue";
 import { useRegisterStore } from "@/modules/register/store/registerStore";
-
 
 export const useAuthenticationStore = defineStore('authentication', {
     state: () => ({
@@ -24,6 +23,7 @@ export const useAuthenticationStore = defineStore('authentication', {
         listAlphabeticPassword: Array,
         showLayerLogout: false,
         showSlideBar: false,
+
     }),
     actions: {
 
@@ -106,31 +106,44 @@ export const useAuthenticationStore = defineStore('authentication', {
             });
         },
         async bringPasswords() {
-            const token = sessionStorage.getItem('tokenAuthentication');
+            const registerStore = useRegisterStore();
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
+            console.log("-> ## trayendo las contrsaseñas")
+            const token = sessionStorage.getItem('tokenAuthentication');
+            // const encryptionsUtilsStore = useEncryptionsUtilsStore();
 
-            const AESKeyRaw = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront())
-            const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-            const enryptedAESKey = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(AESKeyRaw, importedPublicKey);
+            // const AESKeyRaw = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront())
+            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
+            // const enryptedAESKey = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(AESKeyRaw, importedPublicKey);
 
             if (token) {
-                const masterKeyDTO = {
-                    masterKey: this.password,
-                    aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(enryptedAESKey),
-                    ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront())
-                }
+                // console.log("-> si existe token")
+                // const masterKeyDTO = {
+                //     masterKey: this.password,
+                //     aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(enryptedAESKey),
+                //     ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront())
+                // }
 
                 try {  // http://localhost:8080/system/api/v1/passwords-user
                     const response = await axios.post('/api/v1/passwords-user',
-                        masterKeyDTO,
+                        {},
                         { headers: { Authorization: `Bearer ${this.token}` } }
                     );
                     
                     const data = response.data;
 
                     if (data) {
+                        
+                        data.forEach(async p => {
+                            p.username = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.username))
+                            p.password = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.password))
+                            p.url = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.url))
+                            p.note = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.note))
+                        })
+
                         this.updateListPasword(data);
-                        this.decryptAllPasswords();
+                        
+                        // this.decryptAllPasswords();
                     }
                 }
                 catch (error) {
@@ -168,7 +181,30 @@ export const useAuthenticationStore = defineStore('authentication', {
                 }
             }
         },
+        async bringIvAndSalt() {
+            console.log("-> Token: " + this.token)
+            try {
+                const request = await axios.get('/api/v1/salt', 
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${this.token}`
+                        }
+                    }
+                );
 
+                const data = request.data;
+                if(data) {
+                    const registerStore = useRegisterStore();
+                    // const encryptionsUtilsStore = useEncryptionsUtilsStore();
+
+                    registerStore.setIv(data.iv)
+                    registerStore.setSalt(data.salt);
+                }
+                console.log("");
+            } catch (error) {
+                console.log(error);
+            }
+        },
         async checkMail(value) {
 
             const registerStore = useRegisterStore();
@@ -180,13 +216,11 @@ export const useAuthenticationStore = defineStore('authentication', {
                 if(data) {
                     registerStore.setVerifyMailRegister(data);
                     this.verifyEmail = data;
-
                 }
             } catch (Error) {
                 console.log(" ")
             }
         },
-
         logout() {
             this.stopSessionCheck();
             sessionStorage.removeItem('tokenAuthentication');
@@ -206,16 +240,12 @@ export const useAuthenticationStore = defineStore('authentication', {
                             'Authorization': `Bearer ${this.token}`
                         }
                     })
-                    .then(response => {
-                        if (!response.data) {
-                            this.logout();
-                            alert("your session has ended")
-                            router.push("/login")
-                        }
-                        else {
-                            console.log("")
-                        }
-                    })
+                    const data = response.data
+                    if(data === true) {
+                        return data;
+                    } else {
+                        router.push("/login")
+                    }
                 }
                 catch (error) {
                     if (error.response || error.response.status === 403) {

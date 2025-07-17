@@ -107,6 +107,7 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
             return base64;
         },
         exportBase64ToUnit8Array(base64Text) {
+            console.log("-> base 64 text: " + base64Text);
             const binaryDer = Uint8Array.from(atob(base64Text), c => c.charCodeAt(0))
             return binaryDer;
         },
@@ -202,6 +203,88 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
                 encodedText
             );
             return new Uint8Array(encryptedText);
+        },
+
+        // functions Knowledge zero
+        async generateIvAndSalt() {
+            const array = new Uint8Array(16);
+            window.crypto.getRandomValues(array);
+            return array;
+        },
+        async deriveKey(mk, salt) {
+            const encoder = new TextEncoder();
+            const password = encoder.encode(mk);
+
+            const keyMaterial = await crypto.subtle.importKey(
+                "raw",
+                password,
+                {name: "PBKDF2"},
+                false,
+                ["deriveKey"]
+            );
+
+            const derivedKey = await crypto.subtle.deriveKey(
+                {
+                    name: "PBKDF2",
+                    salt,
+                    iterations: 100000,
+                    hash: "SHA-256",
+                },
+                keyMaterial,
+                {
+                    name: "AES-GCM",
+                    length: 256,
+                },
+                true,
+                ["encrypt", "decrypt"]
+            )
+            return derivedKey;
+        },
+        async exportDerivedKey(value) {
+            const exportedKey = await window.crypto.subtle.exportKey(
+                "raw",
+                value,
+            )
+            return new Uint8Array(exportedKey);
+        },
+        async importKey(key) {
+            const rawKey = this.exportBase64ToUnit8Array(key);
+            const importedKey = await crypto.subtle.importKey(
+                'raw',
+                rawKey,
+                {name: 'AES-GCM'},
+                false,
+                ["encrypt", "decrypt"]
+            );
+            return importedKey;
+        },
+        async encryptWithDerivedKey(derivedKey, iv, plainText) {
+
+            const encoder = new TextEncoder();
+            const data = encoder.encode(plainText);
+
+            const encryptedData = await crypto.subtle.encrypt(
+                {
+                    name: "AES-GCM",
+                    iv,
+                },
+                derivedKey,
+                data
+            );
+            return new Uint8Array(encryptedData);
+        },
+        async decryptWithDerivedKey(derivedKey, iv, encryptedData) {
+
+            const decryptedData = await crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv
+                },
+                derivedKey,
+                encryptedData
+            )
+            console.log(decryptedData)
+            return new TextDecoder().decode(decryptedData);
         }
     }
 })

@@ -24,7 +24,7 @@
                 </li>
             </ul>
         </div>
-        <div class="container-button-get">
+        <div class="container-button-get" id="contact-section">
             <buttons label="Obtener" link="/register" bgColor="black" textColor="white" boxShadowColor="#058C42"></buttons>
         </div>
     </div> 
