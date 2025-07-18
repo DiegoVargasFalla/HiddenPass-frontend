@@ -1,7 +1,7 @@
 <template>
     <div class="note-item" @click="showNoteReadOnly">
         <div class="note-title" >
-            <h3 class="text-title">{{ title }}</h3>
+            <h3 class="text-title">{{ modifiedTitle }}</h3>
             <p class="date-note">{{ formatedDate }}</p>
         </div>
         <div class="note-actions">
@@ -13,6 +13,7 @@
 
 <script setup>
 
+import { computed } from 'vue';
 import { useNoteStore } from '../../store/NoteStore';
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 
@@ -28,6 +29,18 @@ const props = defineProps({
 
 const date = new Date(props.date);
 const formatedDate = date.toLocaleDateString("en-CA");
+
+const modifiedTitle = computed(() => {
+    if(props.title.length > 25) {
+        let newText = '';
+        for(let i = 0; i < 25; i++) {
+            newText += props.title[i];
+        }
+        return newText + "...";
+    } else {
+        return props.title;
+    }
+})
 
 
 const editNote = () => {
@@ -87,6 +100,8 @@ const showNoteReadOnly = () => {
     flex: 1;
     /* background-color: #13c058; */
     cursor: pointer;
+    /* overflow: hidden; */
+    /* max-width: 70%; */
 }
 
 .text-title {

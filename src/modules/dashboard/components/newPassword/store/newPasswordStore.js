@@ -70,9 +70,7 @@ export const useNewPasswordStore = defineStore('newPassword', {
 
                 if (data) {
                     
-                    // console.log("-> constraseña recien agregada: " + data)
                     const authenticationStore = useAuthenticationStore();
-                    // const encryptionsUtilsStore = useEncryptionsUtilsStore();
 
                     data.password = this.password;
                     data.username = this.username;

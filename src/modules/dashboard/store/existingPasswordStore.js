@@ -2,6 +2,7 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { useAuthenticationStore } from "@/modules/auth/store/authenticationStore";
 import { useEncryptionsUtilsStore } from "./EncryptionsUtilsStore";
+import { useRegisterStore } from "@/modules/register/store/registerStore";
 
 
 export const useExistingPasswordStore = defineStore('existingPassword', {
@@ -20,17 +21,22 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
         confirmUpdate: false,
         noChanges: false,
 
-        PasswordEntityDTO: {
-            passWord: {
-                id: null,
-                username: null,
-                password: null,
-                url: null,
-                note: null
-            },
-            masterKey: null,
-            aesKey: null,
-            ivFront: null,
+        passwordEntityDTO: {
+            id: null,
+            username: null,
+            password: null,
+            url: null,
+            note: null
+            // passWord: {
+            //     id: null,
+            //     username: null,
+            //     password: null,
+            //     url: null,
+            //     note: null
+            // },
+            // masterKey: null,
+            // aesKey: null,
+            // ivFront: null,
         }
     }),
     actions: {
@@ -80,7 +86,7 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
             return this.PasswordEntityDTO;
         },
         setNewPassword(key, newValue) {
-            this.PasswordEntityDTO.passWord[key] = newValue;
+            this.passwordEntityDTO[key] = newValue;
         },
         setMasterKey(value) {
             this.PasswordEntityDTO.masterKey = value;
@@ -109,35 +115,35 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
         setPasswordUpdate(value) {
             this.passwordUpdate = value;
         },
-        async updatePassword(passwordDTO, token) {
+        async updatePassword(token) {
             this.confirmUpdate = true;
 
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
 
-            const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
+            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
+            console.log("------------------")
+            const registerStore = useRegisterStore();
+            console.log(this.passwordEntityDTO.password);
+            console.log(this.passwordEntityDTO.username);
+            console.log(this.passwordEntityDTO.note);
+            console.log("------------------")
 
-            if(this.PasswordEntityDTO.passWord.password !== null) {
-                const encryptedPassword = await encryptionsUtilsStore.encryptWithAES(this.PasswordEntityDTO.passWord.password, encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-                this.PasswordEntityDTO.passWord.password = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword);
-            } if(this.PasswordEntityDTO.passWord.username !== null) {
-                const encryptedUsername = await encryptionsUtilsStore.encryptWithAES(this.PasswordEntityDTO.passWord.username, encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-                this.PasswordEntityDTO.passWord.username = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername);
-            } if(this.PasswordEntityDTO.passWord.url !== null) {
-                const encryptedUrl = await encryptionsUtilsStore.encryptWithAES(this.PasswordEntityDTO.passWord.url, encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-                this.PasswordEntityDTO.passWord.url = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUrl);
-            } if(this.PasswordEntityDTO.passWord.note !== null) {
-                const encryptedNote = await encryptionsUtilsStore.encryptWithAES(this.PasswordEntityDTO.passWord.note, encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-                this.PasswordEntityDTO.passWord.note = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedNote);
+            if(this.passwordEntityDTO.password !== null) {
+                const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.passwordEntityDTO.password);
+                this.passwordEntityDTO.password = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword);
+            } if(this.passwordEntityDTO.username !== null) {
+                const encryptedUsername = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.passwordEntityDTO.username);
+                this.passwordEntityDTO.username = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername);
+            } if(this.passwordEntityDTO.note !== null) {
+                const encryptedNote = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.passwordEntityDTO.note);
+                this.passwordEntityDTO.note = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedNote);
             }
 
-            const aesKeyRaw = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront());
-            const encryptedAesKey = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(aesKeyRaw, importedPublicKey);
-            this.PasswordEntityDTO.aesKey = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAesKey);
-            this.PasswordEntityDTO.ivFront = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront());
-
             try { // http://localhost:8080/system/api/v1/update-password
+
+                console.log(this.passwordEntityDTO);
                 const response = await axios.patch('/api/v1/update-password',
-                    passwordDTO,
+                    this.passwordEntityDTO,
                     {headers: {Authorization: `Bearer ${token}`}}
                 );
 

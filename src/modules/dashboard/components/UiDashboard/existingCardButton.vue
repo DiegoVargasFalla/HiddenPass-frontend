@@ -56,9 +56,9 @@ const encryptionsUtilsStore = useEncryptionsUtilsStore();
 
 
 const noNullFieldsEditionPassword = () => {
-    if(existingPasswordStore.PasswordEntityDTO.passWord.password !== null ||
-    existingPasswordStore.PasswordEntityDTO.passWord.username !== null ||
-    existingPasswordStore.PasswordEntityDTO.passWord.note !== null ) {
+    if(existingPasswordStore.passwordEntityDTO.password !== null ||
+    existingPasswordStore.passwordEntityDTO.username !== null ||
+    existingPasswordStore.passwordEntityDTO.note !== null ) {
         return true
     } else {
         existingPasswordStore.noChanges = true
@@ -82,12 +82,8 @@ async function onClick() {
             existingPasswordStore.noEdit = true;
         }
     } else if(props.type === 'save' && !existingPasswordStore.getNoEdit() && noNullFieldsEditionPassword()) {
-
-        existingPasswordStore.setMasterKey(authenticationStore.getPassword())
-        existingPasswordStore.setAesKeyExistingPassword(encryptionsUtilsStore.getAesKeyFront());
-        existingPasswordStore.setIvFrontExistiingPassord(encryptionsUtilsStore.getIvFront());
-
-        await existingPasswordStore.updatePassword(existingPasswordStore.getNewPassword(), authenticationStore.getToken());
+        
+        await existingPasswordStore.updatePassword(authenticationStore.getToken());
 
         if (existingPasswordStore.getSuccessUpdate()) {
 

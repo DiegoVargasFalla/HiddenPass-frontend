@@ -107,7 +107,6 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
             return base64;
         },
         exportBase64ToUnit8Array(base64Text) {
-            console.log("-> base 64 text: " + base64Text);
             const binaryDer = Uint8Array.from(atob(base64Text), c => c.charCodeAt(0))
             return binaryDer;
         },
@@ -283,7 +282,6 @@ export const useEncryptionsUtilsStore = defineStore('encryptionsUtilsStore', {
                 derivedKey,
                 encryptedData
             )
-            console.log(decryptedData)
             return new TextDecoder().decode(decryptedData);
         }
     }

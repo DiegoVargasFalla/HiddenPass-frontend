@@ -1,6 +1,5 @@
 <template>
     <div class="container-button" @click="onClick">
-
         <span v-if="showText"> {{ text }}</span>
         <div v-if="loaderStore.load && !showText" class="loaderSavePassword">
             <loaderPasswords></loaderPasswords>
@@ -35,77 +34,67 @@ const registerStore = useRegisterStore();
 let showText = true;
 
 const onClick = async () => {
-    
-    if(props.action === "cancel") {
-        showLayerPopsUp.setShowLayerPopsUp(false);
-        newPasswordStore.setShow(false);
-        deleteTextField();
-    } else if (props.action === 'save') {
-        if(newPasswordStore.getPassword().length > 1 && newPasswordStore.getUsername().length > 1 && newPasswordStore.getUrl().length > 1) {
-        
-            const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getPassword());
-            const encryptedUsername = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUsername());
-            const encrypteUrl = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUrl());
-            const encryptNote = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getNote());
 
-            // const aesRAW = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront());
-            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-
-            // const encryptedAes = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(aesRAW, importedPublicKey)
-
-            const requestBody = {
-
-                "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
-                "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
-                "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
-                "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
-
-                // passWord: {
-                //     "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
-                //     "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
-                //     "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
-                //     "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
-                // },
-                // masterKey: authenticationStore.getPassword(),
-                // aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAes),
-                // ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront()),
-            };
+    if(!newPasswordStore.iconConfirm) {
+            if(props.action === "cancel") {
+            showLayerPopsUp.setShowLayerPopsUp(false);
+            newPasswordStore.setShow(false);
+            deleteTextField();
+        } else if (props.action === 'save') {
+            if(newPasswordStore.getPassword().length > 1 && newPasswordStore.getUsername().length > 1 && newPasswordStore.getUrl().length > 1) {
             
-            if (props.loader === true) {
-                showText = false;
+                const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getPassword());
+                const encryptedUsername = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUsername());
+                const encrypteUrl = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUrl());
+                const encryptNote = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getNote());
+
+                const requestBody = {
+
+                    "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
+                    "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
+                    "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
+                    "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
+
+                };
+                
+                if (props.loader === true) {
+                    showText = false;
+                }
+
+                loaderStore.startLoadPasswords();
+                await newPasswordStore.savePassword(requestBody, authenticationStore.getToken());
+
+                if (newPasswordStore.getSave()) {
+                    loaderStore.stopLoadPassword();
+                    showText = true;
+                    newPasswordStore.iconConfirm = true;
+
+                    setTimeout(() => {
+                        console.log("-> Ingresando en el setTimeout")
+                        showLayerPopsUp.setShowLayerPopsUp(false);
+                        newPasswordStore.setShow(false);
+                        newPasswordStore.iconConfirm = false;
+                        deleteTextField();
+                    }, 1000);
+                }
+
+            } else {
+
+                const listInputs = [
+                    document.getElementById("field-username"),
+                    document.getElementById("field-password"),
+                    document.getElementById("field-url")
+                ]
+
+                listInputs.forEach(input => {
+                    input.focus();
+                    input.blur();
+                })
             }
-
-            loaderStore.startLoadPasswords();
-            await newPasswordStore.savePassword(requestBody, authenticationStore.getToken());
-
-            if (newPasswordStore.getSave()) {
-                loaderStore.stopLoadPassword();
-                showText = true;
-                newPasswordStore.iconConfirm = true;
-
-                setTimeout(() => {
-                    console.log("-> Ingresando en el setTimeout")
-                    showLayerPopsUp.setShowLayerPopsUp(false);
-                    newPasswordStore.setShow(false);
-                    newPasswordStore.iconConfirm = false;
-                    deleteTextField();
-                }, 2000);
-            }
-
-        } else {
-
-            const listInputs = [
-                document.getElementById("field-username"),
-                document.getElementById("field-password"),
-                document.getElementById("field-url")
-            ]
-
-            listInputs.forEach(input => {
-                input.focus();
-                input.blur();
-            })
         }
     }
+    
+    
 }
 
 const urlFavicon = () => {

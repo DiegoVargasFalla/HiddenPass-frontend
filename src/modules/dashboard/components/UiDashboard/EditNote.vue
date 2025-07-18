@@ -2,7 +2,11 @@
   <div class="popup-note">
     <div class="popup-header">
         <span class="note-date">{{ noteStore.date }}</span>
-        <i class="fa-solid fa-xmark icon-close" @click="closePopup"></i>
+        <div class="icons-read-and-close-pop">
+          <span v-if="readonlyNote" >  <i class="fa-solid fa-lock icon-read"></i>  Modo lectura</span>
+          <span v-else class="">  <i class="fa-solid fa-unlock icon-write"></i> Modo escritura</span>  
+          <i class="fa-solid fa-xmark icon-close" @click="closePopup"></i>
+        </div>
     </div>
     <input
       :readonly="readonlyNote"
@@ -110,7 +114,7 @@ const valueModelInputNote = computed({
 .popup-note {
   background-color: white;
   border-radius: 14px;
-  padding: 10px 25px;
+  padding: 0.7rem 1.3rem;
   width: 60%;
   height: 70%;
   display: flex;
@@ -128,9 +132,31 @@ const valueModelInputNote = computed({
 }
 
 .note-date {
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #555;
+}
+
+.icons-read-and-close-pop {
+  position: relative;
+  /* background-color: red; */
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 2rem;
+}
+
+.icon-read {
+  font-size: 1.2rem;
+  /* font-weight: 400; */
+  color: rgba(255, 0, 0, 0.695);
+}
+
+.icon-write {
+  font-size: 1.2rem;
+  /* font-weight: 400; */
+  color: #16db65;
 }
 
 .icon-close {
@@ -184,7 +210,7 @@ const valueModelInputNote = computed({
     bottom: 10px;
     /* display: none; */
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 1rem;
     font-weight: 700;
     color: rgb(255, 12, 12);
     transition: all ease;
@@ -267,4 +293,38 @@ const valueModelInputNote = computed({
     font-family: 'Inter';
     color: white;
 }
+
+@media screen and (max-width: 1000px) {
+  .popup-note {
+    width: 80%;
+
+  } 
+}
+
+@media screen and (max-width: 800px) {
+  .popup-note {
+    width: 80%;
+  } 
+}
+
+@media screen and (max-width: 600px) {
+  .popup-note {
+    width: 95%;
+    padding: 0.7rem 0.9rem;
+  } 
+}
+
+@media screen and (max-width: 500px) {
+  .icons-read-and-close-pop{
+    width: 70%;
+  } 
+}
+
+@media screen and (max-width: 340px) {
+  .icons-read-and-close-pop{
+    width: 55%;
+    gap: 0.2rem;
+  } 
+}
+
 </style>

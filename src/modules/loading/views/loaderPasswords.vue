@@ -16,7 +16,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    padding: 4px;
+    padding: 0.25rem;
     overflow: hidden;
 }
 
@@ -24,8 +24,8 @@
     content: "";
     position: absolute;
     top: 50%;
-    height: 30px;
-    width: 30px;
+    height: 2rem;
+    width: 2rem;
     transform-origin: top center;
     background: linear-gradient(to right, #09873b 40%, #0e873f 40%, #0e9042 20%, transparent);
     animation: spin 0.5s linear infinite;

@@ -108,21 +108,8 @@ export const useAuthenticationStore = defineStore('authentication', {
         async bringPasswords() {
             const registerStore = useRegisterStore();
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
-            console.log("-> ## trayendo las contrsaseñas")
             const token = sessionStorage.getItem('tokenAuthentication');
-            // const encryptionsUtilsStore = useEncryptionsUtilsStore();
-
-            // const AESKeyRaw = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront())
-            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-            // const enryptedAESKey = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(AESKeyRaw, importedPublicKey);
-
             if (token) {
-                // console.log("-> si existe token")
-                // const masterKeyDTO = {
-                //     masterKey: this.password,
-                //     aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(enryptedAESKey),
-                //     ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront())
-                // }
 
                 try {  // http://localhost:8080/system/api/v1/passwords-user
                     const response = await axios.post('/api/v1/passwords-user',
@@ -131,9 +118,8 @@ export const useAuthenticationStore = defineStore('authentication', {
                     );
                     
                     const data = response.data;
-
+        
                     if (data) {
-                        
                         data.forEach(async p => {
                             p.username = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.username))
                             p.password = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.password))
@@ -142,8 +128,7 @@ export const useAuthenticationStore = defineStore('authentication', {
                         })
 
                         this.updateListPasword(data);
-                        
-                        // this.decryptAllPasswords();
+
                     }
                 }
                 catch (error) {
@@ -182,7 +167,6 @@ export const useAuthenticationStore = defineStore('authentication', {
             }
         },
         async bringIvAndSalt() {
-            console.log("-> Token: " + this.token)
             try {
                 const request = await axios.get('/api/v1/salt', 
                     {

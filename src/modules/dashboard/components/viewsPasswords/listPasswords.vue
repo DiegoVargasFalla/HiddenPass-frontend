@@ -164,7 +164,7 @@ const noPassword = computed(() => authenticationStore.getListPassword().length =
 }
 
 .text-no-passwords {
-    color: rgba(92, 91, 91, 0.858);
+    color: rgba(0, 0, 0, 0.523);
     font-size: 17px;
 }
 

@@ -20,6 +20,7 @@
             <titleAndNoteComponent ></titleAndNoteComponent>
         </div>
         <div v-if="handleShowListNote" class="container-componetn-list-note">
+            <p v-if="numNotes" class="text-no-notes">Aun no tines notas...</p>
             <listNotes ></listNotes>
         </div>
         <div class="container-bottom">
@@ -44,6 +45,7 @@ const noteStore = useNoteStore();
 const authenticationStore = useAuthenticationStore();
 
 const checkSavedNote = ref(false);
+const numNotes = computed(() => noteStore.listNotes.length <= 0);
 
 const loadCircle = computed(() => {
     return  noteStore.getLoadCirlce();
@@ -96,7 +98,7 @@ const saveNote = async () => {
 
     if(noteStore.getTitle() && noteStore.getNote()) {
         noteStore.setError(false);
-        const note = await noteStore.saveNote(noteStore.getTitle(), noteStore.getNote(), authenticationStore.getPassword(), authenticationStore.getToken());
+        const note = await noteStore.saveNote(noteStore.getTitle(), noteStore.getNote(), authenticationStore.getToken());
         checkSavedNote.value = true;
 
         noteStore.getListNotes().unshift(note);
@@ -280,6 +282,15 @@ const saveNote = async () => {
     flex-direction: column;
     height: 65%;
     width: 100%;
+}
+
+.text-no-notes {
+    position: absolute;
+    font-family: 'Inter';
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    font-weight: 500;
+    top: 0;
+    color: rgba(0, 0, 0, 0.523);
 }
 
 .container-componetn-list-note {
