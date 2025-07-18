@@ -134,18 +134,7 @@ export const useNoteStore = defineStore('noteStore', {
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
             const authenticationStore = useAuthenticationStore();
             const registerStore = useRegisterStore();
-
-            // const aesKeyRaw = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront());
-            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-            // const encryptedAesKey = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(aesKeyRaw, importedPublicKey);
             const token = authenticationStore.getToken();
-
-            // const body = {
-            //     masterKey: authenticationStore.getPassword(),
-            //     aesKey: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAesKey),
-            //     ivFront: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront())
-            // }
-
 
             try { //  http://localhost:8080/system/api/v1/notes-user
                 const response = await axios.post('/api/v1/notes-user',
@@ -163,11 +152,6 @@ export const useNoteStore = defineStore('noteStore', {
                     }
 
                     this.reverseListNotes(data);
-
-                    // this.listNotes.forEach(async n => {
-                    //     n.title = await encryptionsUtilsStore.decryptWithAES(n.title, encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-                    //     n.content = await encryptionsUtilsStore.decryptWithAES(n.content, encryptionsUtilsStore.getAesKeyFront(), encryptionsUtilsStore.getIvFront());
-                    // })
                     this.showLoaderNotes = false;
                 }
             } catch (error) {
@@ -208,14 +192,6 @@ export const useNoteStore = defineStore('noteStore', {
             const registerStore = useRegisterStore();
 
             const token = authenticationStore.getToken();
-
-            // const importedRSA = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-            // const aesKeyRaw = await encryptionsUtilsStore.exportAESKey(encryptionsUtilsStore.getAesKeyFront());
-            // const encryptedAESKey = await encryptionsUtilsStore.encryptAESKeyWithPublicKeyBackend(aesKeyRaw, importedRSA);
-
-            // this.newNoteDTO.masterKey = authenticationStore.getPassword();
-            // this.newNoteDTO.aesKey = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedAESKey);
-            // this.newNoteDTO.ivFront = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptionsUtilsStore.getIvFront());
 
             if (this.newNoteDTO.title !== null) {
                 const encryptedTitle = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.newNoteDTO.title);
