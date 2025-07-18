@@ -12,7 +12,7 @@
                 <linksNav lable="Acerca de" :link="linkAbout" :colorText=ColorText></linksNav>
                 <linksNav lable="Guia de uso" :link="linkGuide" :colorText=ColorText></linksNav>
                 <linksNav lable="Planes" :link="linkPlans"  :colorText=ColorText></linksNav>
-                <linksNav lable="Contacto" :link="linkContact" :colorText=ColorText></linksNav>
+                <linksNav lable="FAQ" :link="linkContact" :colorText=ColorText></linksNav>
             </div>
             <div class="containerButtons transition">
                 <div class="contentButtons">

@@ -71,7 +71,7 @@ const changeNum = () => {
     /* background-color: green; */
     display: flex;
     align-items: center;
-    height: 20px;
+    height: 1.2rem;
     width: 100%;
     /* margin-top: -5px; */
 }
@@ -160,8 +160,8 @@ const changeNum = () => {
 }
 
 .range-slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
+    width: 1rem;
+    height: 1rem;
     /* background: #16DB65; */
     /* border-radius: 50%; */
     cursor: pointer;

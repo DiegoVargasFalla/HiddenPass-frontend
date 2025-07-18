@@ -83,10 +83,10 @@
                         textTittle="Generador de contraseñas" 
                         textP="Genera contraseñas fuertes con un solo clic, garantizando que no uses combinaciones débiles ni repetidas."
                     ></itemsAbout>
-                    <itemsAbout id="sec-use-guide"
+                    <itemsAbout
                         icon="fa-solid fa-eye-slash"
                         textTittle="Conocimiento cero." 
-                        textP="Tu información se cifra antes de enviarse. Ni nosotros ni el servidor pueden ver tu información, solo tu tienes acceso."
+                        textP="Tus contraseñas están protegidas bajo una arquitectura de conocimiento cero, lo que significa que ni siquiera nosotros podemos acceder a tus datos. La privacidad es completamente tuya."
                     ></itemsAbout>
                     <itemsAbout 
                         icon="fa-solid fa-note-sticky"
@@ -96,11 +96,56 @@
                 </div>
             </div>
         </section>
-        <section class="section-use-guide">
-            <div class="tittle-sections">
-                <h3>Guia de uso</h3>
-            </div>
-            <div class="container-use-guide">
+        <section class="section-use-guide"  id="sec-use-guide">
+            <div class="use-guide-container">
+                <!-- <h3 class="guide-title">Guía de uso</h3> -->
+
+                <!-- Bloque: Añadir Contraseñas -->
+                <div class="guide-block">
+                    <div class="guide-text">
+                        <h4 class="guide-subtitle">Guarda y organiza tus contraseñas</h4>
+                        <p class="guide-description">
+                        Accede a la sección de contraseñas para almacenar de forma segura tus credenciales más importantes. 
+                        Cada contraseña se cifra automáticamente, brindándote una protección avanzada. 
+                        Puedes organizarlas por nombre, usuario, contraseña y una nota descriptiva para encontrarlas fácilmente
+                        cuando las necesites, ademas cuentas con filtros para una mejor accesibilidad, en orden alfabetico, recietes y mas antiguas
+                        ademas puedes actualizar y eliminar tus contraseñas en cualquier momento.
+                        </p>
+                    </div>
+                    <div class="guide-image">
+                        <img class="image-use-gide" src="/src/assets/img/passwordsManagement.png" alt="Agregar contraseñas" />
+                    </div>
+                </div>
+
+                    <!-- Bloque: Generador de contraseñas -->
+                <div class="guide-block reverse">
+                    <div class="guide-text">
+                        <h4 class="guide-subtitle">Genera contraseñas seguras</h4>
+                        <p class="guide-description">
+                        El generador integrado te permite crear contraseñas aleatorias, seguras y personalizadas. 
+                        Define la longitud, incluye símbolos, números o letras, y genera claves difíciles de descifrar, ideales para proteger tus cuentas frente a ataques comunes.
+                        </p>
+                    </div>
+                    <div class="guide-image">
+                        <img src="/src/assets/img/generatorPass.png" alt="Generador de contraseñas" />
+                    </div>
+                </div>
+
+                <!-- Bloque: Notas seguras -->
+                <div class="guide-block">
+                    <div class="guide-text">
+                        <h4 class="guide-subtitle">Guarda notas privadas</h4>
+                        <p class="guide-description">
+                        Además de contraseñas, puedes guardar notas sensibles o personales totalmente cifradas. 
+                        Desde recordatorios hasta claves de acceso secundarias, permitiendote visualizar o 
+                        modificar tus notas de una forma mas comoda, todo permanece protegido y accesible
+                         solo para ti, desde cualquier dispositivo.
+                        </p>
+                    </div>
+                    <div class="guide-image">
+                        <img src="/src/assets/img/notesManagement.png" alt="Notas seguras" />
+                    </div>
+                </div>
             </div>
         </section>
         <section class="plans-sections" id="sec-plans">
@@ -141,26 +186,48 @@
                 </plansCard>
             </div>
         </section>
-        <section class="contact-section" >
+        <section class="contact-section">
             <div class="container-img"></div>
             <div class="container-contact">
-                <!-- <div class="container-title-contact">
-                    <h2 class="tittle-sections">Contacto</h2>
+                <h3 class="faq-title">Preguntas Frecuentes</h3>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <h4>¿Cómo protege HiddenPass mis contraseñas?</h4>
+                        <p>
+                        Utilizamos cifrado avanzado y principios de conocimiento cero, lo que garantiza que solo tú puedas acceder a tus contraseñas. Ni siquiera nosotros tenemos acceso a tu información.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>¿Puedo generar contraseñas seguras automáticamente?</h4>
+                        <p>
+                        Sí. HiddenPass incluye un generador de contraseñas seguras con opciones para personalizar longitud, uso de símbolos, números y más.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>¿Mis notas también están protegidas?</h4>
+                        <p>
+                        Todas tus notas se almacenan cifradas con el mismo nivel de seguridad que tus contraseñas, asegurando privacidad total.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>¿Puedo acceder desde diferentes dispositivos?</h4>
+                        <p>
+                        Sí. Puedes acceder a HiddenPass desde cualquier navegador moderno, ya sea en escritorio o en dispositivos móviles, con una experiencia completamente adaptada.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>¿Qué pasa si olvido mi contraseña maestra?</h4>
+                        <p>
+                        Por seguridad, no almacenamos tu contraseña maestra. Si la pierdes, no podremos recuperarla. Te recomendamos usar nuestro generador y guardar una copia en un lugar seguro.
+                        </p>
+                    </div>
                 </div>
-                <div class="content-contact">
-                    <div class="name-input inputs-content">
-                        <input class="inputs" type="text" placeholder="Nombre">
-                    </div>
-                    <div class="name-email inputs-content">
-                        <input class="inputs" type="text" placeholder="Email">
-                    </div>
-                    <div class="name-message inputs-content">
-                        <textarea class="inputs input-menssage" name="Mensage" placeholder="Mensaje" id=""></textarea>
-                    </div>
-                    <buttons label="Enviar" link="#" bgColor="black" textColor="white" boxShadowColor="#058C42"></buttons>
-                </div> -->
             </div>
-        </section>
+            </section>
         <section class="sec-end" id="sec-end">
             <div class="container-sec-end">
                 <div class="tittle-sec-end">
@@ -492,7 +559,7 @@ onMounted(() => {
 use guide section 
 */
 
-.section-use-guide {
+/* .section-use-guide {
     position: relative;
     display: flex;
     align-items: center;
@@ -501,7 +568,7 @@ use guide section
     background-color: #16DB65;
     height: 87.5vh;
     width: 85%;
-}
+} */
 
 .container-use-guide {
     position: relative;
@@ -669,19 +736,92 @@ contatc section
  */
 
 .contact-section {
-    position: relative;
-    /* background-color: gray; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 66vh;
-    width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  padding: 4rem 1rem;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  /* padding: 4rem 0; */
+  /* background-color: red; */
 }
 
 .container-img {
+  position: absolute;
+  background-image: url('/src/assets/img/padlocks.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: blur(5px) brightness(0.7);
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.container-contact {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.814);
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 900px;
+  width: 85%;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+}
+
+.faq-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #000;
+  text-align: center;
+  font-weight: 600;
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.faq-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #16db65;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container-contact {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .faq-title {
+    font-size: 1.5rem;
+  }
+
+  .faq-item h4 {
+    font-size: 1rem;
+  }
+
+  .faq-item p {
+    font-size: 0.95rem;
+  }
+}
+/*
+.container-img {
     position: absolute;
     background-image: url('@/assets/img/padlocks.webp');
-    /* object-fit: cover; */
+    object-fit: cover; 
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -690,7 +830,7 @@ contatc section
 }
 
 .container-contact {
-    /* background-color: orange; */
+    background-color: orange;
     position: relative;
     display: flex;
     align-items: center;
@@ -704,7 +844,7 @@ contatc section
 }
 
 .container-title-contact {
-    /* background-color: gray; */
+    background-color: gray;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -720,19 +860,19 @@ contatc section
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* gap: 1px; */
+    gap: 1px;
     height: 80%;
     width: 32%;
     border-radius: 30px;
     border: 1px solid  #ffffff;
     box-shadow: 0 0 6px #ffffff;
-    background-color:rgba(135, 136, 135, 0.196); /* rgba(135, 136, 135, 0.1)  rgba(51, 203, 132, 0.226)*/
+    background-color:rgba(135, 136, 135, 0.196); rgba(135, 136, 135, 0.1)  rgba(51, 203, 132, 0.226)
     backdrop-filter: blur(9px);
 }
 
 .inputs-content {
     position: relative;
-    /* background-color: green; */
+    background-color: green;
 }
 
 .inputs {
@@ -770,7 +910,7 @@ contatc section
     border-radius: 7px;
     font-family: 'Inter';
     color: white;
-}
+} */
 
 /* 
 section end
@@ -831,6 +971,81 @@ section end
     width: 35rem;
 }
 
+.section-use-guide {
+  width: 100%;
+  padding: 4rem 0;
+}
+
+.use-guide-container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.guide-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 2rem;
+  border-left: 5px solid #16db65;
+  /* padding-left: 1rem; */
+}
+
+.guide-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    row-gap: 2rem;
+}
+
+.guide-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.guide-text {
+    flex: 1;
+    /* background-color: red; */
+    width: 60%;
+    font-family: "inter";
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+    text-align: center;
+}
+
+.guide-subtitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-family: "Archivo Black", serif;
+}
+
+.guide-description {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.guide-image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+}
+
+.guide-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
 @media screen and (max-width: 900px) {
     .container-p-end {
         width: 80%;
@@ -846,5 +1061,14 @@ section end
         font-size: 1.2rem;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .guide-block {
+        flex-direction: column;
+    }
+}
+
+
+
 
 </style>
