@@ -70,7 +70,6 @@ const onClick = async () => {
                     newPasswordStore.iconConfirm = true;
 
                     setTimeout(() => {
-                        console.log("-> Ingresando en el setTimeout")
                         showLayerPopsUp.setShowLayerPopsUp(false);
                         newPasswordStore.setShow(false);
                         newPasswordStore.iconConfirm = false;

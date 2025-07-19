@@ -88,7 +88,7 @@ onMounted(() => {
         clearTimeout(timer);
         AuthenticationStore.stopSessionCheck()
         timer = setTimeout(() => {
-            console.log("Inicia la verificacion del token")
+            // console.log("Inicia la verificacion del token")
             AuthenticationStore.startSession(); // Llamada para iniciar la sesión después de inactividad
         }, 10000); // 10 segundos de inactividad
     };

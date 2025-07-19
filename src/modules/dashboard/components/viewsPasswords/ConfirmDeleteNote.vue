@@ -33,7 +33,7 @@ const confirmDelete = async () => {
     
     await noteStore.deleteNote(noteStore.noteToDeleteId);
     if(confirm.value) {
-      console.log("-> dentro de confirm note: " + confirm);
+      // console.log("-> dentro de confirm note: " + confirm);
         check.value = true;
 
         setTimeout(() => {

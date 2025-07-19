@@ -30,9 +30,7 @@ const confirm = computed(() => existingPasswordStore.confirmDelete);
 const confirmDelete = async () => {
     
     await existingPasswordStore.deletePassowrd();
-    console.log("-> confirm: " + confirm.value);
     if(confirm.value) {
-      console.log("-> dentro de confirm: " + confirm.value);
         check.value = true;
 
         setTimeout(() => {

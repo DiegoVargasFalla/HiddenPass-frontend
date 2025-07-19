@@ -120,14 +120,6 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
 
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
 
-            // const importedPublicKey = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-            console.log("------------------")
-            const registerStore = useRegisterStore();
-            console.log(this.passwordEntityDTO.password);
-            console.log(this.passwordEntityDTO.username);
-            console.log(this.passwordEntityDTO.note);
-            console.log("------------------")
-
             if(this.passwordEntityDTO.password !== null) {
                 const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.passwordEntityDTO.password);
                 this.passwordEntityDTO.password = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword);
@@ -141,7 +133,7 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
 
             try { // http://localhost:8080/system/api/v1/update-password
 
-                console.log(this.passwordEntityDTO);
+                // console.log(this.passwordEntityDTO);
                 const response = await axios.patch('/api/v1/update-password',
                     this.passwordEntityDTO,
                     {headers: {Authorization: `Bearer ${token}`}}

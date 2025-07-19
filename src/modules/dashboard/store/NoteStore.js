@@ -44,9 +44,6 @@ export const useNoteStore = defineStore('noteStore', {
         clearNote() {
             this.note = '';
         },
-        saveNote(value) {
-            console.log(value)
-        },
         getTitle() {
             return this.title;
         },
@@ -122,7 +119,6 @@ export const useNoteStore = defineStore('noteStore', {
                     data.title = this.title;
                     this.note = '';
                     this.title = '';
-                    console.log("se guardo correctamente")
                     return data;
                 }
             }
@@ -210,7 +206,7 @@ export const useNoteStore = defineStore('noteStore', {
 
                 const data = response.data
                 if (data) {
-                    console.log('-> data'),
+                    // console.log('-> data'),
                         console.log(data)
 
                     this.listNotes.forEach(p => {

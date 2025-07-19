@@ -38,11 +38,7 @@ const onClickFilter = () => {
         else if(props.num === 3) {
             filterStore.setIdElement(props.filterId);
             authenticationStore.setListPassword(authenticationStore.listOldPassword);
-            console.log("changing the list to old");
         }
-        
-        // console.log(isSelectedFilter.value)
-        // console.log(props.filterId)
     }
     else {
         filterStore.clearSelected();

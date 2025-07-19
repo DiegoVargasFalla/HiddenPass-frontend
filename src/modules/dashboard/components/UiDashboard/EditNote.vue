@@ -50,7 +50,7 @@ const checkFileds = computed(() => {
 })
 
 const readonlyNote = computed(() => noteStore.readonly);
-console.log("-> readOnly: " + readonlyNote.value)
+// console.log("-> readOnly: " + readonlyNote.value)
 
 const noNullFieldsEditionNote = () => {
     if(noteStore.newNoteDTO.title !== null ||
@@ -80,7 +80,7 @@ const closePopup = () => {
 
 const saveNote = async () => {
     if(noNullFieldsEditionNote()) {
-        console.log("ingresando en edit a actualizar la nota");
+        // console.log("ingresando en edit a actualizar la nota");
         await noteStore.updateNote();
         layerPopsUpStore.setShowLayerPopsUp(false);
         noteStore.showEditNote = false;

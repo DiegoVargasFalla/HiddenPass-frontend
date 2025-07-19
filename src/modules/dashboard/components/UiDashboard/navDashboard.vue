@@ -24,9 +24,9 @@ import { useNoteStore } from '../../store/NoteStore';
 import { useGeneratorPassStore } from '../../store/generatePassStore';
 
 
-const generatePassStore = useGeneratorPassStore();
-const noteStore = useNoteStore();
-const navStore = useNavStore();
+// const generatePassStore = useGeneratorPassStore();
+// const noteStore = useNoteStore();
+// const navStore = useNavStore();
 const windowWidth = ref(window.innerWidth);
 
 onMounted(() => {
