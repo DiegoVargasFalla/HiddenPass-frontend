@@ -28,8 +28,6 @@ const props = defineProps({
     show: Boolean
 })
 
-console.log("show item: " + props.show)
-
 
 const navStore = useNavStore();
 const authenticationStore = useAuthenticationStore();

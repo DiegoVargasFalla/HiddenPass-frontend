@@ -165,19 +165,14 @@ const onSubmit = async () => {
 
                 const token = authenticationStore.token;
 
-                await authenticationStore.bringIvAndSalt();
-                const derivedKey = await encryptionsUtilsStore.deriveKey(credentials.password, encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getSalt()));
-                registerStore.setDerivedKey(encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.exportDerivedKey(derivedKey)));
-                // const password = credentials.password;
-                // authenticationStore.setPassword(password);
-                credentialsStore.setEmail('');
-                credentialsStore.setPassword('');
-
-                // const encryptedMk = await encryptionsUtilsStore.encryptMk(authenticationStore.getPassword());
-                // const base64Mk = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedMk);
-                // authenticationStore.setPassword(base64Mk);
-
                 if (token) {
+
+                    await authenticationStore.bringIvAndSalt();
+                    const derivedKey = await encryptionsUtilsStore.deriveKey(credentials.password, encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getSalt()));
+                    registerStore.setDerivedKey(encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.exportDerivedKey(derivedKey)));
+                    credentialsStore.setEmail('');
+                    credentialsStore.setPassword('');
+
                     console.log("-> dentro de if token")
                     router.push('/dashboard');
                 }

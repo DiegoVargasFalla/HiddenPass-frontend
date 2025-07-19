@@ -67,19 +67,6 @@ export const useRegisterStore = defineStore('registerStore', {
             await authenticationStore.checkMail({email: this.email});
 
             if(this.verifyMailRegister === false) {
-                // this.verifyMailRegister = false;
-                // authenticationStore.setVerifyEmail(Boolean);
-
-                // await encryptionsUtilsStore.bringPublicKeyBack();
-                // const importedPublicKeyback = await encryptionsUtilsStore.importRSAPublicKey(encryptionsUtilsStore.getPublicKeyBack());
-
-                // console.log("-> name: " + this.name)
-                // console.log("-> usename: " + this.email)
-                // console.log("-> password: " + this.password)
-
-                // const encryptedName = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.name);
-                // const encryptedEmail = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.email)
-                // const encryptedPassword = await encryptionsUtilsStore.encryptPlainTexWithRSA(this.password)
 
                 try {
                     const request = await axios.post('/api/v1/create', {

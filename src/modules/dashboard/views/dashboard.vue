@@ -62,7 +62,7 @@ async function init() {
         }
         
         // await encryptionsUtilsStore.generateKeyPair();
-        await encryptionsUtilsStore.generateAesKey();
+        // await encryptionsUtilsStore.generateAesKey();
 
         const token = sessionStorage.getItem("tokenAuthentication");
         AuthenticationStore.setToken(token);

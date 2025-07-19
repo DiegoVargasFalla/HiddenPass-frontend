@@ -184,7 +184,6 @@ export const useAuthenticationStore = defineStore('authentication', {
                     registerStore.setIv(data.iv)
                     registerStore.setSalt(data.salt);
                 }
-                console.log("");
             } catch (error) {
                 console.log(error);
             }
