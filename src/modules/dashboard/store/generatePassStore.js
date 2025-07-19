@@ -9,13 +9,14 @@ export const useGeneratorPassStore = defineStore('generatorPass', {
         lowercase: Boolean,
         number: Boolean,
         symbol: Boolean,
-        length: 22,
+        length: 12,
         showItem: Boolean,
+        generatedPassword: '', 
     }),
     actions: {
         setvalueCheckBox(name, value) {
             if (this.hasOwnProperty(name)) {
-                this[name] = value
+                this[name] = value;
             }
         },
         getCapital() {

@@ -123,11 +123,14 @@ const saveNote = async () => {
     height: 48%;
     width: 100%;
     border-radius: 20px;
-    padding: 0px 0.7rem;
+    padding: 0.3rem 0.7rem;
     flex: none;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    /* display: flex; */
+
+    /* flex-direction: column; */
     
 }
 
@@ -152,8 +155,8 @@ const saveNote = async () => {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    /* height: 18%; */
-    padding: 1rem 0px;
+    height: 10%;
+    padding: 0.2rem 0px;
     /* gap: 6px; */
 }
 
@@ -280,7 +283,7 @@ const saveNote = async () => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 65%;
+    height: 75%;
     width: 100%;
 }
 
@@ -319,7 +322,8 @@ const saveNote = async () => {
     display: flex;
     align-items: center;
     justify-content: end;
-    gap: 16px;
+    gap: 1rem;
+    /* padding: 0.7rem 0; */
 }
 
 .errorNote {
@@ -336,8 +340,8 @@ const saveNote = async () => {
     display: flex;
     align-items: center;
     justify-content: end;
-    height: 85%;
-    max-height: 60%;
+    height: 80%;
+    /* max-height: 60%; */
     width: 52%;
     gap: 1rem;
 }
@@ -345,7 +349,7 @@ const saveNote = async () => {
 .button {
     position: relative;
     height: 100%;
-    width: 100px;
+    width: 4rem;
     font-family: 'Inter';
     text-transform: uppercase;
 }
@@ -475,7 +479,10 @@ const saveNote = async () => {
         height: 10%;
     } */
     .container-components {
-        height: 75%;
+        height: 77%;
+    }
+    .container-bottom {
+        padding: 0.6rem 0;
     }
 }
 
@@ -501,19 +508,19 @@ const saveNote = async () => {
     .container-notes {
         /* background-color: red; */
         /* height: 85%; */
-        padding: 1.5rem 1rem;
+        padding: 1rem 1rem;
     }
     .container-components {
         height: 85%;
     }
     .container-bottom {
+        /* background-color: red; */
         height: 10%;
     }
-    /* .container-title {
-        background-color: red;
+    .container-title {
+        /* background-color: red; */
         height: 5%;
-    } */
+    }
 }
-
 
 </style>

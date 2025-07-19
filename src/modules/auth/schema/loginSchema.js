@@ -8,6 +8,6 @@ export const useSchemaLogin = yup.object().shape({
 
     password: yup
     .string()
-    .min(5, '¡Por tu seguridad la contraseña debe tener al menos 16 caracteres!')
+    .min(12, '¡La clave maestra debe tener al menos 12 caracteres!')
     .required('¡La contraseña es obligatoria!'),
 })

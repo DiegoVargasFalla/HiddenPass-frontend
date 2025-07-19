@@ -1,5 +1,5 @@
 <template>
-    <div class="container-button">
+    <div class="container-button" @click="generatePassword">
         <div class="continer-text-button">
             <i class="fa-solid fa-arrows-rotate"></i>
             <h3 class="text-generate">Generar contraseña</h3>
@@ -8,6 +8,43 @@
 </template>
 
 <script setup>
+import { useGeneratorPassStore } from '../../store/generatePassStore'
+
+const generatorPassStore = useGeneratorPassStore()
+
+const generatePassword = () => {
+
+    const length = generatorPassStore.length || 12
+    const includeUppercase = generatorPassStore.capital
+    const includeLowercase = generatorPassStore.lowercase
+    const includeNumbers = generatorPassStore.number
+    const includeSymbols = generatorPassStore.symbol
+
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz'
+    const numberChars = '0123456789'
+    const symbolChars = '!@#$%^&*()-_=+[]{}|;:,.<>?/'
+
+    let characterPool = ''
+    if (includeUppercase) characterPool += uppercaseChars
+    if (includeLowercase) characterPool += lowercaseChars
+    if (includeNumbers) characterPool += numberChars
+    if (includeSymbols) characterPool += symbolChars
+
+    if (characterPool === '') {
+        alert('Seleccione al menos una opción para generar la contraseña.')
+        return
+    }
+
+    let password = ''
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characterPool.length)
+        password += characterPool[randomIndex]
+    }
+
+    generatorPassStore.setvalueCheckBox('showItem', true)
+    generatorPassStore.setvalueCheckBox('generatedPassword', password)
+}
 
 </script>
 

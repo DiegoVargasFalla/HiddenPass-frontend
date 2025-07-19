@@ -39,11 +39,11 @@ const listChecks = [
     {text: "Símbolos", checked: false, id: "symbol"}
 ]
 
-const sliderRef = ref(22);
-const numRef = ref(generatorPassStore.length);
+// const sliderRef = ref(22);
+const sliderRef = ref(generatorPassStore.length);
 
 const changeSlider = () => {
-    generatorPassStore.setvalueCheckBox('length', sliderRef.slider);
+    generatorPassStore.setvalueCheckBox('length', sliderRef.value);
 }
 
 const changeNum = () => {

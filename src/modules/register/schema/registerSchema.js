@@ -22,7 +22,7 @@ export const useRegisterSchema = yup.object().shape(
              .required('¡El correo es obligatorio!'),
 
         password: yup.string()
-            .min(5, '¡Por tu seguridad la contraseña debe tener al menos 12 caracteres!')
+            .min(12, '¡Por tu seguridad la contraseña debe tener al menos 12 caracteres!')
             .required('¡La contraseña es obligatoria!'),
 
         confirmPassword: yup.string()

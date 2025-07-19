@@ -3,7 +3,7 @@
         <i v-if="!showLoaderUpdatePassword" :style="{color: iconColor}" :class="icon"></i>
         <h3 v-if="!showLoaderUpdatePassword" class="text-button">{{ label }}</h3>
         <div v-if="showLoaderUpdatePassword" class="container-loader">
-            <loaderPasswords></loaderPasswords>
+            <loaderPasswords :width="1.6"></loaderPasswords>
         </div>
     </div>
 </template>

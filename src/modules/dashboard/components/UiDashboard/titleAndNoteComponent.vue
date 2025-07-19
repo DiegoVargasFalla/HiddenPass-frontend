@@ -74,7 +74,7 @@ const { note, title } = storeToRefs(noteStore);
   background-color: transparent;
   outline: none;
   transition: border-color 0.2s ease;
-  height: 50%;
+  height: 80%;
 }
 
 .inptut-titel-note:focus {
@@ -104,6 +104,5 @@ const { note, title } = storeToRefs(noteStore);
   .container-square-text {
     height: 90%;
   }
-
 }
 </style>

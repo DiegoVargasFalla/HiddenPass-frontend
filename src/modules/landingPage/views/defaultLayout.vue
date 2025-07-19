@@ -92,7 +92,7 @@
                     <itemsAbout 
                         icon="fa-solid fa-note-sticky"
                         textTittle="Notas privadas" 
-                        textP="Guardá tus ideas o datos privados con cifrado seguro de extremo a extremo. Solo tu tienes acceso."
+                        textP="Guardá tus ideas o datos privados con cifrado seguro. Solo tu tienes acceso."
                     ></itemsAbout>
                 </div>
             </div>
@@ -1087,6 +1087,17 @@ section end
     .guide-block {
         flex-direction: column;
     }
+    .guide-text {
+        /* background-color: red; */
+        width: 100%;
+    }
+    .guide-block.reverse {
+        flex-direction: column;
+    }
+    .guide-image {
+        width: 90%;
+    }
+
 }
 
 

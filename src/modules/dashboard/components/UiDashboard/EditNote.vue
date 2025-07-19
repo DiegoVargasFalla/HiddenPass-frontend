@@ -1,12 +1,12 @@
 <template>
   <div class="popup-note">
     <div class="popup-header">
-        <span class="note-date">{{ noteStore.date }}</span>
-        <div class="icons-read-and-close-pop">
-          <span v-if="readonlyNote" >  <i class="fa-solid fa-lock icon-read"></i>  Modo lectura</span>
-          <span v-else class="">  <i class="fa-solid fa-unlock icon-write"></i> Modo escritura</span>  
-          <i class="fa-solid fa-xmark icon-close" @click="closePopup"></i>
-        </div>
+      <span class="note-date">{{ noteStore.date }}</span>
+      <div class="icons-read-and-close-pop">
+        <span v-if="readonlyNote" >  <i class="fa-solid fa-lock icon-read"></i>  Modo lectura</span>
+        <span v-else class="">  <i class="fa-solid fa-unlock icon-write"></i> Modo escritura</span>  
+        <i class="fa-solid fa-xmark icon-close" @click="closePopup"></i>
+      </div>
     </div>
     <input
       :readonly="readonlyNote"
@@ -21,9 +21,9 @@
       placeholder="Escribe tu nota aquí..."
     ></textarea>
     <div v-if="!readonlyNote" class="popup-footer">
-        <div>
-            <p v-if="checkFileds" class="text-no-changes">¡No se encontraron cambios para guardar!</p>
-        </div>
+      <div>
+        <p v-if="checkFileds" class="text-no-changes">¡No se encontraron cambios para guardar!</p>
+      </div>
       <button class="btn-save" @click="saveNote"> <div v-if="noteStore.showLoaderSaveUpdate" class="container-main-loader-update"> <div class="container-loader-update"></div></div> <p v-if="!noteStore.showLoaderSaveUpdate" class="text-save-update">Guardar</p></button>
     </div>
   </div>
@@ -150,7 +150,7 @@ const valueModelInputNote = computed({
 .icon-read {
   font-size: 1.2rem;
   /* font-weight: 400; */
-  color: rgba(255, 0, 0, 0.695);
+  /* color: rgba(255, 0, 0, 0.695); */
 }
 
 .icon-write {
@@ -236,7 +236,7 @@ const valueModelInputNote = computed({
   align-items: center;
   justify-content: center;
   /* height: 90%; */
-  /* width: 12%; */
+  width: 25%;
   transition: background-color 0.2s ease;
 }
 
@@ -250,10 +250,11 @@ const valueModelInputNote = computed({
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 85%;
-    width: 35%;
+    height: 84%;
+    width: 37%;
+    max-width: 2rem;
     border-radius: 50%;
-    padding: 2px;
+    padding: 0.15rem;
     overflow: hidden;
 }
 
@@ -297,7 +298,6 @@ const valueModelInputNote = computed({
 @media screen and (max-width: 1000px) {
   .popup-note {
     width: 80%;
-
   } 
 }
 
@@ -311,7 +311,13 @@ const valueModelInputNote = computed({
   .popup-note {
     width: 95%;
     padding: 0.7rem 0.9rem;
-  } 
+  }
+  .btn-save {
+    width: 50%;
+  }
+  /* .container-main-loader-update {
+    width: 20%;
+  } */
 }
 
 @media screen and (max-width: 500px) {

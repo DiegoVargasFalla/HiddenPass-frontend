@@ -8,7 +8,7 @@
             <div class="container-password-button-generate">
                 <div class="container-camp-password">
                     <i class="fa-solid fa-ellipsis"></i>
-                    <input type="text" class="camp-password" v-model="returnedPassword.password" readonly>
+                    <input type="text" class="camp-password" v-model="generatorPassStore.generatedPassword" readonly>
                 </div>
                 <div class="container-copy" @click="copyPassword">
                     <div class="container-icon-text-copy">
@@ -32,8 +32,9 @@
 import { useReturnedPassword } from '../../store/returnedPasswordGenerateStore';
 import generatePasswordButton from '../UiDashboard/generatePasswordButton.vue';
 import personalizePassword from '../UiDashboard/personalizePassword.vue';
+import { useGeneratorPassStore } from '../../store/generatePassStore';
 
-
+const generatorPassStore = useGeneratorPassStore();
 const returnedPassword = useReturnedPassword();
 
 // const copyPassword = () => {
@@ -44,7 +45,7 @@ const returnedPassword = useReturnedPassword();
 const copyPassword = () => {
     const container = document.querySelector('.container-copy');
 
-    navigator.clipboard.writeText(returnedPassword.password)
+    navigator.clipboard.writeText(generatorPassStore.generatedPassword)
         .then(() => {
             container.classList.add('copied');
 
@@ -145,7 +146,8 @@ const copyPassword = () => {
     /* height: 100%; */
     width: 85%;
     /* background-color: red; */
-    padding-left: 10px;
+    padding-left: 0.5rem;
+    padding-right: 0.2rem;
     background-color: #cdc9c9;
     display: flex;
     align-items: center;
@@ -267,6 +269,12 @@ const copyPassword = () => {
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .container-generator-pass {
+        height: 60%;
+    }
 }
 
 </style>

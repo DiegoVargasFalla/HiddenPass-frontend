@@ -1,10 +1,17 @@
 <template>
-    <div class="container-loader">
+    <div class="container-loader" :style="{width: width + 'rem'}">
         <div class="circle-center"></div>
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+
+const props = defineProps({
+    width: Number
+})
+
+
+</script>
 
 <style scoped>
 .container-loader {
@@ -15,6 +22,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+    /* max-width: 1.6rem; */
     border-radius: 50%;
     padding: 0.25rem;
     overflow: hidden;

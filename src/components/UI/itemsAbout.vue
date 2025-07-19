@@ -24,15 +24,17 @@ defineProps({
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-    padding: 0 10px;
+    padding: 0 0.7rem;
     gap: 0.5rem;
     max-width: 100%;
+    /* text-align: left; */
 }
 
 .title-items-funtions {
     font-size: 1.2rem;
     font-family: "Archivo Black", serif;
     /* font-weight: 600; */
+    /* text-align: left; */
 }
 
 .icons {
@@ -50,15 +52,19 @@ defineProps({
 
 @media screen and (max-width: 400px) {
     .feature-item {
-        max-width: 100%;
+        width: 100%;
     }
     .text-item {
         text-align: center;
         font-size:0.95rem;
         max-width: 90%;
+        /* text-align: left; */
     }
     .title-items-funtions {
         text-align: center;
+    }
+    .feature-item {
+        padding: 0 0;
     }
 }
 
