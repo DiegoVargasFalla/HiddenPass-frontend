@@ -6,6 +6,7 @@ export const useNavStore = defineStore('navStore', {
         selectedElement: 'passwordsId', // Guarda el ID del elemento seleccionado
         section: 'Passwords',
         showSideBar: false,
+        showItem: true
     }),
     actions: {
         setElement(id) {

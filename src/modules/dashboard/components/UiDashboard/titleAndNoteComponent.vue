@@ -45,12 +45,12 @@ const { note, title } = storeToRefs(noteStore);
 
 .container-title-note {
     /* background-color: orange; */
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  width: 100%;
-  height: 15%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 15%;
 }
 
 .container-square-text {
@@ -66,7 +66,7 @@ const { note, title } = storeToRefs(noteStore);
   width: 100%;
   /* padding: 10px 14px; */
   font-family: 'Inter', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #333;
   border: none;
@@ -74,6 +74,7 @@ const { note, title } = storeToRefs(noteStore);
   background-color: transparent;
   outline: none;
   transition: border-color 0.2s ease;
+  height: 50%;
 }
 
 .inptut-titel-note:focus {
@@ -85,7 +86,7 @@ const { note, title } = storeToRefs(noteStore);
   height: 100%;
   padding: 10px;
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: 500;
   color: #333;
   border: none;
@@ -94,5 +95,15 @@ const { note, title } = storeToRefs(noteStore);
   resize: none;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
   outline: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .container-title-note{
+    height: 10%;
+  }
+  .container-square-text {
+    height: 90%;
+  }
+
 }
 </style>

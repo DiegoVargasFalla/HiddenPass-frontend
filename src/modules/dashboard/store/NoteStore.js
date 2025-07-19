@@ -23,6 +23,7 @@ export const useNoteStore = defineStore('noteStore', {
         noChanges: false,
         showLoaderSaveUpdate: false,
         readonly: false,
+        showItem: Boolean,
 
         newNoteDTO: {
             id: null,

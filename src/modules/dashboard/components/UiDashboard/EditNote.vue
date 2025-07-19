@@ -227,16 +227,16 @@ const valueModelInputNote = computed({
   background-color: #16DB65;
   border: none;
   color: white;
-  /* padding: 10px 18px; */
+  padding: 0rem 2rem;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90%;
-  width: 12%;
+  /* height: 90%; */
+  /* width: 12%; */
   transition: background-color 0.2s ease;
 }
 

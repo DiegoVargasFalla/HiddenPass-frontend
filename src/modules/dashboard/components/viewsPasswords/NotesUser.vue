@@ -7,7 +7,7 @@
             </div>
             <p v-if="checkSavedNote" class="text-confirm-saved-note">Nota guardada</p>
             <div class="container-menu-notes" ref="menuRef">
-                <i class="fa-solid fa-bars icon-menu-notes" @click="toggleMenu"></i>
+                <i class="fa-solid fa-ellipsis-vertical icon-menu-notes" @click="toggleMenu"></i>
                 <div class="container-options-menu-notes" v-if="showMenu" >
                     <ul class="list-notes-ul">
                         <li @click="showCreteNote" class="list-notes-item"> <i class="fa-solid fa-circle-plus icon-add"></i>Crear nota</li>
@@ -123,10 +123,9 @@ const saveNote = async () => {
     height: 48%;
     width: 100%;
     border-radius: 20px;
-    padding: 0px 13px;
+    padding: 0px 0.7rem;
     flex: none;
     overflow: hidden;
-
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
     
@@ -153,7 +152,8 @@ const saveNote = async () => {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 18%;
+    /* height: 18%; */
+    padding: 1rem 0px;
     /* gap: 6px; */
 }
 
@@ -165,9 +165,9 @@ const saveNote = async () => {
     gap: 5px;
 }
 
-.container-title i {
-    font-size: 20px;
-}
+/* .container-title i {
+    font-size: 1.5rem;
+} */
 
 .container-menu-notes {
     position: relative;
@@ -175,7 +175,7 @@ const saveNote = async () => {
 }
 
 .icon-menu-notes {
-    font-size: 20px;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.1s ease;
 }
@@ -187,13 +187,13 @@ const saveNote = async () => {
 
 .text-title {
     font-family: 'Inter';
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
 .text-confirm-saved-note {
     font-family: 'Inter';
-    font-size: 14px;
+    font-size: 0.7rem;
     font-weight: 600;
     animation: transitionCopyText 1s ease;
 }
@@ -327,7 +327,7 @@ const saveNote = async () => {
     font-family: 'Inter';
     font-size: 12px;
     font-weight: 700;
-    color: red;
+    /* color: red; */
 }
 
 .container-buttons {
@@ -335,9 +335,11 @@ const saveNote = async () => {
     /* background-color: red; */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     height: 85%;
+    max-height: 60%;
     width: 52%;
+    gap: 1rem;
 }
 
 .button {
@@ -464,9 +466,54 @@ const saveNote = async () => {
     border-radius: 50%;
 }
 
-/* @media screen and (min-width: ) {
-    
-} */
+@media screen and (max-width: 1000px) {
+    .container-notes {
+        height: 85%;
+        padding: 0.5rem 0.4rem;
+    }
+    /* .container-title {
+        height: 10%;
+    } */
+    .container-components {
+        height: 75%;
+    }
+}
+
+@media screen and (min-height: 700px) and (max-height: 900px) {
+    .container-notes {
+        background-color: white;
+        /* height: 95%; */
+        padding: 1rem 1rem;
+    }
+    .container-components {
+        height: 82%;
+    }
+    .container-bottom {
+        height: 10%;
+    }
+    /* .container-title {
+        background-color: red;
+        height: 5%;
+    } */
+}
+
+@media screen and (min-height: 900px) and (max-height: 1370px) {
+    .container-notes {
+        /* background-color: red; */
+        /* height: 85%; */
+        padding: 1.5rem 1rem;
+    }
+    .container-components {
+        height: 85%;
+    }
+    .container-bottom {
+        height: 10%;
+    }
+    /* .container-title {
+        background-color: red;
+        height: 5%;
+    } */
+}
 
 
 </style>

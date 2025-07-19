@@ -14,6 +14,8 @@ const navStore =  useNavStore();
 
 const  componentsMap = {
     Passwords: defineAsyncComponent(() => import('@/modules/dashboard/components/passwords.vue')),
+    Notes: defineAsyncComponent(() => import('@/modules/dashboard/components/viewsPasswords/NotesUser.vue')),
+    Generator: defineAsyncComponent(() => import('@/modules/dashboard/components/viewsPasswords/generatorPasswords.vue')),
     Security: defineAsyncComponent(() => import('@/modules/dashboard/components/security.vue')),
     Settings: defineAsyncComponent(() => import('@/modules/dashboard/components/Setting.vue'))
 }
@@ -41,11 +43,11 @@ const proofComponent = true;
     overflow: hidden;
 }
 
-/* @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .container-show-dashboard {
-        padding: 0;
+        align-items: start;
     }
-} */
+}
 
 
 </style>

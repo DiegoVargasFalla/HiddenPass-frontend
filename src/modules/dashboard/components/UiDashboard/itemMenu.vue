@@ -1,5 +1,5 @@
 <template>
-    <div class="cont-options">
+    <div v-if="props.show" class="cont-options" >  
         <div class="content-items-menu" @click="handleClick">
             <i id="iconId" :style="{fontSize: size + 'px'}" :class="['iconUnselected', {'icon-selected': isSelected}, icon]"></i>
             <a :id="idElement" :class="{'styles-selected': isSelected}" class="text-options" :style="{fontSize: size + 'px', fontWeight: weight}">{{ text }}</a>
@@ -15,7 +15,6 @@ import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore
 import { computed } from 'vue';
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 
-
 const props = defineProps({
     text: String,
     size: Number,
@@ -25,8 +24,11 @@ const props = defineProps({
     name: String,
     idElement: String,
     link: String,
-    componet: String
+    componet: String,
+    show: Boolean
 })
+
+console.log("show item: " + props.show)
 
 
 const navStore = useNavStore();
@@ -36,13 +38,16 @@ const showLayerPopsUp = useShowLayerPopsUp();
 // Computed para verificar si el elemento actual está seleccionado
 const isSelected = computed(() => navStore.selectedElement === props.idElement);
 const noSelected = computed(() => navStore.selectedElement != props.idElement);
-
+const showItem = computed(() => navStore.showItem);
 
 const handleClick = () => {
 
     if (props.idElement != 'logout'){
         navStore.setElement(props.idElement);
         navStore.setSection(props.componet);
+        showLayerPopsUp.setShowLayerPopsUp(false);
+        navStore.showSideBar = false;
+        navStore.showComponent = props.show;
     } else {
         showLayerPopsUp.setShowLayerPopsUp(true);
         authenticationStore.setShowLayerLogout(true);
@@ -82,6 +87,10 @@ const handleClick = () => {
     width: 100%;
     padding-left: 30px;
     /* gap: 5px; */
+}
+
+.no-show-item {
+    display: none;
 }
 
 .iconUnselected {

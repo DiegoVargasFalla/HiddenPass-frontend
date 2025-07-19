@@ -36,6 +36,7 @@
             </div>
         </section>
         <div class="scroll-about" id="scroll-about"></div>
+        <!-- <div class="divider"></div> -->
         <section class="section-about">
             <!-- <div class="tittle-sections">
                 <h3>Acerca de</h3>
@@ -56,7 +57,7 @@
                     <itemsAbout 
                         icon="fa-solid fa-lock"
                         textTittle="Seguridad avanzada" 
-                        textP="Encriptamos tus contraseñas con tecnología de alto nivel y cifrado de extremo a extremo."
+                        textP="Encriptamos tus contraseñas con tecnología de alto nivel y cifrados seguros."
                     ></itemsAbout>
                     <itemsAbout 
                         icon="fa-solid fa-cloud"
@@ -81,7 +82,7 @@
                     <itemsAbout 
                         icon="fa-solid fa-key icons"
                         textTittle="Generador de contraseñas" 
-                        textP="Genera contraseñas fuertes con un solo clic, garantizando que no uses combinaciones débiles ni repetidas."
+                        textP="Genera contraseñas fuertes con un solo click, garantizando que no uses combinaciones débiles ni repetidas."
                     ></itemsAbout>
                     <itemsAbout
                         icon="fa-solid fa-eye-slash"
@@ -96,6 +97,7 @@
                 </div>
             </div>
         </section>
+        <!-- <div class="divider"></div> -->
         <section class="section-use-guide"  id="sec-use-guide">
             <div class="use-guide-container">
                 <!-- <h3 class="guide-title">Guía de uso</h3> -->
@@ -108,7 +110,7 @@
                         Accede a la sección de contraseñas para almacenar de forma segura tus credenciales más importantes. 
                         Cada contraseña se cifra automáticamente, brindándote una protección avanzada. 
                         Puedes organizarlas por nombre, usuario, contraseña y una nota descriptiva para encontrarlas fácilmente
-                        cuando las necesites, ademas cuentas con filtros para una mejor accesibilidad, en orden alfabetico, recietes y mas antiguas
+                        cuando las necesites, ademas cuentas con filtros para una mejor accesibilidad, en orden alfabetico, recientes y mas antiguas
                         ademas puedes actualizar y eliminar tus contraseñas en cualquier momento.
                         </p>
                     </div>
@@ -148,6 +150,7 @@
                 </div>
             </div>
         </section>
+        <!-- <div class="divider"></div> -->
         <section class="plans-sections" id="sec-plans">
             <div class="tittle-sections">Planes</div>
             <div class="container-plans">
@@ -186,9 +189,11 @@
                 </plansCard>
             </div>
         </section>
-        <section class="contact-section">
-            <div class="container-img"></div>
-            <div class="container-contact">
+        <!-- <div class="divider"></div> -->
+        <section class="faq-section">
+            <!-- <div class="container-img"></div> -->
+            <img class="container-img" src="/src/assets/img/padlocks.webp" alt="">
+            <div class="container-contact container-faq">
                 <h3 class="faq-title">Preguntas Frecuentes</h3>
                 <div class="faq-container">
                     <div class="faq-item">
@@ -222,12 +227,20 @@
                     <div class="faq-item">
                         <h4>¿Qué pasa si olvido mi contraseña maestra?</h4>
                         <p>
-                        Por seguridad, no almacenamos tu contraseña maestra. Si la pierdes, no podremos recuperarla. Te recomendamos usar nuestro generador y guardar una copia en un lugar seguro.
+                        Por seguridad, no almacenamos tu contraseña maestra. Si la pierdes, no podremos recuperarla. Te recomendamos usar nuestro generador y guardar una copia en un lugar seguro, si quieres cambiar la contraseña lo puedes hacer una vez inicies sesion.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>¿Qué pasa si olvido mi contraseña maestra?</h4>
+                        <p>
+                            Por seguridad, no almacenamos tu contraseña maestra. Si la pierdes, no podremos recuperarla. Te recomendamos usar nuestro generador y guardar una copia en un lugar seguro.
                         </p>
                     </div>
                 </div>
             </div>
-            </section>
+        </section>
+        <!-- <div class="divider"></div> -->
         <section class="sec-end" id="sec-end">
             <div class="container-sec-end">
                 <div class="tittle-sec-end">
@@ -360,6 +373,14 @@ onMounted(() => {
     width: 85%;
     margin-left: 4rem;
     gap: 4rem;
+}
+
+.divider {
+  width: 85%;
+  height: 1px;
+  background-color: #a29f9f;
+  margin: 60px auto;
+  opacity: 0.6;
 }
 
 .container-text-inf {
@@ -591,7 +612,7 @@ plans section
     /* height: 100vh; */
     width: 100%;
     row-gap: 70px;
-    padding: 4rem 0;
+    padding: 3rem 0;
 }
 
 @media screen and (max-width: 870px) {
@@ -735,7 +756,7 @@ plans section
 contatc section
  */
 
-.contact-section {
+.faq-section {
   position: relative;
   display: flex;
   align-items: center;
@@ -744,23 +765,23 @@ contatc section
   padding: 4rem 1rem;
   width: 100%;
   font-family: 'Inter', sans-serif;
-  /* padding: 4rem 0; */
-  /* background-color: red; */
+  padding: 4rem 0;
+  background-color: red;
 }
 
 .container-img {
   position: absolute;
-  background-image: url('/src/assets/img/padlocks.webp');
+  /* background-image: url('/src/assets/img/padlocks.webp'); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  filter: blur(5px) brightness(0.7);
+  filter: blur(5px) brightness(0.8);
   height: 100%;
   width: 100%;
   z-index: 0;
 }
 
-.container-contact {
+.container-faq {
   position: relative;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.814);
@@ -789,7 +810,7 @@ contatc section
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #16db65;
+  color: #039b40;
 }
 
 .faq-item p {
@@ -1016,7 +1037,7 @@ section end
 
 .guide-subtitle {
     font-size: 1.5rem;
-    font-weight: 600;
+    /* font-weight: 600; */
     color: #000;
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
@@ -1024,9 +1045,9 @@ section end
 }
 
 .guide-description {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
 }
 
 .guide-image {

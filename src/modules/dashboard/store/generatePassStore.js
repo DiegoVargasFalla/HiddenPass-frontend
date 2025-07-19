@@ -10,6 +10,7 @@ export const useGeneratorPassStore = defineStore('generatorPass', {
         number: Boolean,
         symbol: Boolean,
         length: 22,
+        showItem: Boolean,
     }),
     actions: {
         setvalueCheckBox(name, value) {
