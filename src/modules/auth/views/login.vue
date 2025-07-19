@@ -172,8 +172,6 @@ const onSubmit = async () => {
                     registerStore.setDerivedKey(encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.exportDerivedKey(derivedKey)));
                     credentialsStore.setEmail('');
                     credentialsStore.setPassword('');
-
-                    console.log("-> dentro de if token")
                     router.push('/dashboard');
                 }
             }
