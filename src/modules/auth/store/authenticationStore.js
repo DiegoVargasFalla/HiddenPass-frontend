@@ -106,6 +106,7 @@ export const useAuthenticationStore = defineStore('authentication', {
             });
         },
         async bringPasswords() {
+
             const registerStore = useRegisterStore();
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
             const token = sessionStorage.getItem('tokenAuthentication');
@@ -118,17 +119,21 @@ export const useAuthenticationStore = defineStore('authentication', {
                     );
                     
                     const data = response.data;
-        
                     if (data) {
-                        data.forEach(async p => {
-                            p.username = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.username))
-                            p.password = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.password))
-                            p.url = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.url))
-                            p.note = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.note))
-                        })
 
-                        this.updateListPasword(data);
+                        const decryptedPasswords = [];
 
+                        for(const p of data) {
+                            const decrypted = {
+                                username: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.username)),
+                                password: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.password)),
+                                url: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.url)),
+                                note: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.note))
+                            }
+                            decryptedPasswords.push(decrypted);
+                        }
+
+                        this.updateListPasword(decryptedPasswords);
                     }
                 }
                 catch (error) {

@@ -161,7 +161,7 @@ const onSubmit = async () => {
         if(authenticationStore.getVerifyEmail()) {
             await authenticationStore.login(credentials);
             if (!authenticationStore.getForbbiden()) {
-                await encryptionsUtilsStore.bringPublicKeyBack();
+                // await encryptionsUtilsStore.bringPublicKeyBack();
 
                 const token = authenticationStore.token;
 

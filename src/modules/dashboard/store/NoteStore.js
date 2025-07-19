@@ -140,7 +140,6 @@ export const useNoteStore = defineStore('noteStore', {
                 );
 
                 const data = response.data;
-
                 if (data) {
                     
                     for(const n of data) {
