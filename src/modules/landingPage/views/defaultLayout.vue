@@ -31,7 +31,8 @@
                 </div>
             </div>
             <div class="container-img-mac">
-                <!-- <div class="content-img-computer"></div> -->
+                <!-- <div class="cont
+                 ent-img-computer"></div> -->
                  <img src="/src/assets/img/Macbook.svg" alt="img computer">
             </div>
         </section>
