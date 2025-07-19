@@ -125,6 +125,7 @@ export const useAuthenticationStore = defineStore('authentication', {
 
                         for(const p of data) {
                             const decrypted = {
+                                id: p.id,
                                 username: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.username)),
                                 password: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.password)),
                                 url: await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(p.url)),

@@ -119,6 +119,7 @@ export const useExistingPasswordStore = defineStore('existingPassword', {
             this.confirmUpdate = true;
 
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
+            const registerStore = useRegisterStore();
 
             if(this.passwordEntityDTO.password !== null) {
                 const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.passwordEntityDTO.password);
