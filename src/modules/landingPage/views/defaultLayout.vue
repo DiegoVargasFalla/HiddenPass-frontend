@@ -232,12 +232,12 @@
                         </p>
                     </div>
 
-                    <div class="faq-item">
+                    <!-- <div class="faq-item">
                         <h4>¿Qué pasa si olvido mi contraseña maestra?</h4>
                         <p>
                             Por seguridad, no almacenamos tu contraseña maestra. Si la pierdes, no podremos recuperarla. Te recomendamos usar nuestro generador y guardar una copia en un lugar seguro.
                         </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
