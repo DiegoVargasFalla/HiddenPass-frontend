@@ -22,8 +22,16 @@
                 <loaderPasswords v-if="loaderPasswordsStore.load"></loaderPasswords>
             </div>
              
-            <passwordCard
+            <passwordCard v-if="!showListFoundPassword"
             v-for="(item, index) in authenticationStore.getListPassword()"
+            :key="index"
+            :id="item.id"
+            :namesite="item.url"
+            :logo="'fa-solid fa-circle'"
+            ></passwordCard>
+
+            <passwordCard v-if="showListFoundPassword"
+            v-for="(item, index) in listFoundPassword"
             :key="index"
             :id="item.id"
             :namesite="item.url"
@@ -43,13 +51,22 @@ import { computed, onMounted } from 'vue';
 import loaderPasswords from '@/modules/loading/views/loaderPasswords.vue';
 import { useLoaderPasswordsStore } from '@/modules/loading/store/loadingPasswordsStore';
 import LoaderPasswords from '@/modules/loading/views/loaderPasswords.vue';
+import { useSeekerStore } from '../../store/seekerStore';
 
+const seekerStore = useSeekerStore();
 const authenticationStore = useAuthenticationStore();
 const loaderPasswordsStore = useLoaderPasswordsStore();
 
 const numPassword = computed(() =>  authenticationStore.getNumPasswords());
 
 const noPassword = computed(() => authenticationStore.getListPassword().length === 0 ? true : false)
+
+const showListFoundPassword = computed(() => seekerStore.writtenPassword.length > 0);
+const wordPassword = computed(() => seekerStore.getWrittenPassword());
+
+const listFoundPassword = computed(() => {
+    return authenticationStore.getListPassword().filter(p => p.url.toLowerCase().includes(wordPassword.value.toLocaleLowerCase()))
+})
 
 // window.addEventListener('beforeunload', saveTempKey)
 

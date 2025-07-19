@@ -1,11 +1,17 @@
 <template>
     <div class="container-search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" name="search" id="" placeholder="busca una contraseña">
+        <input v-model="seekerStore.writtenPassword" type="text" name="search" id="" placeholder="Busca una contraseña con el link">
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useSeekerStore } from '../../store/seekerStore';
+
+
+const seekerStore = useSeekerStore();
+
+</script>
 
 <style scoped>
 

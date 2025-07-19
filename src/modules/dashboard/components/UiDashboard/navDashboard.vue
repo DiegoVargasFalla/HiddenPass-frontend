@@ -39,7 +39,6 @@ onUnmounted(() => {
 
 function updateWidth() {
     windowWidth.value = window.innerWidth;
-    // console.log("width: " + windowWidth.value);
 }
 
 const showItemNavDashboard = computed(() =>  windowWidth.value <= 1000);
@@ -49,7 +48,7 @@ const menuItems = [
     {text: "Contraseñas", icon: "fa-solid fa-lock", size: 17, weight: 300, name: "passwords", id: "passwordsId", link:'', component: 'Passwords', show: true},
     {text: "Notas", icon: "fa-solid fa-clipboard", size: 17, weight: 300, name: "notes", id: "notesId", link:'', component: 'Notes', show: showItemNavDashboard.value},
     {text: "Generador", icon: "fa-solid fa-repeat", size: 17, weight: 300, name: "generator", id: "generatorId", link:'', component: 'Generator', show: showItemNavDashboard.value},
-    // {text: "Seguridad", icon: " fa-solid fa-shield-halved", size: 17, weight: 300, name: "menu", id: "seguridad", link:'/', component: 'Security'},
+    // {text: "Seguridad", icon: " fa-solid fa-shield-halved", size: 17, weight: 300, name: "menu", id: "seguridad", link:'/', component: 'Security', show: true},
     // {text: "Otros", icon: "fa-solid fa-ellipsis", size: 17, weight: 300, name: "others" , id: "othersId", link:'/', component: 'Settings'},
 ]
 </script>
