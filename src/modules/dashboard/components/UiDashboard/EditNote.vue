@@ -149,13 +149,11 @@ const valueModelInputNote = computed({
 
 .icon-read {
   font-size: 1.2rem;
-  /* font-weight: 400; */
-  /* color: rgba(255, 0, 0, 0.695); */
+  color: rgba(255, 0, 0, 0.695);
 }
 
 .icon-write {
   font-size: 1.2rem;
-  /* font-weight: 400; */
   color: #16db65;
 }
 
