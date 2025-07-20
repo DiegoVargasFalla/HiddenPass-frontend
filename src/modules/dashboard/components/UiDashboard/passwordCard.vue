@@ -54,8 +54,8 @@ function showCardPasword() {
     /* background: linear-gradient(green, rgb(88, 197, 88)); */
     display: flex;
     align-items: center;
-    padding-left: 15px;
-    height: 40px;
+    padding-left: 1rem;
+    min-height: 2.3rem;
     width: 90%;
     border-radius: 15px;
     cursor: pointer;
