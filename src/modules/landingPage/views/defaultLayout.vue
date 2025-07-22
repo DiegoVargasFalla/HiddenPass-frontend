@@ -33,7 +33,7 @@
             <div class="container-img-mac">
                 <!-- <div class="cont
                  ent-img-computer"></div> -->
-                 <img src="/src/assets/img/Macbook.svg" alt="img computer">
+                 <img src="/src/assets/img//movileMac.png" alt="img computer">
             </div>
         </section>
         <div class="scroll-about" id="scroll-about"></div>
@@ -432,9 +432,10 @@ onMounted(() => {
 
 .container-img-mac img {
     width: 100%;
-    max-width: 600px;
+    /* max-width: 600px; */
     height: auto;
     object-fit: contain;
+    mix-blend-mode: multiply;
 }
 
 /* RESPONSIVE */
