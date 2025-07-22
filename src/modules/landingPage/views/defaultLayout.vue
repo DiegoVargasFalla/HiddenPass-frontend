@@ -767,7 +767,7 @@ contatc section
   width: 100%;
   font-family: 'Inter', sans-serif;
   padding: 4rem 0;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .container-img {
@@ -839,104 +839,6 @@ contatc section
     font-size: 0.95rem;
   }
 }
-/*
-.container-img {
-    position: absolute;
-    background-image: url('@/assets/img/padlocks.webp');
-    object-fit: cover; 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-}
-
-.container-contact {
-    background-color: orange;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    backdrop-filter: blur(12px) brightness(0.9);
-    gap: 20px;
-    padding: 15px;
-}
-
-.container-title-contact {
-    background-color: gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    font-family: "Archivo Black", serif;
-    font-size: 25px;
-    color: white;
-}
-
-.content-contact {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1px;
-    height: 80%;
-    width: 32%;
-    border-radius: 30px;
-    border: 1px solid  #ffffff;
-    box-shadow: 0 0 6px #ffffff;
-    background-color:rgba(135, 136, 135, 0.196); rgba(135, 136, 135, 0.1)  rgba(51, 203, 132, 0.226)
-    backdrop-filter: blur(9px);
-}
-
-.inputs-content {
-    position: relative;
-    background-color: green;
-}
-
-.inputs {
-    position: relative;
-    margin: 15px 0;
-    background: transparent;
-    color: white;
-    border: none;
-    outline: none;
-    font-size: 17px;
-    border-bottom: 2px solid #ffffff;   
-    font-family: "Inter";
-    width: 350px;
-    resize: none;
-}
-
-.inputs::placeholder {
-    color: rgba(245, 245, 245, 0.385);
-    font-family: "Inter";
-    font-size: 17px;
-}
-
-.input-menssage {
-    height: 120px;
-}
-
-.button-send-message {
-    position: relative;
-    background-color: gainsboro;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 25px;
-    width: 350px;
-    border-radius: 7px;
-    font-family: 'Inter';
-    color: white;
-} */
-
-/* 
-section end
-*/
 
 .sec-end {
     /* background-color: gray; */
