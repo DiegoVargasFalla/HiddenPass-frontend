@@ -26,7 +26,7 @@
             </div>
             <div class="footer-section">
                 <h3 class="tittles">Contacto</h3>
-                <p class="text-inter email">Email: soporte@hiddenpass.com</p>
+                <p class="text-inter email">Email: hiddenpass2025@gmail.com</p>
             </div>
         </div>
     </div>
