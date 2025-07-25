@@ -338,6 +338,7 @@ const slidebarHandle = () => {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1400px) {

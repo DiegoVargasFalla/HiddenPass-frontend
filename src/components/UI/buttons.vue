@@ -29,14 +29,18 @@ const props = defineProps({
     fontSize: Number,
     fontWeight: Number,
     bordeRadius: Number,
-    register: Boolean
+    register: Boolean,
+    disabled: Boolean,
 })
 const typeLink = computed(() => props.link.startsWith('#'));
 
 
 
 const handleSlideBar = async () => {
-  if (authenticationStore.showSlideBar === true) {
+  if(props.disabled) {
+    console.log(" ")
+    return;
+  } else if (authenticationStore.showSlideBar === true) {
     authenticationStore.setSlideBar(false);
     layerPopsUpStore.setShowLayerPopsUp(false);
   } 

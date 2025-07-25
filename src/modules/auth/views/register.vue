@@ -66,6 +66,7 @@
                             colorBorder="#058C42"
                             :bordeRadius="40"
                             :register="true"
+                            :disabled="true"
                         ></buttons>
                     </div>
                     <div class="container-redirect-register">

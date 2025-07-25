@@ -28,7 +28,7 @@
                 <buttons 
                 label="Iniciar sesion" 
                 link="/login"
-                :textColor=ColorText
+                textColor="black"
                 colorBorder="black" 
                 boxShadowColor="rgba(157, 154, 154, 0.27)"
                 ></buttons>

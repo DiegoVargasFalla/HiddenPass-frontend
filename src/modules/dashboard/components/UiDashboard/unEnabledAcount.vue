@@ -45,9 +45,10 @@ const cerrarPopup = () => {
 
 <style scoped>
 .popup-note.flyer-style {
+  position: absolute;
   background-color: #fff;
   border-left: 6px solid #ff1a1a;
-  border-radius: 14px;
+  border-radius: 1rem;
   padding: 1.5rem;
   width: 60%;
   height: auto;
@@ -55,8 +56,8 @@ const cerrarPopup = () => {
   flex-direction: column;
   font-family: 'Inter';
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  position: relative;
   gap: 1.2rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.762);
 }
 
 .popup-header {
