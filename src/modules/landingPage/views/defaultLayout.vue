@@ -163,7 +163,7 @@
                         'otro',
                         'otro',
                         ]"
-                    price="4,99"
+                    price="1,99"
                     :popular="false">
                 </plansCard>
                 <plansCard 
@@ -174,7 +174,7 @@
                         'otro',
                         'otro',
                         ]"
-                    price="9,99"
+                    price="3,99"
                     :popular="true">
                 </plansCard>
                 <plansCard 
@@ -185,7 +185,7 @@
                         'otro',
                         'otro',
                         ]"
-                    price="19,99"
+                    price="5,99"
                     :popular="false">
                 </plansCard>
             </div>
