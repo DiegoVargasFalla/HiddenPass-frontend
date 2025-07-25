@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import router from "@/router";
-// import { boolean, number } from "yup";
 import { useEncryptionsUtilsStore } from "@/modules/dashboard/store/EncryptionsUtilsStore";
-// import SlideBar from "@/modules/dashboard/components/UiDashboard/SlideBar.vue";
 import { useRegisterStore } from "@/modules/register/store/registerStore";
+import { useNoteStore } from "@/modules/dashboard/store/NoteStore";
+import { useLoaderPasswordsStore } from "@/modules/loading/store/loadingPasswordsStore";
+import { useNewPasswordStore } from "@/modules/dashboard/components/newPassword/store/newPasswordStore";
+import { date, object } from "yup";
+import { useShowLayerPopsUp } from "@/modules/dashboard/store/layerPopsUpStore";
 
 export const useAuthenticationStore = defineStore('authentication', {
     state: () => ({
@@ -23,6 +26,7 @@ export const useAuthenticationStore = defineStore('authentication', {
         listAlphabeticPassword: Array,
         showLayerLogout: false,
         showSlideBar: false,
+        userPermissions: object,
 
     }),
     actions: {
@@ -110,7 +114,7 @@ export const useAuthenticationStore = defineStore('authentication', {
             const registerStore = useRegisterStore();
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
             const token = sessionStorage.getItem('tokenAuthentication');
-            if (token) {
+            if (await this.checkAuthentication()) {
 
                 try {  // http://localhost:8080/system/api/v1/passwords-user
                     const response = await axios.post('/api/v1/passwords-user',
@@ -141,10 +145,6 @@ export const useAuthenticationStore = defineStore('authentication', {
                     console.log(error)
                     alert("Error while processing request")
                 }
-            }
-            else {
-                alert("you are not logged in")
-                router.push('/login')
             }
         },
         async login(credentials) {
@@ -210,16 +210,35 @@ export const useAuthenticationStore = defineStore('authentication', {
                 console.log(" ")
             }
         },
-        logout() {
-            this.stopSessionCheck();
+        logout(message) {
+            // this.stopSessionCheck();
             sessionStorage.removeItem('tokenAuthentication');
             this.isAuthenticate = false;
             this.token = null;
+            alert(message);
+            this.closeAllLayouts();
+            router.push('/login');
         },
+        closeAllLayouts() {
+            const newPasswordStore = useNewPasswordStore();
+            const loaderStore = useLoaderPasswordsStore();
+            const noteStore = useNoteStore();
+            const showLayerPopsUpStore = useShowLayerPopsUp();
 
+            showLayerPopsUpStore.setShowLayerPopsUp(false);
+            this.userPermissions = object; 
+            newPasswordStore.setShow(false);
+            noteStore.loadCirlce = false;
+            this.showLoaderSaveUpdate = false;
+            noteStore.showEditNote = false;
+            loaderStore.stopLoadPassword();
+        },
         async checkAuthentication() {
+            
             const tokenUser = sessionStorage.getItem('tokenAuthentication');
+            
             if (tokenUser) {
+                const showLayerPopsUpStore = useShowLayerPopsUp()
                 this.isAuthenticate = true;
                 this.token = tokenUser;
 
@@ -230,34 +249,74 @@ export const useAuthenticationStore = defineStore('authentication', {
                         }
                     })
                     const data = response.data
-                    if(data === true) {
-                        return data;
+                    this.userPermissions = data;
+                    if(data.accountNonExpired === true && data.accountNonLocked === true && data.credentialsNonExpired === true &&  data.enabled === true) {
+                        return true;
+                    } else if(data.accountNonExpired === false) {
+                        // este atributo es para verificar si tiene el plan activo
+                    } else if(data.accountNonLocked === false) {
+                        this.logout('Su cuenta esta bloqueda, contacte a soporte para mas informacion')
+                    } else if(data.credentialsNonExpired === false) {
+                        this.logout('Sus credenciales han expirado');
+                    } else if(data.enabled === false) {
+                        showLayerPopsUpStore.setShowLayerPopsUp(true);
                     } else {
-                        router.push("/login")
+                        this.closeAllLayouts();
+                        this.logout();
+                        return false;
                     }
                 }
                 catch (error) {
                     if (error.response || error.response.status === 403) {
-                        this.logout();
-                        alert("your session has ended")
-                        router.push("/login")
+                        this.closeAllLayouts();
+                        this.logout('Tu sesión se ha vencido, por seguridad vuelve a iniciar sesión');
+                        return false;
                     }
                 }
             }
             else {
-                this.isAuthenticate = false;
+                this.closeAllLayouts();
                 this.token = null;
-                alert("you are not logged session")
-                router.push("/login")
                 this.stopSessionCheck()
+                return false;
             }
         },
+        async enabledToken() {
+            const token = sessionStorage.getItem('tokenAuthentication');
+            if(token) {
+                this.isAuthenticate = true;
+                this.token = token;
 
+                try {
+                    const response = await axios.get('/api/v1/enabled-token', {
+                        headers: {
+                            'Authorization': `Bearer ${this.token}`
+                        }
+                    })
+
+                    const data = response.data;
+
+                    if(data === true) {
+                        return true;
+                    } else {
+                        this.closeAllLayouts();
+                        this.token = null;
+                        return false;
+                    }
+                } catch(error) {
+                    if (error.response || error.response.status === 403) {
+                        this.closeAllLayouts();
+                        this.token = null;
+                        return false;
+                    }
+                }
+            }
+        },
         startSession() {
             if (!this.sessionCheckInterval) {
                 this.sessionCheckInterval = setInterval(() => {
                     this.checkAuthentication();
-                }, 5000); // check the token every 5 min
+                }, 1000);
             }
         },
 

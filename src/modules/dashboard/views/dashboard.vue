@@ -13,7 +13,7 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue';
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
-import router from '@/router';
+import { useRouter } from 'vue-router';
 import SideBar from '@/modules/dashboard/components/SideBar.vue';
 import HeaderDasboard from '@/modules/dashboard/components/HeaderDasboard.vue';
 import showDashboard from '@/modules/dashboard/views/showDashboard.vue';
@@ -32,6 +32,7 @@ const encryptionsUtilsStore = useEncryptionsUtilsStore();
 const loaderPasswordsStore = useLoaderPasswordsStore();
 const noteStore = useNoteStore();
 const layerPopsUpStore = useShowLayerPopsUp();
+const router = useRouter();
 
 function beforeUnload() {
     sessionStorage.setItem('dk', registerStore.getDerivedKey());
@@ -40,18 +41,8 @@ window.addEventListener('beforeunload', beforeUnload);
 
 async function init() {
 
-    // const mk = sessionStorage.getItem('mk');
-    // if (mk) {
-    //     AuthenticationStore.setPassword(mk);
-    //     sessionStorage.removeItem('mk');
-    //     await encryptionsUtilsStore.bringPublicKeyBack();
-    // }
 
-    
-
-    if (AuthenticationStore.checkAuthentication()) {
-
-        if(registerStore.getIv().length === 0 || registerStore.getSalt().length === 0 ) {
+    if(registerStore.getIv().length === 0 || registerStore.getSalt().length === 0 ) {
             await AuthenticationStore.bringIvAndSalt();
         }
 
@@ -60,9 +51,6 @@ async function init() {
             registerStore.setDerivedKey(derivedKey);
             sessionStorage.removeItem('dk');
         }
-        
-        // await encryptionsUtilsStore.generateKeyPair();
-        // await encryptionsUtilsStore.generateAesKey();
 
         const token = sessionStorage.getItem("tokenAuthentication");
         AuthenticationStore.setToken(token);
@@ -70,11 +58,7 @@ async function init() {
         loaderPasswordsStore.startLoadPasswords();
         await AuthenticationStore.bringPasswords();
         loaderPasswordsStore.stopLoadPassword();
-        // AuthenticationStore.checkAuthentication()
         noteStore.bringNotes();
-    } else {
-        router.push("/login")
-    }
 }
 
 onMounted(() => {
@@ -83,14 +67,15 @@ onMounted(() => {
     
     let timer = null;
 
-    // Detectar el movimiento del ratón
     const handleMouseMove = () => {
+
+        // timer zero again  when move the mouse
         clearTimeout(timer);
-        AuthenticationStore.stopSessionCheck()
+
         timer = setTimeout(() => {
-            // console.log("Inicia la verificacion del token")
-            AuthenticationStore.startSession(); // Llamada para iniciar la sesión después de inactividad
-        }, 10000); // 10 segundos de inactividad
+            AuthenticationStore.logout('Por seguridad hemos cerrado su sesión');
+            router.push('/login');
+        }, 180000); 
     };
 
     // Añadir el evento mousemove al documento

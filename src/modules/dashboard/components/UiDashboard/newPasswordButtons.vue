@@ -41,54 +41,59 @@ const onClick = async () => {
             newPasswordStore.setShow(false);
             deleteTextField();
         } else if (props.action === 'save') {
-            if(newPasswordStore.getPassword().length > 1 && newPasswordStore.getUsername().length > 1 && newPasswordStore.getUrl().length > 1) {
             
-                const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getPassword());
-                const encryptedUsername = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUsername());
-                const encrypteUrl = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUrl());
-                const encryptNote = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getNote());
+            if(await authenticationStore.checkAuthentication()) {
 
-                const requestBody = {
+                if(newPasswordStore.getPassword().length > 1 && newPasswordStore.getUsername().length > 1 && newPasswordStore.getUrl().length > 1) {
+            
+                    const encryptedPassword = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getPassword());
+                    const encryptedUsername = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUsername());
+                    const encrypteUrl = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getUrl());
+                    const encryptNote = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), newPasswordStore.getNote());
 
-                    "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
-                    "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
-                    "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
-                    "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
+                    const requestBody = {
 
-                };
-                
-                if (props.loader === true) {
-                    showText = false;
+                        "username": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedUsername),
+                        "password": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedPassword),
+                        "url": encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteUrl),
+                        "note": encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptNote)
+
+                    };
+                    
+                    if (props.loader === true) {
+                        showText = false;
+                    }
+
+                    loaderStore.startLoadPasswords();
+
+                    await newPasswordStore.savePassword(requestBody, authenticationStore.getToken());
+
+                    if (newPasswordStore.getSave()) {
+                        loaderStore.stopLoadPassword();
+                        showText = true;
+                        newPasswordStore.iconConfirm = true;
+
+                        setTimeout(() => {
+                            showLayerPopsUp.setShowLayerPopsUp(false);
+                            newPasswordStore.setShow(false);
+                            newPasswordStore.iconConfirm = false;
+                            deleteTextField();
+                        }, 1000);
+                    }
+
+                } else {
+
+                    const listInputs = [
+                        document.getElementById("field-username"),
+                        document.getElementById("field-password"),
+                        document.getElementById("field-url")
+                    ]
+
+                    listInputs.forEach(input => {
+                        input.focus();
+                        input.blur();
+                    })
                 }
-
-                loaderStore.startLoadPasswords();
-                await newPasswordStore.savePassword(requestBody, authenticationStore.getToken());
-
-                if (newPasswordStore.getSave()) {
-                    loaderStore.stopLoadPassword();
-                    showText = true;
-                    newPasswordStore.iconConfirm = true;
-
-                    setTimeout(() => {
-                        showLayerPopsUp.setShowLayerPopsUp(false);
-                        newPasswordStore.setShow(false);
-                        newPasswordStore.iconConfirm = false;
-                        deleteTextField();
-                    }, 1000);
-                }
-
-            } else {
-
-                const listInputs = [
-                    document.getElementById("field-username"),
-                    document.getElementById("field-password"),
-                    document.getElementById("field-url")
-                ]
-
-                listInputs.forEach(input => {
-                    input.focus();
-                    input.blur();
-                })
             }
         }
     }

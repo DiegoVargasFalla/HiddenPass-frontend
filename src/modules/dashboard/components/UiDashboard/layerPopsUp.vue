@@ -5,6 +5,7 @@
         <ConfirmDeleteNote v-if="showConfirmDeleteNote"></ConfirmDeleteNote>
         <EditNote v-if="showEditNote"></EditNote>
         <ConfirmLogOut v-if="showLayerLogout"></ConfirmLogOut>
+        <unEnabledAcount v-if="showUnEnabledAcount"></unEnabledAcount>
     </div>
 </template>
 
@@ -21,6 +22,7 @@ import ConfirmLogOut from '../viewsPasswords/ConfirmLogOut.vue';
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 import { useNavStore } from '../../store/navStore';
+import unEnabledAcount from './unEnabledAcount.vue';
 
 const newPasswordStore = useNewPasswordStore();
 const noteStore = useNoteStore();
@@ -33,6 +35,12 @@ const showConfirmDeleteNote = computed(() => noteStore.showConfirmDeleteNote);
 const showEditNote = computed(() => noteStore.showEditNote);
 const showLayerLogout = computed(() => authenticationStore.showLayerLogout);
 const navStore = useNavStore();
+
+const showUnEnabledAcount = computed(() => {
+    if(authenticationStore.userPermissions.enabled === false) {
+        return true;
+    }
+})
 
 
 const closeSlideBar = computed( () => {

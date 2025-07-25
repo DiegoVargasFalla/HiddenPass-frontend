@@ -87,93 +87,107 @@ export const useNoteStore = defineStore('noteStore', {
         },
         async saveNote(title, content, token) {
             this.loadCirlce = true;
-            const encryptionsUtilsStore = useEncryptionsUtilsStore();
-            const registerStore = useRegisterStore();
 
-            const zoneDateClient = encryptionsUtilsStore.getTimeZone();
-            const encryptedTitlte = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), title);
-            const encryptedContent = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), content);
-            const isoDate = encryptionsUtilsStore.getIsoDate();
+            const authentication = useAuthenticationStore();
 
-            const noteEntityDTO = {
-                title: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedTitlte),
-                content: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedContent),
-                isoDate: isoDate,
-                zoneDateClient: zoneDateClient,
+            if(await authentication.checkAuthentication()) {
+                const encryptionsUtilsStore = useEncryptionsUtilsStore();
+                const registerStore = useRegisterStore();
 
-            }
+                const zoneDateClient = encryptionsUtilsStore.getTimeZone();
+                const encryptedTitlte = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), title);
+                const encryptedContent = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), content);
+                const isoDate = encryptionsUtilsStore.getIsoDate();
 
-            try { // http://localhost:8080/system/api/v1/add-note
+                const noteEntityDTO = {
+                    title: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedTitlte),
+                    content: encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedContent),
+                    isoDate: isoDate,
+                    zoneDateClient: zoneDateClient,
 
-                const response = await axios.post('/api/v1/add-note',
-                    noteEntityDTO,
-                    { headers: { Authorization: `Bearer ${token}` } }
-                )
-
-                const data = response.data;
-
-                if (data) {
-
-                    this.loadCirlce = false;
-                    data.content = this.note;
-                    data.title = this.title;
-                    this.note = '';
-                    this.title = '';
-                    return data;
                 }
-            }
-            catch (error) {
-                console.log(error);
-            }
-        },
-        async bringNotes() {
 
-            const encryptionsUtilsStore = useEncryptionsUtilsStore();
-            const authenticationStore = useAuthenticationStore();
-            const registerStore = useRegisterStore();
-            const token = authenticationStore.getToken();
+                try { // http://localhost:8080/system/api/v1/add-note
 
-            try { //  http://localhost:8080/system/api/v1/notes-user
-                const response = await axios.post('/api/v1/notes-user',
-                    {},
-                    { headers: { Authorization: `Bearer ${token}` } }
-                );
+                    const response = await axios.post('/api/v1/add-note',
+                        noteEntityDTO,
+                        { headers: { Authorization: `Bearer ${token}` } }
+                    )
 
-                const data = response.data;
-                if (data) {
-                    
-                    for(const n of data) {
-                        n.title = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(n.title));
-                        n.content = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(n.content));
+                    const data = response.data;
+
+                    if (data) {
+
+                        this.loadCirlce = false;
+                        data.content = this.note;
+                        data.title = this.title;
+                        this.note = '';
+                        this.title = '';
+                        return data;
                     }
-
-                    this.reverseListNotes(data);
-                    this.showLoaderNotes = false;
                 }
-            } catch (error) {
-                console.log(error);
+                catch (error) {
+                    this.loadCirlce = false;
+                    console.log(error);
+                }
+            }
+            
+        },
+        async bringNotes() { 
+
+            const authenticationStore = useAuthenticationStore();
+            if(await authenticationStore.checkAuthentication()) {
+                const encryptionsUtilsStore = useEncryptionsUtilsStore();
+            
+                const registerStore = useRegisterStore();
+                const token = authenticationStore.getToken();
+
+                try { //  http://localhost:8080/system/api/v1/notes-user
+                    const response = await axios.post('/api/v1/notes-user',
+                        {},
+                        { headers: { Authorization: `Bearer ${token}` } }
+                    );
+
+                    const data = response.data;
+                    if (data) {
+                        
+                        for(const n of data) {
+                            n.title = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(n.title));
+                            n.content = await encryptionsUtilsStore.decryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), encryptionsUtilsStore.exportBase64ToUnit8Array(n.content));
+                        }
+
+                        this.reverseListNotes(data);
+                        this.showLoaderNotes = false;
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
             }
         },
         async deleteNote(id) {
+
             const authenticationStore = useAuthenticationStore();
-            const token = authenticationStore.getToken();
 
-            try { // http://localhost:8080/system/api/v1/delete-note
-                const response = await axios.delete('/api/v1/delete-note',
-                    {
-                        headers: { Authorization: `Bearer ${token}` },
-                        data: { noteId: id }
+            if(await authenticationStore.checkAuthentication()) {
+                const token = authenticationStore.getToken();
+
+                try { // http://localhost:8080/system/api/v1/delete-note
+                    const response = await axios.delete('/api/v1/delete-note',
+                        {
+                            headers: { Authorization: `Bearer ${token}` },
+                            data: { noteId: id }
+                        }
+                    )
+
+                    const data = response.data;
+                    if (data === true) {
+                        this.confirmDeleteNote = true;
+                        this.updateListNote(this.noteToDeleteId);
                     }
-                )
-
-                const data = response.data;
-                if (data === true) {
-                    this.confirmDeleteNote = true;
-                    this.updateListNote(this.noteToDeleteId);
                 }
-            }
-            catch (error) {
-                console.log(error)
+                catch (error) {
+                    console.log(error)
+                }
             }
         },
         async editNote() {
@@ -181,47 +195,51 @@ export const useNoteStore = defineStore('noteStore', {
         },
         async updateNote() {
 
+            const authenticationStore = useAuthenticationStore();
+
             this.showLoaderSaveUpdate = true;
 
-            const authenticationStore = useAuthenticationStore();
-            const encryptionsUtilsStore = useEncryptionsUtilsStore();
-            const registerStore = useRegisterStore();
+            if(await authenticationStore.checkAuthentication()) {
+                const authenticationStore = useAuthenticationStore();
+                const encryptionsUtilsStore = useEncryptionsUtilsStore();
+                const registerStore = useRegisterStore();
 
-            const token = authenticationStore.getToken();
+                const token = authenticationStore.getToken();
 
-            if (this.newNoteDTO.title !== null) {
-                const encryptedTitle = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.newNoteDTO.title);
-                this.newNoteDTO.title = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedTitle);
-            } if (this.newNoteDTO.note !== null) {
-                const encrypteContent = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.newNoteDTO.content)
-                this.newNoteDTO.content = encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteContent);
-            }
-
-            try { // http://localhost:8080/system/api/v1/update-note
-                const response = await axios.patch('/api/v1/update-note',
-                    this.newNoteDTO,
-                    { headers: { Authorization: `Bearer ${token}` } }
-                )
-
-                const data = response.data
-                if (data) {
-                    // console.log('-> data'),
-                        console.log(data)
-
-                    this.listNotes.forEach(p => {
-                        if (p.id === this.idNote) {
-                            p.title = this.title
-                            p.content = this.note
-                        }
-                    })
-                    this.showLoaderSaveUpdate = false;
-                    this.noChanges = false;
-                    this.newNoteDTO.id = null;
-                    this.newNoteDTO.title = null
-                    this.newNoteDTO.content = null
+                if (this.newNoteDTO.title !== null) {
+                    const encryptedTitle = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.newNoteDTO.title);
+                    this.newNoteDTO.title = encryptionsUtilsStore.exportUnit8ArrayToBase64(encryptedTitle);
+                } if (this.newNoteDTO.note !== null) {
+                    const encrypteContent = await encryptionsUtilsStore.encryptWithDerivedKey(await encryptionsUtilsStore.importKey(registerStore.getDerivedKey()), encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getIv()), this.newNoteDTO.content)
+                    this.newNoteDTO.content = encryptionsUtilsStore.exportUnit8ArrayToBase64(encrypteContent);
                 }
-            } catch (error) {
-                console.log(error);
+
+                try { // http://localhost:8080/system/api/v1/update-note
+                    const response = await axios.patch('/api/v1/update-note',
+                        this.newNoteDTO,
+                        { headers: { Authorization: `Bearer ${token}` } }
+                    )
+
+                    const data = response.data
+                    if (data) {
+                        // console.log('-> data'),
+                            console.log(data)
+
+                        this.listNotes.forEach(p => {
+                            if (p.id === this.idNote) {
+                                p.title = this.title
+                                p.content = this.note
+                            }
+                        })
+                        this.showLoaderSaveUpdate = false;
+                        this.noChanges = false;
+                        this.newNoteDTO.id = null;
+                        this.newNoteDTO.title = null
+                        this.newNoteDTO.content = null
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
             }
         }
     }
