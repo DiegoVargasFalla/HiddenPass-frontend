@@ -186,6 +186,7 @@ export const useNoteStore = defineStore('noteStore', {
                     }
                 }
                 catch (error) {
+                    
                     console.log(error)
                 }
             }
