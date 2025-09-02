@@ -50,6 +50,7 @@
 </template>
 
 <script setup>
+import Subscriber from '@/modules/dashboard/components/UiDashboard/Subscriber.vue';
 import Header from '@/components/Layout/Header.vue';
 import defaultLayout from '@/modules/landingPage/views/defaultLayout.vue';
 import { computed, onMounted, ref } from 'vue';
