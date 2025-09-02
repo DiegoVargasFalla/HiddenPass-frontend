@@ -20,7 +20,7 @@
             <ul>
                 <li v-for="(feature, index) in features" :key="index">
                     <i class="fa-solid fa-check"></i>
-                    {{ feature }}
+                    <div>{{ feature }}</div>
                 </li>
             </ul>
         </div>
@@ -156,16 +156,22 @@ const showRecomended = computed(() => (props.popular == true))
     font-size: 13px;
     background-color: #16db6532;
     border-radius: 50%;
-    padding: 3px;
+    padding: 4px;
     margin-right: 7px;
 }
 
 .container-list-features li {
+    /* background-color: red; */
     /* color: #16DB65; */
     font-size: 14px;
     font-family: 'Inter';
     font-weight: 200;
     margin-top: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 2px;
 }
 
 .container-button-get {
