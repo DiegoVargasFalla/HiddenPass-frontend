@@ -6,7 +6,7 @@
                 <h3 class="tittles text-hidden-content">HiddenPass</h3>
                 <p class="text-inter text-hidden-content">Gestor de contraseñas seguro y fácil de usar.</p>
                 <p class="text-inter text-hidden-content">© 2025 HiddenPass. Todos los derechos reservados.</p>
-                <p class="text-inter text-hidden-content">Hecho por <a target="_blank" class="makeBy" href="https://diegovargasfalla.github.io/Portfolio/">diegodev</a></p>
+                <!-- <p class="text-inter text-hidden-content">Hecho por <a target="_blank" class="makeBy" href="https://diegovargasfalla.github.io/Portfolio/">diegodev</a></p> -->
             </div>
             <div class="footer-section">
                 <h3 class="tittles">Enlaces</h3>
