@@ -9,7 +9,9 @@
             ></bubble>
         </div>
         <section class="main-section width-sections" id="sec-start">
-            <div class="container-text-inf">
+            <Subscriber></Subscriber>
+            <div class="container-text-and-img">
+                <div class="container-text-inf">
                 <div class="content-text-info">
                     <p id="animation-sec-start" class="text-info-big">Con <span class="text-hidden">Hidden</span><span class="text-pass">Pass</span> manten<br>
                         tus contraseñas seguras <br>
@@ -34,6 +36,7 @@
                 <!-- <div class="cont
                  ent-img-computer"></div> -->
                  <img src="/src/assets/img//movileMac.png" alt="img computer">
+            </div>
             </div>
         </section>
         <div class="scroll-about" id="scroll-about"></div>
@@ -156,12 +159,12 @@
             <div class="tittle-sections">Planes</div>
             <div class="container-plans">
                 <plansCard 
-                    tittle="Basico"
+                    tittle="Gratis"
                     :features="[
-                        '10 contraseñas',
-                         'Soporte basico',
-                        'otro',
-                        'otro',
+                        '10 Contraseñas',
+                        '5 Notas encryptadas ',
+                        'Generador de contraseñas ilimitado',
+                        '',
                         ]"
                     price="1,99"
                     :popular="false">
@@ -169,10 +172,9 @@
                 <plansCard 
                     tittle="Estandar"
                     :features="[
-                        '50 contraseñas', 
-                        'Soporte basico',
-                        'otro',
-                        'otro',
+                        '20 contraseñas',
+                        '10 notas encryptadas',
+                        'Soporte basico'
                         ]"
                     price="3,99"
                     :popular="true">
@@ -180,10 +182,9 @@
                 <plansCard 
                     tittle="Premium"
                     :features="[
-                        'Contraseñas ilimitadas', 
-                        'Soporte basico',
-                        'otro',
-                        'otro',
+                        'Contraseñas ilimitadas',
+                        'Notas ilimitadas',
+                        'Soporte 24/7'
                         ]"
                     price="5,99"
                     :popular="false">
@@ -275,6 +276,8 @@ import buttons from '@/components/UI/buttons.vue';
 import bubble from '@/components/UI/bubble.vue';
 import plansCard from '@/components/UI/plansCard.vue';
 import itemsAbout from '@/components/UI/itemsAbout.vue';
+import Subscriber from '@/modules/dashboard/components/UiDashboard/Subscriber.vue';
+
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -351,7 +354,9 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: black;
     background-color: whitesmoke;
+    /* margin-top: 40px; */
     /* background-color: red; */
     backdrop-filter: blur(1.5rem);
 }
@@ -369,11 +374,20 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    padding: 7rem 0;
+    flex-direction: column;
+    padding: 6rem 0;
     width: 85%;
     margin-left: 4rem;
-    gap: 4rem;
+    /* gap: 4rem; */
+}
+
+.container-text-and-img {
+    /* background-color: green; */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .divider {
@@ -404,17 +418,18 @@ onMounted(() => {
 }
 
 .text-info-big {
-    font-family: "Archivo Black", serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-family: 'Inter';
+    font-size: clamp(2rem, 4vw, 3.3rem);
     line-height: 1.1;
     text-align: left;
+    font-weight: 780;
 }
 
 .text-info-small {
     font-family: "Inter";
     font-size: clamp(1.3rem, 2.3vw, 1.5rem);
     line-height: 1.3;
-    font-weight: 500;
+    font-weight: 450;
     text-align: left;
 }
 
@@ -441,10 +456,10 @@ onMounted(() => {
 /* RESPONSIVE */
 @media screen and (max-width: 1030px) {
     .text-info-big {
-        text-align: center;
+        text-align: left;
     }
     .text-info-small {
-        text-align: center;
+        text-align: left;
     }
     .container-button-go {
         justify-content: center;
@@ -452,9 +467,16 @@ onMounted(() => {
 }
 
 @media screen and (max-width: 900px) {
-    .main-section {
+
+    .container-text-and-img {
         flex-direction: column;
         width: 100%;
+        margin-left: 0;
+    }
+
+    .main-section {
+        flex-direction: column;
+        width: 90%;
         margin-left: 0;
         padding: 7rem 1rem;
         gap: 3rem;
