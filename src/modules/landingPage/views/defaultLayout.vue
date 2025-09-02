@@ -164,9 +164,8 @@
                         '10 Contraseñas',
                         '5 Notas encryptadas ',
                         'Generador de contraseñas ilimitado',
-                        '',
                         ]"
-                    price="1,99"
+                    price="0$"
                     :popular="false">
                 </plansCard>
                 <plansCard 
@@ -174,19 +173,21 @@
                     :features="[
                         '20 contraseñas',
                         '10 notas encryptadas',
+                        'Generador de contraseñas ilimitado',
                         'Soporte basico'
                         ]"
-                    price="3,99"
+                    price="2,99$"
                     :popular="true">
                 </plansCard>
                 <plansCard 
                     tittle="Premium"
                     :features="[
                         'Contraseñas ilimitadas',
-                        'Notas ilimitadas',
+                        'Notas encryptadas ilimitadas',
+                        'Generador de contraseñas ilimitado',
                         'Soporte 24/7'
                         ]"
-                    price="5,99"
+                    price="4,99$"
                     :popular="false">
                 </plansCard>
             </div>
@@ -268,6 +269,7 @@
                 </div>
             </div>
         </section>
+        <Subscriber></Subscriber>
     </div>
 </template>
 
@@ -276,7 +278,7 @@ import buttons from '@/components/UI/buttons.vue';
 import bubble from '@/components/UI/bubble.vue';
 import plansCard from '@/components/UI/plansCard.vue';
 import itemsAbout from '@/components/UI/itemsAbout.vue';
-import Subscriber from '@/modules/dashboard/components/UiDashboard/Subscriber.vue';
+import Subscriber from '@/modules/dashboard/components/UiDashboard/SubscriberNotice.vue';
 
 import { onMounted } from 'vue';
 
@@ -377,7 +379,7 @@ onMounted(() => {
     flex-direction: column;
     padding: 6rem 0;
     width: 85%;
-    margin-left: 4rem;
+    margin-left: 3rem;
     /* gap: 4rem; */
 }
 
@@ -872,7 +874,7 @@ contatc section
     flex-direction: column;
     /* height: 60vh; */
     width: 100%;
-    padding: 6rem 0;
+    padding: 4rem 0;
 }
 
 .container-sec-end {

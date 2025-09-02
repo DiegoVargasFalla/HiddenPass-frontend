@@ -6,6 +6,7 @@
         <EditNote v-if="showEditNote"></EditNote>
         <ConfirmLogOut v-if="showLayerLogout"></ConfirmLogOut>
         <unEnabledAcount v-if="showUnEnabledAcount"></unEnabledAcount>
+        <SubcriberPopUp v-if="subcriberStore.showPopUp"></SubcriberPopUp>
     </div>
 </template>
 
@@ -23,11 +24,13 @@ import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore
 import { useShowLayerPopsUp } from '../../store/layerPopsUpStore';
 import { useNavStore } from '../../store/navStore';
 import unEnabledAcount from './unEnabledAcount.vue';
-
+import SubcriberPopUp from './SubcriberPopUp.vue';
+import { useSubscriberStore } from '@/stores/SubscriberStore';
 const newPasswordStore = useNewPasswordStore();
 const noteStore = useNoteStore();
 const authenticationStore = useAuthenticationStore();
 const showLayerPopsUpStore = useShowLayerPopsUp();
+const subcriberStore = useSubscriberStore();
 
 const showConfirmDeletePassword = computed(() => newPasswordStore.getShowConfirmDeletePassword())
 const showFormNewPassword = computed(() => newPasswordStore.getShow());
