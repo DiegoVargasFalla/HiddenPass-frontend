@@ -31,7 +31,9 @@ const layerPopsUpStore = useShowLayerPopsUp();
 
 
 const clickItem = () => {
+  
   if (authenticationStore.showSlideBar === true) {
+    document.documentElement.style.overflowY = 'auto';
     authenticationStore.setSlideBar(false);
     layerPopsUpStore.setShowLayerPopsUp(false);
   }

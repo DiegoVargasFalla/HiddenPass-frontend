@@ -50,6 +50,7 @@ const closeSlideBar = computed( () => {
     if(authenticationStore.showSlideBar === true){
         authenticationStore.setSlideBar(false);
         showLayerPopsUpStore.setShowLayerPopsUp(false);
+        document.documentElement.style.overflowY = 'auto';
     }
     if(navStore.showSideBar === true) {
         navStore.showSideBar = false;

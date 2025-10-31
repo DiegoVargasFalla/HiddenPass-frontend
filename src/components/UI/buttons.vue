@@ -1,7 +1,7 @@
 <template>
     <div class="buttonLog" @click="handleSlideBar" :style="{backgroundColor: bgColor, height: height +'rem', width: width +'%', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
         <a v-if="typeLink" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" :href="link">{{ label }}</a>
-        <RouterLink @click="" v-else :to="link" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" >{{ label }}</RouterLink>
+        <RouterLink  v-else :to="link" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" >{{ label }}</RouterLink>
     </div>
 </template>
     
@@ -11,11 +11,12 @@ import { computed } from 'vue';
 import { useAuthenticationStore } from '@/modules/auth/store/authenticationStore';
 import { useShowLayerPopsUp } from '@/modules/dashboard/store/layerPopsUpStore';
 import { useRegisterStore } from '@/modules/register/store/registerStore';
+import { useRegisterLinkStore } from '@/modules/register/store/registerLinkStore';
 
 const authenticationStore = useAuthenticationStore();
 const layerPopsUpStore = useShowLayerPopsUp();
 const registerStore = useRegisterStore();
-
+const registerLinkStore = useRegisterLinkStore();
 
 const props = defineProps({
     label: String,
@@ -31,6 +32,7 @@ const props = defineProps({
     bordeRadius: Number,
     register: Boolean,
     disabled: Boolean,
+    token: Boolean
 })
 const typeLink = computed(() => props.link.startsWith('#'));
 
@@ -38,14 +40,16 @@ const typeLink = computed(() => props.link.startsWith('#'));
 
 const handleSlideBar = async () => {
   if(props.disabled) {
-    console.log(" ")
     return;
-  } else if (authenticationStore.showSlideBar === true) {
+  } else if (authenticationStore.showSlideBar) {
+    document.documentElement.style.overflowY = 'auto'
     authenticationStore.setSlideBar(false);
     layerPopsUpStore.setShowLayerPopsUp(false);
   } 
-  else if(props.register === true) {
+  else if(props.register) {
     await registerStore.registerUser();
+  } else if(props.token) {
+    registerLinkStore.generateRegisterLink();
   }
 }
 

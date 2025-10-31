@@ -73,7 +73,6 @@ export const useRegisterStore = defineStore('registerStore', {
                         name: this.name,
                         username: this.email,
                         password: this.password,
-                        accessCode: null,
                         userSalt: encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.generateIvAndSalt()),
                         userIv: encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.generateIvAndSalt())
                     })

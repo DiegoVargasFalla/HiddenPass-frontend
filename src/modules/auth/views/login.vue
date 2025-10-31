@@ -4,7 +4,7 @@
         <div class="layer"></div>
         <Header
         ColorText="white"
-        link-about="/#sec-about" 
+        link-about="/#sec-about"
         linkGuide="/#sec-use-guide"
         linkPlans="/#sec-plans" 
         linkContact="/#contact-section"
@@ -88,10 +88,6 @@ const registerStore = useRegisterStore();
 const encryptionsUtilsStore = useEncryptionsUtilsStore();
 const authenticationStore = useAuthenticationStore();
 
-onMounted(() => {
-    updateOpacity();
-})
-
 const updateOpacity = () => {
     const containerButton = document.getElementById("cont-button")
     const buttonSubmit = document.getElementById("button-submit")
@@ -119,6 +115,8 @@ const updateOpacity = () => {
 }
 
 onMounted(() => {
+    document.documentElement.scrollTop = 0;
+    updateOpacity();
     const emailField = document.getElementById("mail-field-id");
     const passwordField = document.getElementById("input-password-id");
 
@@ -177,7 +175,6 @@ const onSubmit = async () => {
             }
         }
 }
-
 </script>
 
 <style scoped>
@@ -282,7 +279,7 @@ const onSubmit = async () => {
     height: auto;
     width: 26rem;
     padding:1.6rem;
-    border-radius:20px;  
+    border-radius: 20px;  
     border: 1px solid rgb(23, 157, 76);
     box-shadow: 0 0 4px #058C42;
 }
@@ -452,5 +449,4 @@ const onSubmit = async () => {
     width: 90%;
    }
 }
-
 </style>

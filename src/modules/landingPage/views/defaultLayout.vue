@@ -13,7 +13,7 @@
             <div class="container-text-and-img">
                 <div class="container-text-inf">
                 <div class="content-text-info">
-                    <p id="animation-sec-start" class="text-info-big">Con <span class="text-hidden">Hidden</span><span class="text-pass">Pass</span> manten<br>
+                    <p id="animation-sec-start" class="text-info-big">Con <span class="text-hidden">HiddenPass</span> manten<br>
                         tus contraseñas seguras <br>
                         sin preocuparte <br>
                         de olvidarlas.
@@ -193,7 +193,7 @@
             </div>
         </section>
         <!-- <div class="divider"></div> -->
-        <section class="faq-section">
+        <section class="faq-section" id="FAQ-section">
             <!-- <div class="container-img"></div> -->
             <img class="container-img" src="/src/assets/img/padlocks.webp" alt="">
             <div class="container-contact container-faq">
@@ -356,8 +356,8 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: black;
-    background-color: whitesmoke;
+    /* background-color: black; */
+    /* background-color: whitesmoke; */
     /* margin-top: 40px; */
     /* background-color: red; */
     backdrop-filter: blur(1.5rem);
@@ -505,7 +505,8 @@ onMounted(() => {
 
 .text-hidden {
     color: #16DB65;
-    font-family: "Archivo Black", serif;
+    font-family: "Inter";
+    font-weight: 900;
     font-size: clamp(2.5rem, 5vw, 3.2rem);
 }
 

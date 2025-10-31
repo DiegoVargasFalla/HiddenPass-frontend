@@ -44,8 +44,8 @@
 }
 
 .hiddenText {
-    font-family: "Archivo Black", serif;
-    font-weight: 400;
+    font-family: "inter";
+    font-weight: 900;
     font-style: normal;
     font-size: clamp(2.2rem, 2.5vw, 3rem);
     color: #16DB65;
@@ -55,10 +55,10 @@
 }
 
 .passText {
-    font-family: "Roboto Condensed", serif;
+    font-family: "Inter";
     font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
+    font-weight: 900;
+    /* font-style: normal; */
     font-size: clamp(2.2rem, 2.5vw, 3rem);;
     color: #16DB65;
     cursor: pointer;

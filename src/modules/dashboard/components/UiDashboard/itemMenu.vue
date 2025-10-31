@@ -39,7 +39,7 @@ const noSelected = computed(() => navStore.selectedElement != props.idElement);
 const showItem = computed(() => navStore.showItem);
 
 const handleClick = () => {
-
+    
     if (props.idElement != 'logout'){
         navStore.setElement(props.idElement);
         navStore.setSection(props.componet);

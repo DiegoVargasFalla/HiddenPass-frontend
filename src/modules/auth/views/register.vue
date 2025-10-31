@@ -11,7 +11,8 @@
             bgColor='#c8c6c638'
         ></Header>
         <section class="section-login">
-            <div class="content-form-login">
+            <registerLink v-if="!showRegisterOrMailLink"></registerLink>
+            <div v-if="showRegisterOrMailLink" class="content-form-login">
                 <Form :validation-schema="useRegisterSchema" @submit=""  class="form-login">
                     <div class="content-tittle">
                         <h2>Registro</h2>
@@ -86,10 +87,12 @@ import Header from '@/components/Layout/Header.vue';
 import { Form, Field, ErrorMessage } from 'vee-validate';
 import { useRegisterSchema } from '@/modules/register/schema/registerSchema';
 import { useRegisterStore } from '@/modules/register/store/registerStore';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { useAuthenticationStore } from '../store/authenticationStore';
+import registerLink from './registerLink.vue';
 
+const authenticationStore = useAuthenticationStore();
 const registerStore = useRegisterStore();
-
 
 const showPassword = () => {
     const input = document.getElementById('input-password');
@@ -105,9 +108,27 @@ const showVerifyMail = computed(() => {
     return registerStore.verifyMailRegister
 })
 
-onMounted(() => {
-    const inputEmail = document.getElementById('input-email');
+const showRegisterOrMailLink = ref();
 
+
+onMounted( async () => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    if(token) {
+        window.history.replaceState({}, document.title, "/register");
+        const responseToken =  await authenticationStore.checkTokenRegister(token);
+        if(responseToken) {
+            showRegisterOrMailLink.value = true;
+        } else{ 
+            console.log("-> token has expired");
+        }
+    } else {
+        showRegisterOrMailLink.value = false;
+    }
+    
+    const inputEmail = document.getElementById('input-email');
+    document.documentElement.scrollTop = 0;
     if(inputEmail) {
         inputEmail.addEventListener('focus', () => {
             registerStore.verifyMailRegister = false;

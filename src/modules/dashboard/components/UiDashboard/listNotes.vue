@@ -20,7 +20,7 @@
 import itemListNote from './itemListNote.vue';
 import { useNoteStore } from '../../store/NoteStore';
 import loaderPasswords from '@/modules/loading/views/loaderPasswords.vue';
-import { compile, computed } from 'vue';
+import { computed } from 'vue';
 
 const noteStore = useNoteStore();
 

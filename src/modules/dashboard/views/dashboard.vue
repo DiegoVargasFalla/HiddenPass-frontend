@@ -92,7 +92,6 @@ onMounted(() => {
 const navStore = useNavStore();
 
 const showSideBarResponsive = computed(() =>{
-   
     return navStore.showSideBar;
 });
 

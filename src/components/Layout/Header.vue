@@ -99,6 +99,7 @@ document.addEventListener("scroll", () => {
 const slidebarHandle = () => {
     showLayerPopsUp.setShowLayerPopsUp(true); 
     authenticationStore.setSlideBar(true);
+    document.documentElement.style.overflow = 'hidden'
 }
 
 

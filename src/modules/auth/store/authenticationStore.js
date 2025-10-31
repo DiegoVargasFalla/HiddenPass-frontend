@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 import router from "@/router";
+
 import { useEncryptionsUtilsStore } from "@/modules/dashboard/store/EncryptionsUtilsStore";
 import { useRegisterStore } from "@/modules/register/store/registerStore";
 import { useNoteStore } from "@/modules/dashboard/store/NoteStore";
@@ -281,8 +282,7 @@ export const useAuthenticationStore = defineStore('authentication', {
                 return false;
             }
         },
-        async enabledToken() {
-            const token = sessionStorage.getItem('tokenAuthentication');
+        async enabledToken(token) {
             if(token) {
                 this.isAuthenticate = true;
                 this.token = token;
@@ -312,6 +312,25 @@ export const useAuthenticationStore = defineStore('authentication', {
                 }
             }
         },
+        async checkTokenRegister(token) {
+            try {
+                const response = await axios.get('/api/v1/check-register-token', {
+                    headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                });
+                const data = response.data;
+                if(data) {
+                    console.log(data);
+                    return true;
+                }
+
+            } catch(error) {
+                if(error.response.status === 403) {
+                    return false;
+                }
+            }
+        },
         startSession() {
             if (!this.sessionCheckInterval) {
                 this.sessionCheckInterval = setInterval(() => {
@@ -319,7 +338,6 @@ export const useAuthenticationStore = defineStore('authentication', {
                 }, 1000);
             }
         },
-
         stopSessionCheck() {
             if (this.sessionCheckInterval) {
                 clearInterval(this.sessionCheckInterval);

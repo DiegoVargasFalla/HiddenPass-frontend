@@ -111,7 +111,7 @@ export const useNoteStore = defineStore('noteStore', {
 
                     const response = await axios.post('/api/v1/add-note',
                         noteEntityDTO,
-                        { headers: { Authorization: `Bearer ${token}` } }
+                        { headers: { Authorization: `Bearer ${token}` } } 
                     )
 
                     const data = response.data;

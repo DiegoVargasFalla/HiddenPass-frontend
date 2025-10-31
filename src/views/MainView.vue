@@ -22,7 +22,7 @@
                 <linksNav lable="Planes" link="/#sec-plans"  :colorText=ColorText></linksNav>
             </template>
             <template #item-4>
-                <linksNav lable="Contacto" link="/#contact-section" :colorText=ColorText></linksNav>
+                <linksNav lable="FAQ" link="/#FAQ-section" :colorText=ColorText></linksNav>
             </template>
             <template #button-1>
                 <buttons 
