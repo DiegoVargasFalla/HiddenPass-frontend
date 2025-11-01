@@ -62,7 +62,7 @@ import { computed, ref } from 'vue';
 const newPasswordStore = useNewPasswordStore();
 const newPasswordSchema = useNewPasswordSchema();
 
-const {username, url, password, note, showLayer} = storeToRefs(newPasswordStore)
+const {  username, url, password, note, showLayer } = storeToRefs(newPasswordStore)
 
 const focusedUsername = ref(false);
 const focusedPassword = ref(false);
@@ -70,7 +70,6 @@ const focusedUrl = ref(false);
 const focusedNote = ref(false);
 
 const showCheckIcon = computed(() => newPasswordStore.iconConfirm);
-
 
 const showPassword = () => {
     const fieldPassword = document.getElementById('field-password')

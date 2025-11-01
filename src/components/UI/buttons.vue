@@ -1,5 +1,5 @@
 <template>
-    <div class="buttonLog" @click="handleSlideBar" :style="{backgroundColor: bgColor, height: height +'rem', width: width +'%', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
+    <div @click="handleSlideBar" class="buttonLog"  :style="{backgroundColor: bgColor, height: height +'rem', width: width +'%', borderRadius: bordeRadius + 'px', border: `2px solid ${colorBorder}`, boxShadow: `0px 2px 6px ${boxShadowColor}`}">
         <a v-if="typeLink" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" :href="link">{{ label }}</a>
         <RouterLink  v-else :to="link" :style="{ color: textColor, fontSize: fontSize + 'rem', fontWeight: fontWeight}" >{{ label }}</RouterLink>
     </div>
@@ -36,8 +36,6 @@ const props = defineProps({
 })
 const typeLink = computed(() => props.link.startsWith('#'));
 
-
-
 const handleSlideBar = async () => {
   if(props.disabled) {
     return;
@@ -52,8 +50,6 @@ const handleSlideBar = async () => {
     registerLinkStore.generateRegisterLink();
   }
 }
-
-
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");

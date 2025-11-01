@@ -41,7 +41,6 @@ window.addEventListener('beforeunload', beforeUnload);
 
 async function init() {
 
-
     if(registerStore.getIv().length === 0 || registerStore.getSalt().length === 0 ) {
             await AuthenticationStore.bringIvAndSalt();
         }

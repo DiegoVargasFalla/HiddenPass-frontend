@@ -13,7 +13,7 @@
         <section class="section-login">
             <registerLink v-if="!showRegisterOrMailLink"></registerLink>
             <div v-if="showRegisterOrMailLink" class="content-form-login">
-                <Form :validation-schema="useRegisterSchema" @submit=""  class="form-login">
+                <Form @submit="handleSubmitRegister" :validation-schema="useRegisterSchema" class="form-login">
                     <div class="content-tittle">
                         <h2>Registro</h2>
                     </div>
@@ -45,10 +45,6 @@
                         <div class="container-error">
                             <ErrorMessage name="confirmPassword"></ErrorMessage>
                         </div>
-                        <!-- 
-                            <li><RouterLink class="text-inter" to="/TyC">Términos y condiciones</RouterLink></li>
-                    <li><RouterLink class="text-inter" to="/policies">Política de privacidad</RouterLink></li>
-                        -->
                     </div>
                     <div class="container-tyc">
                         <p href="#" class="text-password-recover text-tyc">Registrandote aceptas los <RouterLink class="links-tyc" to="/TyC">Términos y condiciones</RouterLink> y <RouterLink class="links-tyc" to="/policies">Política de privacidad</RouterLink></p>
@@ -67,7 +63,7 @@
                             colorBorder="#058C42"
                             :bordeRadius="40"
                             :register="true"
-                            :disabled="true"
+                            :disabled="false"
                         ></buttons>
                     </div>
                     <div class="container-redirect-register">
@@ -110,6 +106,10 @@ const showVerifyMail = computed(() => {
 
 const showRegisterOrMailLink = ref();
 
+const handleSubmitRegister = async () => {
+    console.log("en register");
+    await registerStore.registerUser();
+}
 
 onMounted( async () => {
 
@@ -121,7 +121,7 @@ onMounted( async () => {
         if(responseToken) {
             showRegisterOrMailLink.value = true;
         } else{ 
-            console.log("-> token has expired");
+            console.log("");
         }
     } else {
         showRegisterOrMailLink.value = false;

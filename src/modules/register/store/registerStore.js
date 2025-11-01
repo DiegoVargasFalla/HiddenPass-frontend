@@ -64,10 +64,7 @@ export const useRegisterStore = defineStore('registerStore', {
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
             const authenticationStore = useAuthenticationStore();
 
-            await authenticationStore.checkMail({email: this.email});
-
-            if(this.verifyMailRegister === false) {
-
+            if(this.name.length > 0 && this.password.length > 0 && this.email.length > 0) {
                 try {
                     const request = await axios.post('/api/v1/create', {
                         name: this.name,
@@ -90,10 +87,8 @@ export const useRegisterStore = defineStore('registerStore', {
                     console.log(error.message)
                 }
             } else {
-                this.verifyMailRegister = true;
+                console.log("-> fill fields");
             }
-
-
         }
     }
 })

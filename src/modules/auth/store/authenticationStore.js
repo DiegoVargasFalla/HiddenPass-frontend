@@ -206,6 +206,7 @@ export const useAuthenticationStore = defineStore('authentication', {
                 if(data) {
                     registerStore.setVerifyMailRegister(data);
                     this.verifyEmail = data;
+                    return data
                 }
             } catch (Error) {
                 console.log(" ")
@@ -321,7 +322,6 @@ export const useAuthenticationStore = defineStore('authentication', {
                 });
                 const data = response.data;
                 if(data) {
-                    console.log(data);
                     return true;
                 }
 
