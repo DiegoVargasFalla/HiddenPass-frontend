@@ -35,29 +35,35 @@ const layerPopsUpStore = useShowLayerPopsUp();
 const router = useRouter();
 
 function beforeUnload() {
+    sessionStorage.setItem('token', AuthenticationStore.getToken())
     sessionStorage.setItem('dk', registerStore.getDerivedKey());
 }
+
 window.addEventListener('beforeunload', beforeUnload);
 
 async function init() {
+    console.log("-> En el init");
+    
+    const token = sessionStorage.getItem("token");
+    if(token != null) {
+        AuthenticationStore.setToken(token);
+        sessionStorage.removeItem('token')
+    }
 
     if(registerStore.getIv().length === 0 || registerStore.getSalt().length === 0 ) {
-            await AuthenticationStore.bringIvAndSalt();
-        }
+        await AuthenticationStore.bringIvAndSalt();
+    }
 
-        const derivedKey = sessionStorage.getItem('dk');
-        if(derivedKey != null) {
-            registerStore.setDerivedKey(derivedKey);
-            sessionStorage.removeItem('dk');
-        }
+    const derivedKey = sessionStorage.getItem('dk');
+    if(derivedKey != null) {
+        registerStore.setDerivedKey(derivedKey);
+        sessionStorage.removeItem('dk');
+    }
 
-        const token = sessionStorage.getItem("tokenAuthentication");
-        AuthenticationStore.setToken(token);
-
-        loaderPasswordsStore.startLoadPasswords();
-        await AuthenticationStore.bringPasswords();
-        loaderPasswordsStore.stopLoadPassword();
-        noteStore.bringNotes();
+    loaderPasswordsStore.startLoadPasswords();
+    await AuthenticationStore.bringPasswords();
+    loaderPasswordsStore.stopLoadPassword();
+    noteStore.bringNotes();
 }
 
 onMounted(() => {

@@ -114,7 +114,7 @@ export const useAuthenticationStore = defineStore('authentication', {
 
             const registerStore = useRegisterStore();
             const encryptionsUtilsStore = useEncryptionsUtilsStore();
-            const token = sessionStorage.getItem('tokenAuthentication');
+            // const token = sessionStorage.getItem('token');
             if (await this.checkAuthentication()) {
 
                 try {  // http://localhost:8080/system/api/v1/passwords-user
@@ -161,14 +161,12 @@ export const useAuthenticationStore = defineStore('authentication', {
                     this.isAuthenticate = true;
                     this.token = data.token;
                     this.forbidden = false;
-                    sessionStorage.setItem('tokenAuthentication', this.token)
                 }
             } catch (Error) {
                 if (Error.status === 403) {
                     this.forbidden = true;
                     this.verifyPassword = false;
                 } else {
-                    console.log("-> Error: " + Error)
                     alert("Error with server")
                 }
             }
@@ -186,7 +184,6 @@ export const useAuthenticationStore = defineStore('authentication', {
                 const data = request.data;
                 if(data) {
                     const registerStore = useRegisterStore();
-                    // const encryptionsUtilsStore = useEncryptionsUtilsStore();
 
                     registerStore.setIv(data.iv)
                     registerStore.setSalt(data.salt);
@@ -214,7 +211,7 @@ export const useAuthenticationStore = defineStore('authentication', {
         },
         logout(message) {
             // this.stopSessionCheck();
-            sessionStorage.removeItem('tokenAuthentication');
+            sessionStorage.removeItem('token');
             this.isAuthenticate = false;
             this.token = null;
             alert(message);
@@ -236,13 +233,11 @@ export const useAuthenticationStore = defineStore('authentication', {
             loaderStore.stopLoadPassword();
         },
         async checkAuthentication() {
-            
-            const tokenUser = sessionStorage.getItem('tokenAuthentication');
-            
-            if (tokenUser) {
+                        
+            if (this.token) {
                 const showLayerPopsUpStore = useShowLayerPopsUp()
                 this.isAuthenticate = true;
-                this.token = tokenUser;
+                // this.token = this.token;
 
                 try { // http://localhost:8080/system/api/v1/checktoken
                     const response = await axios.get('/api/v1/checktoken', {
@@ -296,7 +291,6 @@ export const useAuthenticationStore = defineStore('authentication', {
                     })
 
                     const data = response.data;
-
                     if(data === true) {
                         return true;
                     } else {

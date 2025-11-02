@@ -40,8 +40,11 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
 
   const authenticationStore = useAuthenticationStore();
-  const isAuth = await authenticationStore.enabledToken(sessionStorage.getItem('token'));
 
+  const token = sessionStorage.getItem('token');
+
+  const isAuth = await authenticationStore.enabledToken(token);
+  
   if(to.meta.requiresAuth && !isAuth) {
     next({name: 'login'});
   } else {

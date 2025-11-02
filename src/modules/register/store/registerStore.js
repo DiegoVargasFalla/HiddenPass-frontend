@@ -87,7 +87,7 @@ export const useRegisterStore = defineStore('registerStore', {
                     console.log(error.message)
                 }
             } else {
-                console.log("-> fill fields");
+                console.log("");
             }
         }
     }

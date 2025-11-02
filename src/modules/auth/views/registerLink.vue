@@ -31,7 +31,7 @@
                     :fontWeight="900"
                     colorBorder="#058C42"
                     :bordeRadius="40"
-                    :disabled="disabledButtonSend"
+                    :disabled="true"
                     :token="true"
                     ></buttons>
                 </div>

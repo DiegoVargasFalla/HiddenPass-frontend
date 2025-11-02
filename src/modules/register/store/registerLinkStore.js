@@ -77,7 +77,7 @@ export const useRegisterLinkStore = defineStore('registerLink', {
                     this.existMail = true;
                 }
             } else {
-                console.log("-> fill field")
+                console.log("");
             }
         },
         sleep(ms) {

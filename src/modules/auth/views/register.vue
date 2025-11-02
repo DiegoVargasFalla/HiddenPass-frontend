@@ -107,7 +107,6 @@ const showVerifyMail = computed(() => {
 const showRegisterOrMailLink = ref();
 
 const handleSubmitRegister = async () => {
-    console.log("en register");
     await registerStore.registerUser();
 }
 

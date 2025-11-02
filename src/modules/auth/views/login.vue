@@ -44,7 +44,7 @@
                         <a href="#" class="text-password-recover">¿Olvidaste contraseña?</a>
                     </div> -->
                     <div class="container-button" id="cont-button">
-                        <button id="button-submit" class="button-star" type="submit">
+                        <button :disabled="true" id="button-submit" class="button-star" type="submit">
                             Iniciar
                         </button>
                     </div>
@@ -151,29 +151,29 @@ const existPassword = computed(() => {
 })
 
 const onSubmit = async () => {
+    return;
     const requestBody = {
             email: credentials.email 
         };
 
-        await authenticationStore.checkMail(requestBody)
-        if(authenticationStore.getVerifyEmail()) {
-            await authenticationStore.login(credentials);
-            if (!authenticationStore.getForbbiden()) {
-                // await encryptionsUtilsStore.bringPublicKeyBack();
+    await authenticationStore.checkMail(requestBody)
+    if(authenticationStore.getVerifyEmail()) {
+        await authenticationStore.login(credentials);
+        if (!authenticationStore.getForbbiden()) {
 
-                const token = authenticationStore.token;
+            const token = authenticationStore.token;
+            console.log(token)
 
-                if (token) {
-
-                    await authenticationStore.bringIvAndSalt();
-                    const derivedKey = await encryptionsUtilsStore.deriveKey(credentials.password, encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getSalt()));
-                    registerStore.setDerivedKey(encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.exportDerivedKey(derivedKey)));
-                    credentialsStore.setEmail('');
-                    credentialsStore.setPassword('');
-                    router.push('/dashboard');
-                }
+            if (token) {
+                await authenticationStore.bringIvAndSalt();
+                const derivedKey = await encryptionsUtilsStore.deriveKey(credentials.password, encryptionsUtilsStore.exportBase64ToUnit8Array(registerStore.getSalt()));
+                registerStore.setDerivedKey(encryptionsUtilsStore.exportUnit8ArrayToBase64(await encryptionsUtilsStore.exportDerivedKey(derivedKey)));
+                credentialsStore.setEmail('');
+                credentialsStore.setPassword('');
+                router.push('/dashboard');
             }
         }
+    }
 }
 </script>
 
