@@ -161,7 +161,6 @@ const onSubmit = async () => {
         if (!authenticationStore.getForbbiden()) {
 
             const token = authenticationStore.token;
-            console.log(token)
 
             if (token) {
                 await authenticationStore.bringIvAndSalt();

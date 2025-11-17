@@ -160,6 +160,7 @@ export const useAuthenticationStore = defineStore('authentication', {
                 if (data) {
                     this.isAuthenticate = true;
                     this.token = data.token;
+                    sessionStorage.setItem('token', data.token)
                     this.forbidden = false;
                 }
             } catch (Error) {

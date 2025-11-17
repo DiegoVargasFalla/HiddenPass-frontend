@@ -42,7 +42,6 @@ function beforeUnload() {
 window.addEventListener('beforeunload', beforeUnload);
 
 async function init() {
-    console.log("-> En el init");
     
     const token = sessionStorage.getItem("token");
     if(token != null) {
