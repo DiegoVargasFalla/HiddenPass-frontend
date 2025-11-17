@@ -37,7 +37,6 @@ const props = defineProps({
 const typeLink = computed(() => props.link.startsWith('#'));
 
 const handleSlideBar = async () => {
-  console.log("-> Click en el boton de enviar mail")
   if(props.disabled) {
     return;
   } else if (authenticationStore.showSlideBar) {
