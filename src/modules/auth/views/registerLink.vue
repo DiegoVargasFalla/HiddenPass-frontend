@@ -31,8 +31,8 @@
                     :fontWeight="900"
                     colorBorder="#058C42"
                     :bordeRadius="40"
-                    :disabled="true"
-                    :token="false"
+                    :disabled="false"
+                    :token="true"
                     ></buttons>
                 </div>
                 <div v-if="sendMail" class="container-send-again">
