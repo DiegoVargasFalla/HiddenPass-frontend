@@ -32,7 +32,7 @@
                     colorBorder="#058C42"
                     :bordeRadius="40"
                     :disabled="true"
-                    :token="true"
+                    :token="false"
                     ></buttons>
                 </div>
                 <div v-if="sendMail" class="container-send-again">
