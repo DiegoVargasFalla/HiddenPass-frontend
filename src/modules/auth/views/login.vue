@@ -151,7 +151,6 @@ const existPassword = computed(() => {
 })
 
 const onSubmit = async () => {
-    return;
     const requestBody = {
             email: credentials.email 
         };
