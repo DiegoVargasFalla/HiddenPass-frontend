@@ -378,9 +378,10 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 4.5rem 3rem;
+    padding: 5.5rem 3rem;
     width: min(1120px, 92%);
     margin-inline: auto;
+    margin-top: 4rem; /* separa del header en desktop */
     border-radius: 32px;
     background: radial-gradient(circle at top left, rgba(22, 219, 101, 0.18), transparent 55%),
                 rgba(15, 23, 42, 0.96);
@@ -487,15 +488,20 @@ onMounted(() => {
 
     .main-section {
         flex-direction: column;
-        width: 90%;
-        margin-left: 0;
-        padding: 7rem 1rem;
+        width: 100%;
+        margin: 0 auto; /* totalmente centrado en mobile */
+        padding: 6rem 1.5rem 4rem;
         gap: 3rem;
     }
 
     .container-text-inf {
         width: 100%;
         align-items: center;
+        text-align: center;
+    }
+
+    .text-info-big,
+    .text-info-small {
         text-align: center;
     }
 
