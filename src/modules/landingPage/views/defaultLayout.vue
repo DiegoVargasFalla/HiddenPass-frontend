@@ -356,11 +356,13 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* background-color: black; */
-    /* background-color: whitesmoke; */
-    /* margin-top: 40px; */
-    /* background-color: red; */
-    backdrop-filter: blur(1.5rem);
+    min-height: 100vh;
+    padding: 4rem 0 2rem;
+    background:
+        radial-gradient(circle at 0% 0%, rgba(22, 219, 101, 0.18), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(0, 0, 0, 0.85), #020617);
+    color: #f9fafb;
+    backdrop-filter: blur(1.2rem);
 }
 
 .container-bubble {
@@ -371,25 +373,30 @@ onMounted(() => {
 }
 
 .main-section {
-    /* background-color: red; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 6rem 0;
-    width: 85%;
-    margin-left: 3rem;
-    /* gap: 4rem; */
+    padding: 4.5rem 3rem;
+    width: min(1120px, 92%);
+    margin-inline: auto;
+    border-radius: 32px;
+    background: radial-gradient(circle at top left, rgba(22, 219, 101, 0.18), transparent 55%),
+                rgba(15, 23, 42, 0.96);
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(148, 163, 184, 0.15);
+    overflow: hidden;
 }
 
 .container-text-and-img {
-    /* background-color: green; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    gap: 3.5rem;
 }
 
 .divider {
@@ -401,12 +408,11 @@ onMounted(() => {
 }
 
 .container-text-inf {
-    /* background-color: green; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .container-text-and-button-start {
@@ -416,23 +422,25 @@ onMounted(() => {
 }
 
 .content-text-info {
-    max-width: 100%;
+    max-width: 30rem;
 }
 
 .text-info-big {
     font-family: 'Inter';
-    font-size: clamp(2rem, 4vw, 3.3rem);
+    font-size: clamp(2.4rem, 4.2vw, 3.5rem);
     line-height: 1.1;
     text-align: left;
-    font-weight: 780;
+    font-weight: 800;
+    letter-spacing: -0.03em;
 }
 
 .text-info-small {
     font-family: "Inter";
     font-size: clamp(1.3rem, 2.3vw, 1.5rem);
     line-height: 1.3;
-    font-weight: 450;
+    font-weight: 400;
     text-align: left;
+    color: #cbd5f5;
 }
 
 .container-button-go {
@@ -445,14 +453,15 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     width: 50%;
+    padding-left: 1rem;
 }
 
 .container-img-mac img {
-    width: 100%;
-    /* max-width: 600px; */
+    width: 105%;
+    max-width: 540px;
     height: auto;
     object-fit: contain;
-    mix-blend-mode: multiply;
+    filter: drop-shadow(0 28px 80px rgba(0, 0, 0, 0.9));
 }
 
 /* RESPONSIVE */
@@ -508,6 +517,7 @@ onMounted(() => {
     font-family: "Inter";
     font-weight: 900;
     font-size: clamp(2.5rem, 5vw, 3.2rem);
+    text-shadow: 0 0 22px rgba(22, 219, 101, 0.45);
 }
 
 .text-pass {
@@ -536,17 +546,21 @@ onMounted(() => {
 }
 
 .section-about {
-    /* background-color: green; */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* height: auto; */
-    width: 90%;
-    border-radius: 45px;
-    gap: 45px;
-    /* padding: 30px; */
+    width: min(1120px, 92%);
+    border-radius: 32px;
+    gap: 2.8rem;
+    margin-top: 4rem;
+    padding: 3.2rem 2.8rem 3.6rem;
+    background: radial-gradient(circle at top right, rgba(22, 219, 101, 0.16), transparent 55%),
+                rgba(15, 23, 42, 0.98);
+    box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(148, 163, 184, 0.14);
 }
 
 @media screen and (max-width: 1400px) {
@@ -567,9 +581,8 @@ onMounted(() => {
 }
 
 .container-text-explain {
-    /* background: linear-gradient(153deg, rgba(200,255,200,1) 10%, rgba(150,220,150,1) 60%, rgba(120,180,120,1) 90%); */
     position: relative;
-    padding: 0 20px;
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -590,11 +603,13 @@ onMounted(() => {
     font-weight: 1000;
     font-size: clamp(1.7rem, 2.5vw, 2rem);;
     text-align: center;
+    color: #e5e7eb;
 }
 
 .type-inter {
     font-family: "inter";
     font-size: 1rem;
+    color: #cbd5f5;
 }
 
 .hiddenpass-green-text-explain {
@@ -701,6 +716,7 @@ plans section
     font-size: clamp(2rem, 2.5vw, 2rem);
     width: 100%;
     text-align: center;
+    color: #e5e7eb;
 }
 
 .second-text-about {
@@ -709,6 +725,7 @@ plans section
     font-weight: 500;
     width: 60%;
     text-align: center;
+    color: #cbd5f5;
 }
 
 .word-specials {
@@ -720,7 +737,6 @@ plans section
 }
 
 .container-items-table {
-    /* background-color: green; */
     text-align: center;
     position: relative;
     display: grid;
@@ -728,9 +744,7 @@ plans section
     grid-template-rows: auto;
     row-gap: 80px;
     column-gap: 45px;
-    /* width: 50%; */
-    /* height: 100%; */
-    padding: 50px;
+    padding: 2.2rem 1.8rem 1.2rem;
 }
 
 @media screen and (max-width: 600px) {
@@ -789,11 +803,11 @@ contatc section
   align-items: center;
   justify-content: center;
   height: auto;
-  padding: 4rem 1rem;
+  padding: 4.5rem 1rem 4.8rem;
   width: 100%;
   font-family: 'Inter', sans-serif;
-  padding: 4rem 0;
-  /* background-color: red; */
+  padding-inline: 0;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
 }
 
 .container-img {
@@ -811,18 +825,21 @@ contatc section
 .container-faq {
   position: relative;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.814);
-  padding: 2rem;
-  border-radius: 1rem;
+  background: radial-gradient(circle at top left, rgba(22, 219, 101, 0.2), transparent 55%),
+              rgba(15, 23, 42, 0.98);
+  padding: 2.4rem 2.6rem;
+  border-radius: 1.4rem;
   max-width: 900px;
-  width: 85%;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+  width: min(900px, 90%);
+  box-shadow:
+    0 24px 70px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(148, 163, 184, 0.16);
 }
 
 .faq-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #000;
+  color: #e5e7eb;
   text-align: center;
   font-weight: 600;
 }
@@ -837,13 +854,13 @@ contatc section
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #039b40;
+  color: #22c55e;
 }
 
 .faq-item p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
+  color: #cbd5f5;
 }
 
 /* Responsive */
@@ -867,27 +884,26 @@ contatc section
 }
 
 .sec-end {
-    /* background-color: gray; */
     position: relative;
     display: flex;
     align-items: center;
     justify-items: center;
     flex-direction: column;
-    /* height: 60vh; */
     width: 100%;
-    padding: 4rem 0;
+    padding: 4.5rem 0;
+    background: radial-gradient(circle at top, rgba(22, 219, 101, 0.18), transparent 55%),
+                radial-gradient(circle at bottom, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 1));
 }
 
 .container-sec-end {
     position: relative;
-    /* background-color: aliceblue; */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    width: 90%;
-    row-gap: 20px;
+    width: min(900px, 92%);
+    row-gap: 1.6rem;
 }
 
 .tittle-sec-end {
@@ -895,12 +911,12 @@ contatc section
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: #16DB65; */
     width: 100%;
     font-family: 'Inter';
-    font-size: 3rem;
-    font-weight: 1000;
+    font-size: clamp(2.2rem, 3vw, 2.6rem);
+    font-weight: 900;
     text-align: center;
+    color: #f9fafb;
 }
 
 .container-p-end {
@@ -909,35 +925,35 @@ contatc section
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 70%;
+    width: 80%;
     font-family: 'Inter';
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 500;
+    color: #cbd5f5;
 }
 
 .container-button-sec-end {
-    /* background-color: red; */
     position: relative;
-    width: 35rem;
+    width: min(320px, 100%);
 }
 
 .section-use-guide {
   width: 100%;
-  padding: 4rem 0;
+  padding: 4.2rem 0 4.6rem;
 }
 
 .use-guide-container {
-  width: 85%;
+  width: min(1120px, 92%);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.4rem;
 }
 
 .guide-title {
   font-size: 2rem;
   font-weight: bold;
-  color: #000;
+  color: #e5e7eb;
   margin-bottom: 2rem;
   border-left: 5px solid #16db65;
   /* padding-left: 1rem; */
@@ -949,6 +965,7 @@ contatc section
     justify-content: center;
     width: 100%;
     row-gap: 2rem;
+    column-gap: 3rem;
 }
 
 .guide-block.reverse {
@@ -957,17 +974,17 @@ contatc section
 
 .guide-text {
     flex: 1;
-    /* background-color: red; */
     width: 60%;
     font-family: "inter";
     font-size: clamp(0.9rem, 2.2vw, 1rem);
     text-align: center;
+    color: #cbd5f5;
 }
 
 .guide-subtitle {
     font-size: 1.5rem;
     /* font-weight: 600; */
-    color: #000;
+    color: #e5e7eb;
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
     font-family: "Archivo Black", serif;
@@ -975,7 +992,7 @@ contatc section
 
 .guide-description {
     font-size: 1rem;
-    color: #333;
+    color: #cbd5f5;
     line-height: 1.6;
 }
 
